@@ -21,7 +21,7 @@ export default function FeaturedWork() {
           {featuredProjects.slice(0, 4).map((project, i) => (
             <Reveal as="li" key={project.slug} delay={(i % 2) * 0.08}>
               <Link href={`/work/${project.slug}`} className="group block">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-card)] bg-accent-soft">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-card bg-accent-soft">
                   <Image
                     src={project.cover.src}
                     alt={project.cover.alt}
@@ -39,7 +39,7 @@ export default function FeaturedWork() {
                   <h3 className="font-display text-xl font-bold tracking-[-0.03em] transition-colors group-hover:text-accent sm:text-2xl">
                     {project.title}
                   </h3>
-                  <span className="rounded-[var(--radius-pill)] border border-line px-3 py-1 text-xs font-medium text-ink/75">
+                  <span className="rounded-full border border-line px-3 py-1 text-xs font-medium text-ink/75">
                     {project.serviceLabel}
                   </span>
                 </div>

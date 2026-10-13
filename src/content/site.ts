@@ -44,7 +44,7 @@ export const hero = {
   headline: ["Hi, I'm Husnain.", "I build stores", "that sell."],
   highlight: "sell.",
   intro:
-    "I'm a freelancer who builds and rescues Shopify stores, automates the manual admin your team repeats every day, and ships websites that bring in enquiries.",
+    "I'm a freelancer who builds and rescues Shopify stores, builds custom websites, automates your manual admin with n8n, runs your social media and sets up Claude Code for your team.",
   primaryCta: { label: "Start a project", href: "/contact" },
   secondaryCta: { label: "See my work", href: "/work" },
   socialProof: {
@@ -68,20 +68,21 @@ export const hero = {
 /* -------------------------------- MARQUEE -------------------------------- */
 export const marqueeLabel = "Tools & platforms I work with every day";
 
+/* `logo` picks the icon shown before each name. Available logos:
+   shopify, figma, webflow, gohighlevel, wordpress, claude, vercel,
+   github, n8n, social */
 export const marquee = [
-  "Shopify",
-  "Shopify Plus",
-  "Liquid",
-  "Make.com",
-  "Zapier",
-  "n8n",
-  "GoHighLevel",
-  "Webflow",
-  "WordPress",
-  "Klaviyo",
-  "Google Sheets",
-  "Figma",
-];
+  { name: "Shopify", logo: "shopify" },
+  { name: "Figma", logo: "figma" },
+  { name: "Webflow", logo: "webflow" },
+  { name: "GoHighLevel", logo: "gohighlevel" },
+  { name: "WordPress", logo: "wordpress" },
+  { name: "Claude", logo: "claude" },
+  { name: "Vercel", logo: "vercel" },
+  { name: "GitHub", logo: "github" },
+  { name: "n8n", logo: "n8n" },
+  { name: "Social media", logo: "social" },
+] as const;
 
 /* --------------------------------- ABOUT --------------------------------- */
 export const about = {
@@ -116,12 +117,17 @@ export const services = [
   {
     slug: "shopify",
     number: "01",
-    /* icon options: "store" | "automation" | "website" */
+    /* icon options: "store" | "automation" | "website" | "social" | "terminal" */
     icon: "store",
     title: "Shopify stores",
     short:
       "New stores built from scratch, and redesigns of tired stores that get visitors but not sales.",
     tags: ["New builds", "Redesigns", "Speed & mobile"],
+    /* Card image. Swap for a real screenshot in public/images/services/ */
+    thumbnail: {
+      src: "/images/services/shopify.svg",
+      alt: "Illustration of a Shopify product page with an Add to cart button and a new order notification",
+    },
     description:
       "Whether you're launching your first product or sitting on a store that gets traffic but no orders, I design and build Shopify storefronts around one job: turning a visitor into a customer.",
     includes: [
@@ -136,34 +142,17 @@ export const services = [
       "Best for small brands launching a store, or anyone whose current store looks dated and isn't selling.",
   },
   {
-    slug: "automation",
-    number: "02",
-    icon: "automation",
-    title: "Business process automation",
-    short:
-      "Order confirmations, data entry into sheets, follow-ups and status updates. The repetitive internal work, running on its own.",
-    tags: ["Confirmations", "Data entry", "Follow-ups"],
-    description:
-      "Order confirmations typed out by hand. Data copied into spreadsheets. Follow-ups someone has to remember. Status updates chased over WhatsApp. I map those processes and rebuild them so they run themselves, quietly, in the background.",
-    includes: [
-      "Automated order and booking confirmations",
-      "Removing manual data entry into sheets and CRMs",
-      "Automatic follow-up sequences for leads and customers",
-      "Internal status updates and team notifications",
-      "Connecting the tools you already pay for",
-      "A written map of every process before I build it",
-    ],
-    forWho:
-      "Best for small teams where one or two people spend hours a week on repetitive admin.",
-  },
-  {
     slug: "websites",
-    number: "03",
+    number: "02",
     icon: "website",
-    title: "Websites",
+    title: "Custom websites",
     short:
       "Fast, clean business websites built on the platform that fits how you work.",
     tags: ["GoHighLevel", "Webflow", "WordPress"],
+    thumbnail: {
+      src: "/images/services/websites.svg",
+      alt: "Illustration of three website layouts built on GoHighLevel, Webflow and WordPress",
+    },
     description:
       "A website should bring you enquiries, not just exist. I build on the platform that genuinely fits how you work: GoHighLevel when you want leads and follow-up in one place, Webflow for design-led sites, WordPress when you need full control.",
     includes: [
@@ -177,14 +166,95 @@ export const services = [
     forWho:
       "Best for service businesses that need a credible site and a steady flow of enquiries.",
   },
+  {
+    slug: "automation",
+    number: "03",
+    icon: "automation",
+    title: "n8n automation",
+    short:
+      "Order confirmations, data entry into sheets, follow-ups and status updates, built in n8n so the repetitive internal work runs on its own.",
+    tags: ["Confirmations", "Data entry", "Follow-ups"],
+    thumbnail: {
+      src: "/images/services/automation.svg",
+      alt: "Illustration of an automated workflow: new order, row added to a sheet, email sent, team notified",
+    },
+    description:
+      "Order confirmations typed out by hand. Data copied into spreadsheets. Follow-ups someone has to remember. Status updates chased over WhatsApp. I map those processes and rebuild them as n8n workflows that run themselves, quietly, in the background.",
+    includes: [
+      "Automated order and booking confirmations",
+      "Removing manual data entry into sheets and CRMs",
+      "Automatic follow-up sequences for leads and customers",
+      "Internal status updates and team notifications",
+      "Connecting the tools you already pay for",
+      "A written map of every process before I build it",
+      "Workflows you own, on your n8n account or self-hosted",
+    ],
+    forWho:
+      "Best for small teams where one or two people spend hours a week on repetitive admin.",
+  },
+  {
+    slug: "social",
+    number: "04",
+    icon: "social",
+    title: "Social media marketing",
+    /* TODO (Husnain): check this matches exactly what you offer */
+    short:
+      "A clear content plan, posts designed to fit your brand, and accounts that are run consistently instead of whenever there's time.",
+    tags: ["Content plan", "Post design", "Scheduling"],
+    thumbnail: {
+      src: "/images/services/social.svg",
+      alt: "Illustration of a phone showing a branded social media profile with a grid of posts",
+    },
+    description:
+      "Most small businesses know they should be posting, but it always slips behind the real work. I plan your content, design posts that look like your brand, and keep your accounts active and consistent, so social media actually supports your sales.",
+    includes: [
+      "Profile setup and clean-up",
+      "A monthly content plan",
+      "Post and story design in your brand style",
+      "Captions written for your audience",
+      "Scheduling and consistent posting",
+      "A simple monthly report on what worked",
+    ],
+    forWho:
+      "Best for small businesses that know social media matters but never have the time to do it properly.",
+  },
+  {
+    slug: "claude-code",
+    number: "05",
+    icon: "terminal",
+    title: "Claude Code setup",
+    /* TODO (Husnain): check this matches exactly what you offer */
+    short:
+      "Claude Code installed, configured and taught your business, so you and your team get real work out of AI from day one.",
+    tags: ["Setup", "Custom skills", "Team training"],
+    thumbnail: {
+      src: "/images/services/claude-code.svg",
+      alt: "Illustration of a terminal window running Claude Code with a project instruction file",
+    },
+    description:
+      "Claude Code is powerful, but out of the box it doesn't know your business, your tools or how you like things done. I set it up properly: project instructions, custom skills for your repeated tasks, and connections to the tools you already use. Then I show you how to use it day to day.",
+    includes: [
+      "Installation on your machines",
+      "Project instruction files (CLAUDE.md) written for your business",
+      "Custom skills for your repeated tasks",
+      "Connections to the tools you already use",
+      "Safe permission settings",
+      "A hands-on training session",
+    ],
+    forWho:
+      "Best for founders and small teams who want to use AI for real work, not just chat with it.",
+  },
 ] as const;
 
 export const servicesSection = {
   eyebrow: "What I do",
-  heading: "Three things I do really well",
-  sub: "I keep my services deliberately narrow, so every project gets my full focus and real expertise, not a little bit of everything.",
+  heading: "Five ways I help your business grow",
+  sub: "Stores, websites, automations, social media and AI setup. Every project is done by me personally, so it gets my full focus.",
   cta: { label: "See all services", href: "/services" },
   cardLink: "Learn more",
+  /* Carousel controls (read by screen readers) */
+  pauseLabel: "Pause the slideshow",
+  playLabel: "Play the slideshow",
 };
 
 /* ------------------------------ CASE STUDIES ----------------------------- */
@@ -199,27 +269,81 @@ export const workSection = {
 export const testimonialsSection = {
   eyebrow: "Kind words",
   heading: "What clients say",
-  sub: "Tap a name to read what they said about working with me.",
+  sub: "Real feedback from the people I've worked with. Press play to hear it in their own voice.",
+  playLabel: "Play voice note from",
+  pauseLabel: "Stop voice note from",
 };
 
+/* ⚠️ PLACEHOLDER CONTENT — every name, photo, quote and voice note below is
+   stock / sample content for design preview only. Replace with real clients
+   before the site goes live. To add one: copy a block and edit it.
+   - image:  photo in public/images/testimonials/
+   - audio:  voice note file in public/audio/ (mp3, m4a or wav)
+   - social: their LinkedIn or X link (leave "" to hide the icon) */
 export const testimonials = [
   {
-    quote: "[TODO: client quote]",
-    name: "[TODO: client name]",
-    title: "[TODO: role, company]",
-    country: "[TODO: country]",
+    name: "Erik Lindqvist",
+    jobtitle: "Shopify store owner · Sweden",
+    text: "Our old store looked dated and people left without buying. Husnain rebuilt it from the ground up. It finally feels like a brand customers can trust.",
+    image: "/images/testimonials/placeholder-1.jpg",
+    audio: "placeholder-1.wav",
+    social: "https://www.linkedin.com/",
   },
   {
-    quote: "[TODO: client quote]",
-    name: "[TODO: client name]",
-    title: "[TODO: role, company]",
-    country: "[TODO: country]",
+    name: "Omar Haddad",
+    jobtitle: "Founder, e-commerce brand · UAE",
+    text: "I was typing every order into a spreadsheet by hand. Now it all happens on its own, and I get my evenings back. Easily the best decision I made this year.",
+    image: "/images/testimonials/placeholder-2.jpg",
+    audio: "placeholder-2.wav",
+    social: "https://www.linkedin.com/",
   },
   {
-    quote: "[TODO: client quote]",
-    name: "[TODO: client name]",
-    title: "[TODO: role, company]",
-    country: "[TODO: country]",
+    name: "Daniel Reed",
+    jobtitle: "Owner, local service business · US",
+    text: "He built our website on GoHighLevel and connected it to our bookings. Clear communication, fast delivery, and no tech headaches for me.",
+    image: "/images/testimonials/placeholder-3.jpg",
+    audio: "placeholder-3.wav",
+    social: "https://www.linkedin.com/",
+  },
+  {
+    name: "Sara Ahmed",
+    jobtitle: "Operations lead · UAE",
+    text: "Follow-ups used to slip through the cracks every week. Husnain automated our status updates, so the whole team always knows where things stand.",
+    image: "/images/testimonials/placeholder-4.jpg",
+    audio: "placeholder-4.wav",
+    social: "https://www.linkedin.com/",
+  },
+  {
+    name: "Marcus Tamm",
+    jobtitle: "Co-founder · Estonia",
+    text: "Working directly with one person made all the difference. He understood what we needed, kept us updated, and delivered a Webflow site we are proud of.",
+    image: "/images/testimonials/placeholder-5.jpg",
+    audio: "placeholder-5.wav",
+    social: "https://www.linkedin.com/",
+  },
+  {
+    name: "Emma Karlsson",
+    jobtitle: "Boutique owner · Sweden",
+    text: "I launched my first Shopify store with Husnain. He explained every step simply and made the whole process feel easy.",
+    image: "/images/testimonials/placeholder-6.jpg",
+    audio: "placeholder-6.wav",
+    social: "https://www.linkedin.com/",
+  },
+  {
+    name: "Jonas Berg",
+    jobtitle: "Marketing manager · Sweden",
+    text: "Our WordPress site was slow and hard to update. Now it is fast, clean, and I can change things myself without calling anyone.",
+    image: "/images/testimonials/placeholder-7.jpg",
+    audio: "placeholder-7.wav",
+    social: "https://www.linkedin.com/",
+  },
+  {
+    name: "Lucas Moreno",
+    jobtitle: "Founder · US",
+    text: "Order confirmations, invoices, reminders. Husnain automated all of it. I would recommend him to any small business owner.",
+    image: "/images/testimonials/placeholder-8.jpg",
+    audio: "placeholder-8.wav",
+    social: "https://www.linkedin.com/",
   },
 ];
 
@@ -247,6 +371,10 @@ export const faqs = [
     a: "It depends on what you need. GoHighLevel if leads and follow-up matter most, Webflow if design does, WordPress if you need full control and flexibility. I'll recommend one honestly on our call.",
   },
   {
+    q: "What is a Claude Code setup?",
+    a: "Claude Code is an AI assistant that can work directly with your files and tools. I install it, write instructions so it understands your business, build custom skills for the tasks you repeat, and train you to use it. You end up with an AI helper that actually knows how you work.",
+  },
+  {
     q: "Do you work across time zones?",
     a: "Yes. I work with clients in Sweden, the UAE, the US and Estonia, and I keep overlapping hours with each of them. [TODO: add your working hours.]",
   },
@@ -267,6 +395,11 @@ export const contactCta = {
 
 export const footer = {
   tagline:
-    "I'm Husnain, a freelancer building Shopify stores, business automations and websites for small businesses that want to sell more and work less.",
+    "I'm Husnain, a freelancer building Shopify stores, websites, automations, social media and AI setups for small businesses that want to sell more and work less.",
   copyright: `© ${site.year} ${site.brandFull}`,
+};
+
+/* ---------- Accessibility labels (screen readers / keyboard) ---------- */
+export const a11y = {
+  skipLink: "Skip to main content",
 };

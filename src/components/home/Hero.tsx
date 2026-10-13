@@ -4,6 +4,7 @@ import { Button, Container, Eyebrow } from "@/components/ui";
 import { Briefcase, Star } from "@/components/icons";
 import TiltCard from "@/components/TiltCard";
 import Reveal from "@/components/Reveal";
+import { LinesReveal } from "@/components/TextReveal";
 
 /* Placeholder avatar colours for the "happy clients" row.
    Swap for real client photos later if you like. */
@@ -27,18 +28,18 @@ export default function Hero() {
             <Eyebrow icon={Briefcase}>{hero.badge}</Eyebrow>
 
             <h1 className="mt-7 font-display text-[clamp(2.9rem,7.4vw,5.6rem)] font-bold leading-[0.95] tracking-[-0.045em]">
-              {hero.headline.map((line, i) => (
-                <span key={line} className="block">
-                  {i === lastLine && line.endsWith(hero.highlight) ? (
+              <LinesReveal
+                lines={hero.headline.map((line, i) =>
+                  i === lastLine && line.endsWith(hero.highlight) ? (
                     <>
                       {line.slice(0, -hero.highlight.length)}
                       <span className="text-accent">{hero.highlight}</span>
                     </>
                   ) : (
                     line
-                  )}
-                </span>
-              ))}
+                  ),
+                )}
+              />
             </h1>
 
             <p className="mt-7 max-w-[34rem] text-base leading-relaxed text-ink/75 sm:text-lg">
@@ -53,7 +54,7 @@ export default function Hero() {
             </div>
 
             {/* Social proof card, like the reference */}
-            <div className="mt-10 inline-flex items-center gap-4 rounded-[18px] border border-line bg-card/60 py-3 pl-3 pr-6">
+            <div className="mt-10 inline-flex items-center gap-4 rounded-btn border border-line bg-card/60 py-3 pl-3 pr-6">
               <div className="flex -space-x-3" aria-hidden="true">
                 {avatarColours.map((c) => (
                   <span
@@ -81,7 +82,7 @@ export default function Hero() {
           {/* --------------------- Right: portrait + previews -------------------- */}
           <Reveal delay={0.15}>
             <TiltCard strength={5} className="relative mx-auto max-w-[560px] lg:mr-0">
-              <div className="aspect-[4/4.6] overflow-hidden rounded-[32px] bg-accent-soft">
+              <div className="aspect-[4/4.6] overflow-hidden rounded-card bg-accent-soft">
                 <Image
                   src={hero.portrait.src}
                   alt={hero.portrait.alt}
@@ -94,7 +95,7 @@ export default function Hero() {
               </div>
 
               {/* Availability chip */}
-              <p className="absolute left-5 top-5 inline-flex items-center gap-2.5 rounded-[var(--radius-pill)] bg-card px-4 py-2.5 text-xs font-semibold shadow-[0_8px_24px_rgba(14,14,14,0.08)] sm:text-sm">
+              <p className="absolute left-5 top-5 inline-flex items-center gap-2.5 rounded-full bg-card px-4 py-2.5 text-xs font-semibold shadow-[0_8px_24px_rgba(14,14,14,0.08)] sm:text-sm">
                 <span className="relative flex size-2.5">
                   <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-70" />
                   <span className="relative inline-flex size-2.5 rounded-full bg-accent" />
@@ -106,7 +107,7 @@ export default function Hero() {
               {hero.previews.map((img, i) => (
                 <div
                   key={img.src}
-                  className={`absolute overflow-hidden rounded-[18px] border-4 border-card bg-card shadow-[0_18px_40px_rgba(14,14,14,0.16)] ${previewPlacement[i]}`}
+                  className={`absolute overflow-hidden rounded-btn border-4 border-card bg-card shadow-[0_18px_40px_rgba(14,14,14,0.16)] ${previewPlacement[i]}`}
                 >
                   <Image
                     src={img.src}

@@ -1,33 +1,61 @@
 @import "tailwindcss";
 
 /* =========================================================
-   DESIGN TOKENS — change the colours here and the whole
-   site updates. No gradients anywhere.
+   DESIGN TOKENS — follows Design.md. Change the colours here
+   and the whole site updates. No gradients anywhere.
    ========================================================= */
 :root {
-  --ink: #0E0E0E;     /* main text + dark sections */
-  --paper: #F4F1EA;   /* main page background      */
-  --accent: #FF5B1F;  /* buttons, badges, highlights */
-  --muted: #6B6B6B;   /* secondary text            */
-  --line: #DEDACF;    /* hairline borders          */
-  --card: #FFFFFF;    /* card surfaces             */
-  --accent-soft: #FFE4D8; /* soft tint for the contact block */
+  /* Colour */
+  --ink: #0C0407;         /* text.primary — main text            */
+  --black: #000000;       /* surface.base — dark sections        */
+  --paper: #F2F3F1;       /* surface.muted — main page background */
+  --card: #FFFFFF;        /* card surfaces                        */
+  --accent: #FC362D;      /* surface.raised — buttons, highlights */
+  --on-accent: #0C0407;   /* text ON accent fills (5.5:1, passes AA; white would fail) */
+  --accent-text: #C81E16; /* accent for SMALL text on light bg (5:1, passes AA) */
+  --accent-soft: #FFE1DE; /* solid soft tint for large blocks     */
+  --muted: #6B6B6B;       /* secondary text (4.7:1 on paper)      */
+  --line: #DADBD7;        /* hairline borders                     */
+
+  /* Radius */
+  --radius-small: 10px;     /* chips, small cards                   */
+  --radius-large: 40px;     /* large cards, image frames            */
+  --radius-pill: 999px;     /* CTA buttons — fully rounded ends     */
+
+  /* Focus ring — visible on light, dark and accent surfaces */
+  --focus-ring: var(--accent);
 }
 
 @theme inline {
   --color-ink: var(--ink);
+  --color-black: var(--black);
   --color-paper: var(--paper);
+  --color-card: var(--card);
   --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-accent-text: var(--accent-text);
+  --color-accent-soft: var(--accent-soft);
   --color-muted: var(--muted);
   --color-line: var(--line);
-  --color-card: var(--card);
-  --color-accent-soft: var(--accent-soft);
 
+  /* Inter with optical sizing = Inter Display at large sizes */
   --font-sans: var(--font-inter);
-  --font-display: var(--font-display-face);
+  --font-display: var(--font-inter);
 
-  --radius-card: 28px;
-  --radius-pill: 999px;
+  /* Type scale (Design.md font.size.*) */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-base--line-height: 26px;
+  --text-lg: 20px;
+  --text-xl: 22px;
+  --text-2xl: 24px;
+  --text-3xl: 28px;
+  --text-4xl: 32px;
+
+  --radius-btn: var(--radius-small);
+  --radius-cta: var(--radius-pill); /* fully rounded pill buttons */
+  --radius-card: var(--radius-large);
 }
 
 html {
@@ -37,13 +65,39 @@ html {
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-sans), "Inter Display", system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Keyboard focus — always visible, never removed */
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+/* Skip link — hidden until focused with the keyboard */
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 100;
+  padding: 12px 20px;
+  border-radius: var(--radius-small);
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 600;
+}
+.skip-link:focus-visible {
+  top: 12px;
 }
 
 ::selection {
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 /* Lenis smooth scroll */

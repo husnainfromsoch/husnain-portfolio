@@ -5,12 +5,13 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { nav, navCta, site } from "@/content/site";
 import { ArrowRight } from "@/components/icons";
+import { RollingLabel } from "@/components/ui";
 
 /** Round "H" monogram + brand name. Used in the navbar and footer. */
 export function Logo() {
   return (
     <Link href="/" className="group flex items-center gap-2.5" aria-label={`${site.brandFull}, home`}>
-      <span className="flex size-9 items-center justify-center rounded-full bg-accent font-display text-lg font-bold text-white transition-transform duration-300 group-hover:rotate-[-8deg]">
+      <span className="flex size-9 items-center justify-center rounded-full bg-accent font-display text-lg font-bold text-on-accent transition-transform duration-300 group-hover:rotate-[-8deg]">
         {site.name.charAt(0)}
       </span>
       <span className="font-display text-[1.35rem] font-bold leading-none tracking-[-0.04em]">
@@ -52,7 +53,7 @@ export default function Navbar() {
                 <Link
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  className={`relative text-[15px] font-medium transition-colors after:absolute after:-bottom-1.5 after:left-1/2 after:size-1 after:-translate-x-1/2 after:rounded-full after:bg-accent after:transition-opacity ${
+                  className={`relative text-base font-medium transition-colors after:absolute after:-bottom-1.5 after:left-1/2 after:size-1 after:-translate-x-1/2 after:rounded-full after:bg-accent after:transition-opacity ${
                     active
                       ? "text-ink after:opacity-100"
                       : "text-ink/70 after:opacity-0 hover:text-ink"
@@ -68,9 +69,9 @@ export default function Navbar() {
         <div className="flex items-center justify-end gap-3">
           <Link
             href={navCta.href}
-            className="group hidden items-center gap-2 rounded-[14px] bg-accent px-5 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:bg-ink sm:inline-flex"
+            className="group hidden items-center gap-2 rounded-cta bg-accent px-6 py-3 text-sm font-semibold text-on-accent transition-colors duration-300 hover:bg-ink hover:text-paper active:scale-[0.98] sm:inline-flex"
           >
-            {navCta.label}
+            <RollingLabel>{navCta.label}</RollingLabel>
             <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
 
@@ -117,7 +118,7 @@ export default function Navbar() {
               <Link
                 href={navCta.href}
                 onClick={() => setOpen(false)}
-                className="flex items-center justify-center gap-2 rounded-[14px] bg-accent px-5 py-4 font-semibold text-white"
+                className="flex items-center justify-center gap-2 rounded-cta bg-accent px-5 py-4 font-semibold text-on-accent"
               >
                 {navCta.label}
                 <ArrowRight className="size-4" />

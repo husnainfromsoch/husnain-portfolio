@@ -4,8 +4,8 @@ export type Project = {
   title: string;
   client: string;
   country: string;
-  /** Must match one of the service slugs: "shopify" | "automation" | "websites" */
-  service: "shopify" | "automation" | "websites";
+  /** Must match one of the service slugs in site.ts */
+  service: "shopify" | "websites" | "automation" | "social" | "claude-code";
   serviceLabel: string;
   year: string;
   summary: string;

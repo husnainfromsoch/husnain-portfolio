@@ -109,8 +109,36 @@ export const Website = (p: IconProps) => (
   </Base>
 );
 
+export const Social = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M4 10v4a1 1 0 0 0 1 1h2l6 4V5L7 9H5a1 1 0 0 0-1 1z" />
+    <path d="M17 9a4 4 0 0 1 0 6M19.5 6.5a7.5 7.5 0 0 1 0 11" />
+  </Base>
+);
+
+export const Terminal = (p: IconProps) => (
+  <Base {...p}>
+    <rect x="3" y="4.5" width="18" height="15" rx="2.5" />
+    <path d="m7 10 3 2.5L7 15M12.5 15H17" />
+  </Base>
+);
+
 export const serviceIcons = {
   store: Store,
   automation: Automation,
   website: Website,
+  social: Social,
+  terminal: Terminal,
 };
+
+export const Pause = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M9 5v14M15 5v14" />
+  </Base>
+);
+
+export const Play = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M7 5l12 7-12 7V5z" />
+  </Base>
+);

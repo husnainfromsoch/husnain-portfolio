@@ -1,6 +1,7 @@
 import { contactCta, site } from "@/content/site";
 import { Button, Container, Eyebrow } from "@/components/ui";
 import { Mail } from "@/components/icons";
+import { WordsReveal } from "@/components/TextReveal";
 import Reveal from "@/components/Reveal";
 
 /* Soft wavy line pattern drawn in the accent colour (solid strokes,
@@ -37,14 +38,14 @@ export default function ContactCta() {
     <section className="pb-4">
       <Container>
         <Reveal>
-          <div className="relative overflow-hidden rounded-[36px] bg-accent-soft px-6 py-20 text-center sm:px-12 sm:py-28">
+          <div className="relative overflow-hidden rounded-card bg-accent-soft px-6 py-20 text-center sm:px-12 sm:py-28">
             <WavePattern />
 
             <div className="relative mx-auto flex max-w-3xl flex-col items-center">
               <Eyebrow icon={Mail}>{contactCta.eyebrow}</Eyebrow>
 
               <h2 className="mt-7 font-display text-[clamp(2.4rem,6.5vw,5.25rem)] font-bold leading-[0.98] tracking-[-0.045em]">
-                {contactCta.heading}
+                <WordsReveal text={contactCta.heading} />
               </h2>
 
               <p className="mt-6 max-w-xl text-base leading-relaxed text-ink/80 sm:text-lg">

@@ -22,7 +22,7 @@ export default function AboutPreview() {
 
         <div className="mt-14 grid gap-10 sm:mt-20 lg:grid-cols-[1.05fr_1fr] lg:items-start lg:gap-14">
           <Reveal>
-            <div className="aspect-[3/2] overflow-hidden rounded-[32px] bg-ink">
+            <div className="aspect-[3/2] overflow-hidden rounded-card bg-ink">
               <AutoplayVideo
                 src={about.video.src}
                 poster={about.video.poster}

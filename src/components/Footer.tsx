@@ -25,7 +25,7 @@ export default function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="font-display text-xl font-semibold tracking-[-0.03em] transition-colors hover:text-accent sm:text-2xl"
+                    className="font-display text-xl font-semibold tracking-[-0.03em] transition-colors hover:text-accent-text sm:text-2xl"
                   >
                     {item.label}
                   </Link>
@@ -39,7 +39,7 @@ export default function Footer() {
               <li key={s.label} className="border-b border-line">
                 <a
                   href={s.href}
-                  className="group flex items-center justify-between py-4 font-display text-xl font-semibold tracking-[-0.03em] transition-colors hover:text-accent sm:text-2xl"
+                  className="group flex items-center justify-between py-4 font-display text-xl font-semibold tracking-[-0.03em] transition-colors hover:text-accent-text sm:text-2xl"
                 >
                   {s.label}
                   <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

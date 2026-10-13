@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ComponentType, ReactNode, SVGProps } from "react";
 import { ArrowRight, Sparkle } from "@/components/icons";
 import Reveal from "@/components/Reveal";
+import { WordsReveal } from "@/components/TextReveal";
 
 /** Standard page gutter + max width. Every section uses this. */
 export function Container({
@@ -27,8 +28,8 @@ export function Eyebrow({
   icon?: ComponentType<SVGProps<SVGSVGElement>>;
 }) {
   return (
-    <p className="inline-flex items-center gap-2.5 rounded-[var(--radius-pill)] border border-line bg-paper py-1.5 pl-1.5 pr-4 text-[11px] font-semibold uppercase tracking-[0.2em] sm:text-xs">
-      <span className="flex size-6 items-center justify-center rounded-full bg-accent text-white">
+    <p className="inline-flex items-center gap-2.5 rounded-full border border-line bg-paper py-1.5 pl-1.5 pr-4 text-xs font-semibold uppercase tracking-[0.2em] sm:text-xs">
+      <span className="flex size-6 items-center justify-center rounded-full bg-accent text-on-accent">
         <Icon className="size-3.5" />
       </span>
       {children}
@@ -36,7 +37,8 @@ export function Eyebrow({
   );
 }
 
-/** Big display heading used by every section. */
+/** Big display heading used by every section.
+    Plain-text headings reveal word by word as you scroll to them. */
 export function Heading({
   children,
   className = "",
@@ -50,7 +52,7 @@ export function Heading({
     <Tag
       className={`font-display text-[clamp(2.25rem,5.2vw,4rem)] font-bold leading-[1.02] tracking-[-0.04em] ${className}`}
     >
-      {children}
+      {typeof children === "string" ? <WordsReveal text={children} /> : children}
     </Tag>
   );
 }
@@ -98,20 +100,38 @@ export function Button({
   className = "",
 }: ButtonProps) {
   const styles = {
-    accent: "bg-accent text-white hover:bg-ink",
-    ink: "bg-ink text-paper hover:bg-accent hover:text-white",
+    accent: "bg-accent text-on-accent hover:bg-ink hover:text-paper",
+    ink: "bg-ink text-paper hover:bg-accent hover:text-on-accent",
     outline: "border border-ink/15 bg-card text-ink hover:border-ink",
   }[variant];
 
   return (
     <Link
       href={href}
-      className={`group inline-flex items-center justify-center gap-2 rounded-[14px] px-6 py-3.5 text-sm font-semibold transition-[background-color,border-color,color,transform] duration-300 hover:-translate-y-0.5 ${styles} ${className}`}
+      className={`group inline-flex items-center justify-center gap-2 rounded-cta px-7 py-3.5 text-sm font-semibold transition-[background-color,border-color,color,transform] duration-300 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] ${styles} ${className}`}
     >
-      {children}
+      <RollingLabel>{children}</RollingLabel>
       {arrow && (
         <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
       )}
     </Link>
+  );
+}
+
+/** Button label that rolls up on hover: the text slides out the top
+    while an identical copy slides in from below. */
+export function RollingLabel({ children }: { children: ReactNode }) {
+  return (
+    <span className="relative inline-flex overflow-hidden">
+      <span className="block transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full">
+        {children}
+      </span>
+      <span
+        aria-hidden="true"
+        className="absolute inset-0 block translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0"
+      >
+        {children}
+      </span>
+    </span>
   );
 }

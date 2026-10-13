@@ -51,7 +51,7 @@ export default function AccordionRow({
           aria-hidden="true"
           className={`flex size-10 shrink-0 items-center justify-center rounded-full transition-[background-color,color,transform] duration-300 sm:size-11 ${
             open
-              ? "rotate-45 bg-accent text-white"
+              ? "rotate-45 bg-accent text-on-accent"
               : "bg-ink/[0.07] text-ink group-hover:bg-ink group-hover:text-paper"
           }`}
         >

@@ -5,12 +5,15 @@ Personal brand website for **Husnain** (brand: "Vision Craft by Husnain"), a fre
 It must feel like ONE person's premium website — never like an agency or company.
 Target clients: small businesses in Sweden, UAE, US and Estonia.
 
-## Services (exactly these 3)
-1. **Shopify** — new stores from scratch AND redesigns of outdated / poorly selling stores.
-2. **Business process automation** — automating INTERNAL manual work (order confirmations,
-   manual data entry into sheets, manual follow-ups, status updates). Never describe this as
-   only "chat/DM auto-replies".
-3. **Websites** — built on GoHighLevel (GHL), Webflow and WordPress.
+## Services (exactly these 5)
+1. **Shopify stores** — new stores from scratch AND redesigns of outdated / poorly selling stores.
+2. **Custom websites** — built on GoHighLevel (GHL), Webflow and WordPress.
+3. **n8n automation** — automating INTERNAL manual work (order confirmations,
+   manual data entry into sheets, manual follow-ups, status updates) with n8n. Never describe
+   this as only "chat/DM auto-replies".
+4. **Social media marketing** — content plans, post design, scheduling, consistent posting.
+5. **Claude Code setup** — installing and configuring Claude Code for a business
+   (CLAUDE.md instructions, custom skills, tool connections, training).
 
 ## Design reference
 - Screenshots of the reference site are in `/reference`. Look at them before building any page.
