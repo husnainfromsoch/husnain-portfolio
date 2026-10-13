@@ -12,8 +12,8 @@ const avatarColours = ["bg-ink", "bg-accent", "bg-muted", "bg-accent-soft"];
 
 /* Where each small preview card floats over the portrait */
 const previewPlacement = [
-  "-left-4 bottom-10 w-[42%] rotate-[-7deg] sm:-left-10 lg:-left-16",
-  "-right-2 top-12 w-[36%] rotate-[6deg] sm:-right-6",
+  "-left-6 bottom-8 w-[52%] rotate-[-7deg] sm:-left-14 lg:-left-24",
+  "-right-4 top-10 w-[46%] rotate-[6deg] sm:-right-10",
 ];
 
 export default function Hero() {
@@ -86,11 +86,15 @@ export default function Hero() {
                 <Image
                   src={hero.portrait.src}
                   alt={hero.portrait.alt}
-                  width={900}
-                  height={1035}
+                  width={1024}
+                  height={1024}
                   priority
+                  quality={95}
                   sizes="(max-width: 1024px) 90vw, 560px"
-                  className="h-full w-full object-cover"
+                  /* Full photo with its own background, so it fills the card
+                     and is cropped to fit. Zoomed in from the top so the
+                     lettering on the podium sits below the bottom edge. */
+                  className="h-full w-full origin-top scale-[1.24] object-cover object-top"
                 />
               </div>
 
@@ -112,10 +116,12 @@ export default function Hero() {
                   <Image
                     src={img.src}
                     alt={img.alt}
-                    width={600}
-                    height={450}
-                    sizes="(max-width: 1024px) 40vw, 230px"
-                    className="h-auto w-full"
+                    width={1024}
+                    height={768}
+                    sizes="(max-width: 1024px) 50vw, 300px"
+                    /* Kept at a fixed 4:3 shape so both preview cards match,
+                       whatever size the photo itself is. */
+                    className="aspect-[4/3] h-auto w-full object-cover"
                   />
                 </div>
               ))}

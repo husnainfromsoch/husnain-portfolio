@@ -11,6 +11,9 @@ type Props = {
   subtitle?: ReactNode;
   children: ReactNode;
   defaultOpen?: boolean;
+  /** Tighter rows and smaller text, for lists with many items (the FAQ) */
+  compact?: boolean;
+  className?: string;
 };
 
 /** One row that opens to show more. Used by the FAQ and testimonials. */
@@ -20,26 +23,30 @@ export default function AccordionRow({
   subtitle,
   children,
   defaultOpen = false,
+  compact = false,
+  className = "",
 }: Props) {
   const [open, setOpen] = useState(defaultOpen);
   const reduced = useReducedMotion();
   const panelId = useId();
 
   return (
-    <div className="border-b border-line">
+    <div className={`border-b border-line ${className}`}>
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls={panelId}
-        className="group flex w-full items-center gap-4 py-6 text-left sm:gap-6 sm:py-7"
+        className={`group flex w-full items-center gap-4 text-left sm:gap-6 ${
+          compact ? "py-4 sm:py-[1.1rem]" : "py-6 sm:py-7"
+        }`}
       >
         {leading}
         <span className="flex-1">
           <span
-            className={`block font-display text-lg font-semibold leading-snug tracking-[-0.03em] transition-colors sm:text-2xl ${
-              open ? "text-ink" : "text-ink/80 group-hover:text-ink"
-            }`}
+            className={`block font-display font-semibold leading-snug tracking-[-0.03em] transition-colors ${
+              compact ? "text-base sm:text-lg" : "text-lg sm:text-2xl"
+            } ${open ? "text-ink" : "text-ink/80 group-hover:text-ink"}`}
           >
             {title}
           </span>
@@ -49,13 +56,15 @@ export default function AccordionRow({
         </span>
         <span
           aria-hidden="true"
-          className={`flex size-10 shrink-0 items-center justify-center rounded-full transition-[background-color,color,transform] duration-300 sm:size-11 ${
+          className={`flex shrink-0 items-center justify-center rounded-full transition-[background-color,color,transform] duration-300 ${
+            compact ? "size-8 sm:size-9" : "size-10 sm:size-11"
+          } ${
             open
               ? "rotate-45 bg-accent text-on-accent"
               : "bg-ink/[0.07] text-ink group-hover:bg-ink group-hover:text-paper"
           }`}
         >
-          <Plus className="size-5" />
+          <Plus className={compact ? "size-4" : "size-5"} />
         </span>
       </button>
 

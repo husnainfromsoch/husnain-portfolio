@@ -28,12 +28,34 @@ export const nav = [
 /* The orange button in the top-right corner of every page */
 export const navCta = { label: "Let's talk", href: "/contact" };
 
+/* The four ways people can reach me. `icon` picks the logo shown in the
+   footer: "linkedin" | "instagram" | "whatsapp" | "email". */
 export const socials = [
-  { label: "LinkedIn", href: "[TODO: your LinkedIn URL]" },
-  { label: "Instagram", href: "[TODO: your Instagram URL]" },
-  { label: "X / Twitter", href: "[TODO: your X profile URL]" },
-  { label: "Email", href: "mailto:[TODO: your email address]" },
-];
+  {
+    label: "LinkedIn",
+    note: "Work updates",
+    href: "[TODO: your LinkedIn URL]",
+    icon: "linkedin",
+  },
+  {
+    label: "Instagram",
+    note: "Behind the builds",
+    href: "[TODO: your Instagram URL]",
+    icon: "instagram",
+  },
+  {
+    label: "WhatsApp",
+    note: "Fastest reply",
+    href: "[TODO: your WhatsApp link, e.g. https://wa.me/46701234567]",
+    icon: "whatsapp",
+  },
+  {
+    label: "Email",
+    note: "For briefs and files",
+    href: "mailto:[TODO: your email address]",
+    icon: "email",
+  },
+] as const;
 
 /* ---------------------------------- HERO --------------------------------- */
 export const hero = {
@@ -55,13 +77,13 @@ export const hero = {
   },
   /* Big photo of you on the right */
   portrait: {
-    src: "/images/portrait.svg",
-    alt: "Husnain, freelance Shopify and automation specialist",
+    src: "/images/Husnain-Hero.jpg",
+    alt: "Husnain speaking on stage at a founders summit, with website analytics on the screen behind him",
   },
   /* Two small tilted previews of your work that float over the photo */
   previews: [
-    { src: "/images/hero-2.svg", alt: "A Shopify store I designed" },
-    { src: "/images/hero-3.svg", alt: "An automation workflow I built" },
+    { src: "/images/Husnain-hero-2.jpg", alt: "Husnain working on a laptop in a coffee shop" },
+    { src: "/images/Hero-3rd.jpg", alt: "A website homepage I designed, shown on a laptop" },
   ],
 };
 
@@ -102,13 +124,12 @@ export const about = {
   },
   image: {
     src: "/images/about.svg",
-    alt: "Husnain, freelance Shopify and automation specialist",
+    alt: "Husnain speaking on stage at a founders summit, with website analytics on the screen behind him",
   },
-  /* Replace [TODO] with real numbers, e.g. "40+" */
   stats: [
-    { value: "[TODO]+", label: "Projects delivered" },
-    { value: "[TODO]+", label: "Years freelancing" },
-    { value: "4", label: "Countries I work in" },
+    { value: "70+", label: "Projects delivered" },
+    { value: "4+", label: "Years freelancing" },
+    { value: "10", label: "Countries I work in" },
   ],
 };
 
@@ -394,9 +415,18 @@ export const contactCta = {
 };
 
 export const footer = {
+  /* Closing call to action that sits at the top of the footer block */
+  cta: {
+    heading: "Let's build the thing that finally sells.",
+    sub: "Tell me what's not working. I'll reply with an honest answer on whether I'm the right person for it.",
+    primaryCta: { label: "Start a project", href: "/contact" },
+  },
   tagline:
     "I'm Husnain, a freelancer building Shopify stores, websites, automations, social media and AI setups for small businesses that want to sell more and work less.",
+  socialsHeading: "Say hello",
+  sitemapHeading: "Pages",
   copyright: `© ${site.year} ${site.brandFull}`,
+  madeBy: "Designed and built by Husnain",
 };
 
 /* ---------- Accessibility labels (screen readers / keyboard) ---------- */
