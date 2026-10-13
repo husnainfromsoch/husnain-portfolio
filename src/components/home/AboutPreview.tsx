@@ -3,6 +3,7 @@ import { Button, Container, Eyebrow } from "@/components/ui";
 import { User } from "@/components/icons";
 import Reveal from "@/components/Reveal";
 import ScrollRevealText from "@/components/ScrollRevealText";
+import AutoplayVideo from "@/components/AutoplayVideo";
 
 export default function AboutPreview() {
   return (
@@ -19,10 +20,19 @@ export default function AboutPreview() {
           className="mx-auto mt-8 max-w-5xl text-center font-display text-[clamp(1.85rem,4.2vw,3.4rem)] font-bold leading-[1.08] tracking-[-0.04em]"
         />
 
-        <div className="mt-16 grid gap-10 sm:mt-24 lg:grid-cols-2">
-          <div className="hidden lg:block" />
-
+        <div className="mt-14 grid gap-10 sm:mt-20 lg:grid-cols-[1.05fr_1fr] lg:items-start lg:gap-14">
           <Reveal>
+            <div className="aspect-[3/2] overflow-hidden rounded-[32px] bg-ink">
+              <AutoplayVideo
+                src={about.video.src}
+                poster={about.video.poster}
+                label={about.video.label}
+                className="h-full w-full object-cover"
+              />
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1} className="lg:pt-2">
             <p className="text-lg leading-relaxed text-ink/80">{about.body}</p>
 
             <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3">

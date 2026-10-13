@@ -91,6 +91,14 @@ export const about = {
     "I help small businesses look sharper online and stop losing hours to manual work. You deal with me directly, from the first call to launch day.",
   body: "No account managers and no juniors doing the real work behind the scenes. Just one person who knows your project end to end and cares how it turns out, for clients across Sweden, the UAE, the US and Estonia.",
   cta: { label: "More about me", href: "/about" },
+  /* Silent looping video next to the stats. To swap it, drop your own
+     .mp4 into public/videos/ and change `src` (and `poster`, a still
+     frame shown while the video loads). */
+  video: {
+    src: "/videos/about-placeholder.mp4",
+    poster: "/videos/about-placeholder-poster.jpg",
+    label: "[TODO: describe your video] Placeholder stock clip of hands typing on a laptop",
+  },
   image: {
     src: "/images/about.svg",
     alt: "Husnain, freelance Shopify and automation specialist",
