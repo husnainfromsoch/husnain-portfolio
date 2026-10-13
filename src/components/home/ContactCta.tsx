@@ -1,36 +1,67 @@
 import { contactCta, site } from "@/content/site";
-import { Button, Container } from "@/components/ui";
+import { Button, Container, Eyebrow } from "@/components/ui";
+import { Mail } from "@/components/icons";
 import Reveal from "@/components/Reveal";
+
+/* Soft wavy line pattern drawn in the accent colour (solid strokes,
+   no gradients). Purely decorative. */
+function WavePattern() {
+  const rows = Array.from({ length: 9 }, (_, i) => i);
+  return (
+    <svg
+      aria-hidden="true"
+      className="absolute inset-0 h-full w-full text-accent opacity-[0.12]"
+      viewBox="0 0 1200 600"
+      preserveAspectRatio="xMidYMid slice"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="14"
+      strokeLinecap="round"
+    >
+      {rows.map((i) => {
+        const y = 20 + i * 72;
+        const s = i % 2 === 0 ? 1 : -1;
+        return (
+          <path
+            key={i}
+            d={`M-50 ${y} C 150 ${y - 60 * s}, 300 ${y + 70 * s}, 480 ${y} S 820 ${y - 70 * s}, 980 ${y} S 1180 ${y + 50 * s}, 1260 ${y}`}
+          />
+        );
+      })}
+    </svg>
+  );
+}
 
 export default function ContactCta() {
   return (
-    <section className="bg-accent py-24 text-white sm:py-32">
+    <section className="pb-4">
       <Container>
         <Reveal>
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="flex items-center justify-center gap-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
-              <span className="size-1.5 rounded-full bg-white" aria-hidden="true" />
-              {contactCta.eyebrow}
-            </p>
+          <div className="relative overflow-hidden rounded-[36px] bg-accent-soft px-6 py-20 text-center sm:px-12 sm:py-28">
+            <WavePattern />
 
-            <h2 className="mt-6 font-display text-[clamp(2.4rem,6.5vw,5rem)] font-extrabold leading-[0.98] tracking-[-0.03em]">
-              {contactCta.heading}
-            </h2>
+            <div className="relative mx-auto flex max-w-3xl flex-col items-center">
+              <Eyebrow icon={Mail}>{contactCta.eyebrow}</Eyebrow>
 
-            <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg">
-              {contactCta.sub}
-            </p>
+              <h2 className="mt-7 font-display text-[clamp(2.4rem,6.5vw,5.25rem)] font-bold leading-[0.98] tracking-[-0.045em]">
+                {contactCta.heading}
+              </h2>
 
-            <div className="mt-10 flex flex-wrap justify-center gap-3">
-              <Button href={contactCta.primaryCta.href} variant="ink">
-                {contactCta.primaryCta.label}
-              </Button>
-              <Button href={contactCta.secondaryCta.href} variant="paper">
-                {contactCta.secondaryCta.label}
-              </Button>
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-ink/80 sm:text-lg">
+                {contactCta.sub}
+              </p>
+
+              <div className="mt-10 flex flex-wrap justify-center gap-3">
+                <Button href={contactCta.primaryCta.href}>
+                  {contactCta.primaryCta.label}
+                </Button>
+                <Button href={contactCta.secondaryCta.href} variant="outline" arrow={false}>
+                  {contactCta.secondaryCta.label}
+                </Button>
+              </div>
+
+              <p className="mt-8 text-sm text-ink/70">{site.email}</p>
             </div>
-
-            <p className="mt-10 text-sm text-white/70">{site.email}</p>
           </div>
         </Reveal>
       </Container>

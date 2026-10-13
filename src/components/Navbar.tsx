@@ -3,7 +3,22 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { nav, site } from "@/content/site";
+import { nav, navCta, site } from "@/content/site";
+import { ArrowRight } from "@/components/icons";
+
+/** Round "H" monogram + brand name. Used in the navbar and footer. */
+export function Logo() {
+  return (
+    <Link href="/" className="group flex items-center gap-2.5" aria-label={`${site.brandFull}, home`}>
+      <span className="flex size-9 items-center justify-center rounded-full bg-accent font-display text-lg font-bold text-white transition-transform duration-300 group-hover:rotate-[-8deg]">
+        {site.name.charAt(0)}
+      </span>
+      <span className="font-display text-[1.35rem] font-bold leading-none tracking-[-0.04em]">
+        {site.brand}
+      </span>
+    </Link>
+  );
+}
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -12,45 +27,35 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
-        scrolled
-          ? "border-line bg-paper/90 backdrop-blur-md"
-          : "border-transparent bg-paper"
+      className={`sticky top-0 z-50 border-b border-line transition-colors duration-300 ${
+        scrolled || open ? "bg-paper/90 backdrop-blur-md" : "bg-paper"
       }`}
     >
       <nav
         aria-label="Main"
-        className="mx-auto flex h-[72px] max-w-[1280px] items-center justify-between px-5 sm:px-8"
+        className="mx-auto grid h-[72px] max-w-[1280px] grid-cols-[1fr_auto] items-center px-5 sm:px-8 md:grid-cols-[1fr_auto_1fr]"
       >
-        <Link
-          href="/"
-          className="font-display text-xl font-extrabold tracking-tight"
-        >
-          {site.brand}
-          <span className="text-accent">.</span>
-        </Link>
+        <Logo />
 
-        <ul className="hidden items-center gap-1 md:flex">
+        <ul className="hidden items-center gap-9 md:flex">
           {nav.map((item) => {
-            const active =
-              item.href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(item.href);
+            const active = pathname.startsWith(item.href);
             return (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  className={`rounded-[var(--radius-pill)] px-4 py-2 text-sm font-medium transition-colors ${
+                  className={`relative text-[15px] font-medium transition-colors after:absolute after:-bottom-1.5 after:left-1/2 after:size-1 after:-translate-x-1/2 after:rounded-full after:bg-accent after:transition-opacity ${
                     active
-                      ? "bg-ink text-paper"
-                      : "text-muted hover:text-ink"
+                      ? "text-ink after:opacity-100"
+                      : "text-ink/70 after:opacity-0 hover:text-ink"
                   }`}
                 >
                   {item.label}
@@ -60,12 +65,13 @@ export default function Navbar() {
           })}
         </ul>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-end gap-3">
           <Link
-            href="/contact"
-            className="hidden rounded-[var(--radius-pill)] bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 sm:inline-flex"
+            href={navCta.href}
+            className="group hidden items-center gap-2 rounded-[14px] bg-accent px-5 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:bg-ink sm:inline-flex"
           >
-            Let&apos;s talk
+            {navCta.label}
+            <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
 
           <button
@@ -74,7 +80,7 @@ export default function Navbar() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? "Close menu" : "Open menu"}
-            className="flex size-10 items-center justify-center rounded-[var(--radius-pill)] border border-line md:hidden"
+            className="flex size-11 items-center justify-center rounded-full border border-line bg-card md:hidden"
           >
             <span className="relative block h-3 w-5">
               <span
@@ -95,24 +101,26 @@ export default function Navbar() {
       {open && (
         <div id="mobile-menu" className="border-t border-line bg-paper md:hidden">
           <ul className="mx-auto max-w-[1280px] px-5 py-4 sm:px-8">
-            {nav.map((item) => (
+            {[{ label: "Home", href: "/" }, ...nav].map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="block border-b border-line py-3.5 font-display text-2xl font-bold"
+                  className="flex items-center justify-between border-b border-line py-4 font-display text-2xl font-bold tracking-[-0.03em]"
                 >
                   {item.label}
+                  <ArrowRight className="size-5 text-accent" />
                 </Link>
               </li>
             ))}
-            <li className="pt-4">
+            <li className="pt-5 pb-2">
               <Link
-                href="/contact"
+                href={navCta.href}
                 onClick={() => setOpen(false)}
-                className="block rounded-[var(--radius-pill)] bg-accent px-5 py-3.5 text-center font-semibold text-white"
+                className="flex items-center justify-center gap-2 rounded-[14px] bg-accent px-5 py-4 font-semibold text-white"
               >
-                Let&apos;s talk
+                {navCta.label}
+                <ArrowRight className="size-4" />
               </Link>
             </li>
           </ul>

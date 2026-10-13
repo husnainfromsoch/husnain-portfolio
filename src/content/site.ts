@@ -1,7 +1,7 @@
 /* =============================================================
    ALL WEBSITE TEXT LIVES HERE.
    To change any wording on the site, edit this file only.
-   Anything marked [TODO: ...] is a placeholder for Husnain
+   Anything marked [TODO ...] is a placeholder for Husnain
    to replace with real information.
    ============================================================= */
 
@@ -19,12 +19,14 @@ export const site = {
 };
 
 export const nav = [
-  { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Work", href: "/work" },
   { label: "Pricing", href: "/pricing" },
 ];
+
+/* The orange button in the top-right corner of every page */
+export const navCta = { label: "Let's talk", href: "/contact" };
 
 export const socials = [
   { label: "LinkedIn", href: "[TODO: your LinkedIn URL]" },
@@ -35,27 +37,37 @@ export const socials = [
 
 /* ---------------------------------- HERO --------------------------------- */
 export const hero = {
-  badge: site.availability,
-  greeting: "Hi, I'm Husnain",
-  headlineTop: "I build Shopify",
-  headlineBottom: "stores that sell",
+  badge: site.role,
+  availability: site.availability,
+  /* Each item is one line of the big heading. The word in `highlight`
+     is shown in the accent colour. */
+  headline: ["Hi, I'm Husnain.", "I build stores", "that sell."],
+  highlight: "sell.",
   intro:
-    "I'm a freelance Shopify designer and automation specialist. I build and rescue online stores, take the manual admin work off your team's hands, and ship fast websites that make a small business look serious.",
+    "I'm a freelancer who builds and rescues Shopify stores, automates the manual admin your team repeats every day, and ships websites that bring in enquiries.",
   primaryCta: { label: "Start a project", href: "/contact" },
   secondaryCta: { label: "See my work", href: "/work" },
   socialProof: {
-    value: "[TODO: real number]",
-    label: "happy clients",
-    detail: "[TODO: real rating] / 5 average rating",
+    /* Replace [TODO] with your real numbers, e.g. "30+" and "4.9" */
+    value: "[TODO]+",
+    label: "Happy clients",
+    rating: "[TODO]/5",
   },
-  images: [
-    { src: "/images/hero-1.svg", alt: "A Shopify storefront I designed" },
-    { src: "/images/hero-2.svg", alt: "An automation workflow I built" },
-    { src: "/images/hero-3.svg", alt: "A website landing page I built" },
+  /* Big photo of you on the right */
+  portrait: {
+    src: "/images/portrait.svg",
+    alt: "Husnain, freelance Shopify and automation specialist",
+  },
+  /* Two small tilted previews of your work that float over the photo */
+  previews: [
+    { src: "/images/hero-2.svg", alt: "A Shopify store I designed" },
+    { src: "/images/hero-3.svg", alt: "An automation workflow I built" },
   ],
 };
 
 /* -------------------------------- MARQUEE -------------------------------- */
+export const marqueeLabel = "Tools & platforms I work with every day";
+
 export const marquee = [
   "Shopify",
   "Shopify Plus",
@@ -67,27 +79,27 @@ export const marquee = [
   "Webflow",
   "WordPress",
   "Klaviyo",
-  "Google Sheets API",
+  "Google Sheets",
   "Figma",
 ];
 
 /* --------------------------------- ABOUT --------------------------------- */
 export const about = {
   eyebrow: "About me",
-  heading: "One person. Fewer handoffs. Work that actually ships.",
-  body: [
-    "I'm Husnain, a freelancer working with small businesses across Sweden, the UAE, the US and Estonia. You talk to me directly — no account manager, no team of juniors doing the real work behind the scenes.",
-    "Most of my clients come to me with the same two problems: a store that gets visitors but not sales, and a team quietly drowning in manual admin. I fix both — the shopfront and the machinery behind it.",
-  ],
+  /* This sentence fills in word by word as you scroll */
+  statement:
+    "I help small businesses look sharper online and stop losing hours to manual work. You deal with me directly, from the first call to launch day.",
+  body: "No account managers and no juniors doing the real work behind the scenes. Just one person who knows your project end to end and cares how it turns out, for clients across Sweden, the UAE, the US and Estonia.",
+  cta: { label: "More about me", href: "/about" },
   image: {
     src: "/images/about.svg",
     alt: "Husnain, freelance Shopify and automation specialist",
   },
+  /* Replace [TODO] with real numbers, e.g. "40+" */
   stats: [
-    { value: "[TODO: real number]", label: "Projects delivered" },
-    { value: "[TODO: real number]", label: "Years freelancing" },
-    { value: "[TODO: real number]", label: "Countries worked in" },
-    { value: "[TODO: real number]", label: "Hours/month automated away" },
+    { value: "[TODO]+", label: "Projects delivered" },
+    { value: "[TODO]+", label: "Years freelancing" },
+    { value: "4", label: "Countries I work in" },
   ],
 };
 
@@ -96,9 +108,12 @@ export const services = [
   {
     slug: "shopify",
     number: "01",
+    /* icon options: "store" | "automation" | "website" */
+    icon: "store",
     title: "Shopify stores",
     short:
-      "New stores built from scratch, and redesigns of tired stores that aren't converting.",
+      "New stores built from scratch, and redesigns of tired stores that get visitors but not sales.",
+    tags: ["New builds", "Redesigns", "Speed & mobile"],
     description:
       "Whether you're launching your first product or sitting on a store that gets traffic but no orders, I design and build Shopify storefronts around one job: turning a visitor into a customer.",
     includes: [
@@ -115,11 +130,13 @@ export const services = [
   {
     slug: "automation",
     number: "02",
+    icon: "automation",
     title: "Business process automation",
     short:
-      "I automate the internal manual work your team repeats every single day.",
+      "Order confirmations, data entry into sheets, follow-ups and status updates. The repetitive internal work, running on its own.",
+    tags: ["Confirmations", "Data entry", "Follow-ups"],
     description:
-      "Order confirmations typed out by hand. Data copied into spreadsheets. Follow-ups someone has to remember. Status updates chased over WhatsApp. I map those processes and rebuild them so they run themselves — quietly, in the background.",
+      "Order confirmations typed out by hand. Data copied into spreadsheets. Follow-ups someone has to remember. Status updates chased over WhatsApp. I map those processes and rebuild them so they run themselves, quietly, in the background.",
     includes: [
       "Automated order and booking confirmations",
       "Removing manual data entry into sheets and CRMs",
@@ -134,11 +151,13 @@ export const services = [
   {
     slug: "websites",
     number: "03",
+    icon: "website",
     title: "Websites",
     short:
-      "Fast, clean business websites on GoHighLevel, Webflow or WordPress.",
+      "Fast, clean business websites built on the platform that fits how you work.",
+    tags: ["GoHighLevel", "Webflow", "WordPress"],
     description:
-      "A website should bring you enquiries, not just exist. I build on the platform that genuinely fits how you work — GoHighLevel when you want leads and follow-up in one place, Webflow for design-led sites, WordPress when you need full control.",
+      "A website should bring you enquiries, not just exist. I build on the platform that genuinely fits how you work: GoHighLevel when you want leads and follow-up in one place, Webflow for design-led sites, WordPress when you need full control.",
     includes: [
       "GoHighLevel funnels, sites and pipelines",
       "Webflow design and build",
@@ -150,26 +169,29 @@ export const services = [
     forWho:
       "Best for service businesses that need a credible site and a steady flow of enquiries.",
   },
-];
+] as const;
 
 export const servicesSection = {
   eyebrow: "What I do",
-  heading: "Three things, done properly",
-  sub: "I deliberately keep my services narrow. These are the three I'm genuinely good at.",
+  heading: "Three things I do really well",
+  sub: "I keep my services deliberately narrow, so every project gets my full focus and real expertise, not a little bit of everything.",
+  cta: { label: "See all services", href: "/services" },
+  cardLink: "Learn more",
 };
 
 /* ------------------------------ CASE STUDIES ----------------------------- */
 export const workSection = {
   eyebrow: "Selected work",
   heading: "Recent projects",
-  sub: "A few projects that show how I work. [TODO: replace these with your real case studies.]",
-  cta: { label: "View all work", href: "/work" },
+  sub: "A few projects that show how I work and what changed for the business afterwards.",
+  cta: { label: "View all projects", href: "/work" },
 };
 
 /* ------------------------------ TESTIMONIALS ----------------------------- */
 export const testimonialsSection = {
   eyebrow: "Kind words",
   heading: "What clients say",
+  sub: "Tap a name to read what they said about working with me.",
 };
 
 export const testimonials = [
@@ -210,7 +232,7 @@ export const faqs = [
   },
   {
     q: "What does 'business process automation' actually mean?",
-    a: "It means taking the repetitive internal work your team does by hand — confirming orders, typing data into spreadsheets, chasing follow-ups, posting status updates — and rebuilding it so it happens automatically. It is not just auto-replies to messages.",
+    a: "It means taking the repetitive internal work your team does by hand (confirming orders, typing data into spreadsheets, chasing follow-ups, posting status updates) and rebuilding it so it happens automatically. It is not just auto-replies to messages.",
   },
   {
     q: "Which platform should my website be on?",
@@ -228,15 +250,15 @@ export const faqs = [
 
 /* ------------------------------- CONTACT CTA ----------------------------- */
 export const contactCta = {
-  eyebrow: "Let's talk",
+  eyebrow: "Let's work together",
   heading: "Got a store or a process that needs fixing?",
-  sub: "Tell me what's not working. I'll tell you honestly whether I'm the right person for it — and what it would take.",
+  sub: "Tell me what's not working. I'll tell you honestly whether I'm the right person for it, and what it would take.",
   primaryCta: { label: "Start a project", href: "/contact" },
   secondaryCta: { label: "Book a call", href: "/contact" },
 };
 
 export const footer = {
   tagline:
-    "Shopify stores, business automation and websites — built by one person who cares how it turns out.",
-  copyright: `© ${site.year} ${site.brandFull}. All rights reserved.`,
+    "I'm Husnain, a freelancer building Shopify stores, business automations and websites for small businesses that want to sell more and work less.",
+  copyright: `© ${site.year} ${site.brandFull}`,
 };

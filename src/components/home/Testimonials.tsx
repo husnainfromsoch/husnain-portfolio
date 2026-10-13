@@ -1,45 +1,52 @@
 import { testimonials, testimonialsSection } from "@/content/site";
-import { Container, Eyebrow } from "@/components/ui";
+import { Container, SectionIntro } from "@/components/ui";
+import { Quote } from "@/components/icons";
+import AccordionRow from "@/components/AccordionRow";
 import Reveal from "@/components/Reveal";
+
+/* Placeholder avatar colours — swap for client photos later if you like */
+const avatarColours = ["bg-accent text-white", "bg-ink text-paper", "bg-accent-soft text-ink"];
 
 export default function Testimonials() {
   return (
-    <section className="border-y border-line bg-card py-20 sm:py-28">
+    <section className="border-b border-line py-24 sm:py-32">
       <Container>
-        <Reveal>
-          <div className="max-w-2xl">
-            <Eyebrow>{testimonialsSection.eyebrow}</Eyebrow>
-            <h2 className="mt-5 font-display text-[clamp(2.2rem,5.5vw,4rem)] font-extrabold leading-[1.02] tracking-[-0.03em]">
-              {testimonialsSection.heading}
-            </h2>
+        <SectionIntro
+          eyebrow={testimonialsSection.eyebrow}
+          icon={Quote}
+          heading={testimonialsSection.heading}
+          sub={testimonialsSection.sub}
+        />
+
+        <Reveal delay={0.1}>
+          <div className="mt-14 border-t border-line">
+            {testimonials.map((t, i) => (
+              <AccordionRow
+                key={i}
+                defaultOpen={i === 0}
+                leading={
+                  <span
+                    aria-hidden="true"
+                    className={`flex size-12 shrink-0 items-center justify-center rounded-full font-display text-lg font-bold sm:size-14 ${
+                      avatarColours[i % avatarColours.length]
+                    }`}
+                  >
+                    {t.name.replace(/[^A-Za-z]/g, "").charAt(0) || "•"}
+                  </span>
+                }
+                title={t.name}
+                subtitle={`${t.title} · ${t.country}`}
+              >
+                <figure className="pb-8 pl-16 pr-4 sm:pb-10 sm:pl-20 sm:pr-16">
+                  <Quote className="size-7 text-accent" />
+                  <blockquote className="mt-4 max-w-3xl font-display text-xl font-medium leading-snug tracking-[-0.025em] sm:text-[1.75rem]">
+                    {t.quote}
+                  </blockquote>
+                </figure>
+              </AccordionRow>
+            ))}
           </div>
         </Reveal>
-
-        <ul className="mt-14 grid gap-5 md:grid-cols-3">
-          {testimonials.map((t, i) => (
-            <Reveal as="li" key={i} delay={i * 0.08} className="h-full">
-              <figure className="flex h-full flex-col rounded-[var(--radius-card)] border border-line bg-paper p-8">
-                <span
-                  aria-hidden="true"
-                  className="font-display text-5xl font-extrabold leading-none text-accent"
-                >
-                  &ldquo;
-                </span>
-
-                <blockquote className="mt-5 flex-1 text-base leading-relaxed sm:text-lg">
-                  {t.quote}
-                </blockquote>
-
-                <figcaption className="mt-8 border-t border-line pt-6">
-                  <span className="block font-display font-bold">{t.name}</span>
-                  <span className="mt-1 block text-sm text-muted">
-                    {t.title} · {t.country}
-                  </span>
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
-        </ul>
       </Container>
     </section>
   );

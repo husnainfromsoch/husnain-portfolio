@@ -1,61 +1,49 @@
-import Image from "next/image";
 import { about } from "@/content/site";
 import { Button, Container, Eyebrow } from "@/components/ui";
+import { User } from "@/components/icons";
 import Reveal from "@/components/Reveal";
+import ScrollRevealText from "@/components/ScrollRevealText";
 
 export default function AboutPreview() {
   return (
-    <section className="py-20 sm:py-28">
+    <section className="border-b border-line py-24 sm:py-36">
       <Container>
-        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+        <Reveal>
+          <div className="flex justify-center">
+            <Eyebrow icon={User}>{about.eyebrow}</Eyebrow>
+          </div>
+        </Reveal>
+
+        <ScrollRevealText
+          text={about.statement}
+          className="mx-auto mt-8 max-w-5xl text-center font-display text-[clamp(1.85rem,4.2vw,3.4rem)] font-bold leading-[1.08] tracking-[-0.04em]"
+        />
+
+        <div className="mt-16 grid gap-10 sm:mt-24 lg:grid-cols-2">
+          <div className="hidden lg:block" />
+
           <Reveal>
-            <div className="overflow-hidden rounded-[var(--radius-card)] bg-ink">
-              <Image
-                src={about.image.src}
-                alt={about.image.alt}
-                width={900}
-                height={1100}
-                sizes="(max-width: 1024px) 100vw, 420px"
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </Reveal>
+            <p className="text-lg leading-relaxed text-ink/80">{about.body}</p>
 
-          <Reveal delay={0.1}>
-            <Eyebrow>{about.eyebrow}</Eyebrow>
-
-            <h2 className="mt-5 font-display text-[clamp(2rem,4.5vw,3.25rem)] font-extrabold leading-[1.03] tracking-[-0.025em]">
-              {about.heading}
-            </h2>
-
-            <div className="mt-6 space-y-5 text-base leading-relaxed text-muted sm:text-lg">
-              {about.body.map((p) => (
-                <p key={p}>{p}</p>
-              ))}
-            </div>
-
-            <div className="mt-10">
-              <Button href="/about" variant="ink">
-                More about me
-              </Button>
-            </div>
-
-            {/* Stats */}
-            <dl className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-[var(--radius-card)] bg-line sm:grid-cols-4">
+            <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3">
               {about.stats.map((stat) => (
-                <div key={stat.label} className="bg-paper px-5 py-7">
+                <div key={stat.label}>
                   <dt className="sr-only">{stat.label}</dt>
                   <dd>
-                    <span className="block font-display text-2xl font-extrabold tracking-tight sm:text-3xl">
+                    <span className="block font-display text-[clamp(2rem,4vw,3.25rem)] font-bold leading-none tracking-[-0.04em]">
                       {stat.value}
                     </span>
-                    <span className="mt-2 block text-xs leading-snug text-muted">
+                    <span className="mt-3 block text-sm leading-snug text-muted sm:text-base">
                       {stat.label}
                     </span>
                   </dd>
                 </div>
               ))}
             </dl>
+
+            <div className="mt-12">
+              <Button href={about.cta.href}>{about.cta.label}</Button>
+            </div>
           </Reveal>
         </div>
       </Container>

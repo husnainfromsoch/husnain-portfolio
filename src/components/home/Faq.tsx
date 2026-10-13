@@ -1,49 +1,33 @@
 import { faqs, faqSection } from "@/content/site";
-import { Container, Eyebrow } from "@/components/ui";
+import { Container, SectionIntro } from "@/components/ui";
+import AccordionRow from "@/components/AccordionRow";
 import Reveal from "@/components/Reveal";
 
 export default function Faq() {
   return (
-    <section className="py-20 sm:py-28">
+    <section id="faq" className="scroll-mt-24 py-24 sm:py-32">
       <Container>
-        <Reveal>
-          <div className="mx-auto max-w-2xl text-center">
-            <div className="flex justify-center">
-              <Eyebrow>{faqSection.eyebrow}</Eyebrow>
-            </div>
-            <h2 className="mt-5 font-display text-[clamp(2.2rem,5.5vw,4rem)] font-extrabold leading-[1.02] tracking-[-0.03em]">
-              {faqSection.heading}
-            </h2>
-          </div>
-        </Reveal>
+        <SectionIntro eyebrow={faqSection.eyebrow} heading={faqSection.heading} />
 
         <Reveal delay={0.1}>
-          <ul className="mx-auto mt-14 max-w-4xl border-t border-line">
+          <div className="mx-auto mt-14 max-w-5xl border-t border-line">
             {faqs.map((faq, i) => (
-              <li key={faq.q} className="border-b border-line">
-                {/* Native accordion — works even with JavaScript off */}
-                <details className="group">
-                  <summary className="flex cursor-pointer list-none items-start gap-5 py-6 sm:gap-7">
-                    <span className="mt-1 shrink-0 font-display text-sm font-bold text-accent">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="flex-1 font-display text-lg font-bold leading-snug tracking-tight sm:text-xl">
-                      {faq.q}
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className="mt-1 shrink-0 text-accent transition-transform duration-300 group-open:rotate-45"
-                    >
-                      +
-                    </span>
-                  </summary>
-                  <p className="pb-7 pl-10 pr-10 text-sm leading-relaxed text-muted sm:pl-12 sm:text-base">
-                    {faq.a}
-                  </p>
-                </details>
-              </li>
+              <AccordionRow
+                key={faq.q}
+                defaultOpen={i === 0}
+                leading={
+                  <span className="w-9 shrink-0 font-display text-sm font-semibold tracking-[0.08em] text-muted sm:w-11">
+                    {String(i + 1).padStart(2, "0")}/
+                  </span>
+                }
+                title={faq.q}
+              >
+                <p className="max-w-3xl pb-8 pl-[3.25rem] pr-4 text-base leading-relaxed text-ink/75 sm:pl-[4.25rem] sm:pr-16 sm:text-lg">
+                  {faq.a}
+                </p>
+              </AccordionRow>
             ))}
-          </ul>
+          </div>
         </Reveal>
       </Container>
     </section>

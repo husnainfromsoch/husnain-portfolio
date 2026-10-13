@@ -1,59 +1,77 @@
 import Link from "next/link";
 import { services, servicesSection } from "@/content/site";
-import { Button, Container, Eyebrow } from "@/components/ui";
+import { Button, Container, Eyebrow, Heading } from "@/components/ui";
+import { ArrowRight, Grid, serviceIcons } from "@/components/icons";
 import Reveal from "@/components/Reveal";
 
 /* Layout follows the reference: a short intro column on the left that
-   stays put, and the services stacked as rows on the right. */
+   stays put while the service cards scroll past on the right. */
 export default function Services() {
   return (
-    <section className="bg-ink py-20 text-paper sm:py-28">
+    <section className="border-b border-line py-24 sm:py-32">
       <Container>
-        <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-          <Reveal>
-            <div className="lg:sticky lg:top-28">
-              <Eyebrow tone="light">{servicesSection.eyebrow}</Eyebrow>
-              <h2 className="mt-5 font-display text-[clamp(2.2rem,5vw,3.5rem)] font-extrabold leading-[1.02] tracking-[-0.03em]">
-                {servicesSection.heading}
-              </h2>
-              <p className="mt-5 max-w-md text-base leading-relaxed text-paper/60">
+        <div className="grid gap-14 lg:grid-cols-2 lg:gap-12">
+          {/* Sticky wrapper sits outside the animation so it can stick */}
+          <div className="self-start lg:sticky lg:top-32">
+            <Reveal>
+              <Eyebrow icon={Grid}>{servicesSection.eyebrow}</Eyebrow>
+              <Heading className="mt-6 max-w-lg">{servicesSection.heading}</Heading>
+              <p className="mt-6 max-w-lg text-base leading-relaxed text-ink/75 sm:text-lg">
                 {servicesSection.sub}
               </p>
               <div className="mt-9">
-                <Button href="/services">All services</Button>
+                <Button href={servicesSection.cta.href}>
+                  {servicesSection.cta.label}
+                </Button>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
 
-          <ul className="lg:mt-2">
-            {services.map((service, i) => (
-              <Reveal as="li" key={service.slug} delay={i * 0.08}>
-                <Link
-                  href="/services"
-                  className="group flex gap-6 border-b border-paper/15 py-9 first:border-t first:border-paper/15 sm:gap-8"
-                >
-                  <span className="flex size-12 shrink-0 items-center justify-center rounded-[var(--radius-pill)] bg-accent font-display text-sm font-extrabold text-white sm:size-14">
-                    {service.number}
-                  </span>
+          <ul className="space-y-6">
+            {services.map((service, i) => {
+              const Icon = serviceIcons[service.icon];
+              return (
+                <Reveal as="li" key={service.slug} delay={i * 0.06}>
+                  <Link
+                    href={`/services#${service.slug}`}
+                    className="group block rounded-[var(--radius-card)] border border-line bg-paper p-7 transition-[transform,border-color,background-color,box-shadow] duration-300 hover:-translate-y-1.5 hover:border-ink/20 hover:bg-card hover:shadow-[0_20px_40px_rgba(14,14,14,0.06)] sm:p-9"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <span className="flex size-14 items-center justify-center rounded-full bg-accent text-white transition-transform duration-300 group-hover:rotate-[-8deg]">
+                        <Icon className="size-6" />
+                      </span>
+                      <span className="font-display text-sm font-semibold text-muted">
+                        {service.number}
+                      </span>
+                    </div>
 
-                  <div className="flex-1">
-                    <h3 className="font-display text-2xl font-extrabold leading-tight tracking-tight sm:text-3xl">
+                    <h3 className="mt-7 font-display text-2xl font-bold tracking-[-0.03em] sm:text-[1.9rem]">
                       {service.title}
                     </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-paper/60 sm:text-base">
+                    <p className="mt-3 text-base leading-relaxed text-muted">
                       {service.short}
                     </p>
-                  </div>
 
-                  <span
-                    aria-hidden="true"
-                    className="mt-1 shrink-0 self-start text-xl text-accent transition-transform duration-300 group-hover:translate-x-1.5"
-                  >
-                    →
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
+                    <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+                      <ul className="flex flex-wrap gap-2">
+                        {service.tags.map((tag) => (
+                          <li
+                            key={tag}
+                            className="rounded-[var(--radius-pill)] border border-line px-3 py-1 text-xs font-medium text-ink/75"
+                          >
+                            {tag}
+                          </li>
+                        ))}
+                      </ul>
+                      <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
+                        {servicesSection.cardLink}
+                        <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      </span>
+                    </div>
+                  </Link>
+                </Reveal>
+              );
+            })}
           </ul>
         </div>
       </Container>

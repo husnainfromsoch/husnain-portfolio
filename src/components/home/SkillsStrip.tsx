@@ -1,14 +1,19 @@
 import Marquee from "@/components/Marquee";
-import { marquee } from "@/content/site";
+import { marquee, marqueeLabel } from "@/content/site";
 
-/** Full-bleed dark strip of tools and skills that scrolls forever. */
+/** Light strip of the tools I use, scrolling forever. */
 export default function SkillsStrip() {
   return (
     <section
-      aria-label="Tools and platforms I work with"
-      className="border-y border-ink/10 bg-ink py-7 text-paper sm:py-9"
+      aria-label={marqueeLabel}
+      className="border-b border-line pb-12 sm:pb-16"
     >
-      <Marquee items={marquee} duration={42} />
+      <p className="px-5 text-center text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+        {marqueeLabel}
+      </p>
+      <div className="mt-8">
+        <Marquee items={marquee} duration={45} />
+      </div>
     </section>
   );
 }

@@ -11,6 +11,7 @@
   --muted: #6B6B6B;   /* secondary text            */
   --line: #DEDACF;    /* hairline borders          */
   --card: #FFFFFF;    /* card surfaces             */
+  --accent-soft: #FFE4D8; /* soft tint for the contact block */
 }
 
 @theme inline {
@@ -20,11 +21,12 @@
   --color-muted: var(--muted);
   --color-line: var(--line);
   --color-card: var(--card);
+  --color-accent-soft: var(--accent-soft);
 
   --font-sans: var(--font-inter);
-  --font-display: var(--font-syne);
+  --font-display: var(--font-display-face);
 
-  --radius-card: 24px;
+  --radius-card: 28px;
   --radius-pill: 999px;
 }
 
