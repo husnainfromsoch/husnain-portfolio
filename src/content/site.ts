@@ -153,10 +153,22 @@ export const aboutPage = {
       "Over time, clients kept asking for the same things beyond the store itself: a proper website, something to stop them typing orders into spreadsheets by hand, help keeping their social media alive. So I built the skills to do all of it properly instead of referring it out.",
       "Today I work with small businesses across Sweden, the UAE, the US and Estonia. Different time zones, same job: understand what's actually slowing a business down, then build the thing that fixes it.",
     ],
-    image: {
-      src: "/images/Hero-3rd.jpg",
-      alt: "A website homepage I designed, shown on a laptop",
-    },
+    /* Small scrolling photo gallery next to the story text. Each image
+       drifts at its own speed as you scroll past this section. */
+    gallery: [
+      {
+        src: "/images/Hero-3rd.jpg",
+        alt: "A website homepage I designed, shown on a laptop",
+      },
+      {
+        src: "/images/Husnain-Hero.jpg",
+        alt: "Husnain speaking on stage at a founders summit, with website analytics on the screen behind him",
+      },
+      {
+        src: "/images/Husnain-hero-2.jpg",
+        alt: "Husnain working on a laptop in a coffee shop",
+      },
+    ],
   },
   process: {
     eyebrow: "How I work",

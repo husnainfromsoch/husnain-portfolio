@@ -5,7 +5,6 @@ import Story from "@/components/about/Story";
 import Process from "@/components/about/Process";
 import ToolsStrip from "@/components/about/ToolsStrip";
 import Stats from "@/components/about/Stats";
-import ContactCta from "@/components/home/ContactCta";
 
 export const metadata: Metadata = {
   title: `About — ${site.brandFull}`,
@@ -20,7 +19,6 @@ export default function AboutPage() {
       <Process />
       <ToolsStrip />
       <Stats />
-      <ContactCta />
     </>
   );
 }
