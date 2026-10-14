@@ -395,9 +395,7 @@ export const workPage = {
 export const testimonialsSection = {
   eyebrow: "Kind words",
   heading: "What clients say",
-  sub: "Real feedback from the people I've worked with. Press play to hear it in their own voice.",
-  playLabel: "Play voice note from",
-  pauseLabel: "Stop voice note from",
+  sub: "Real feedback from the people I've worked with.",
 };
 
 /* ⚠️ PLACEHOLDER CONTENT — every name, photo, quote and voice note below is
