@@ -28,10 +28,10 @@ export default function Footer() {
        flush against the last section, so the footer reads as part of the
        page instead of a separate strip floating at the bottom. */
     <footer className="mt-20 bg-black text-paper sm:mt-24">
-      <Container className="py-12 sm:py-14">
+      <Container className="py-8 sm:py-10">
         {/* ---------- Closing call to action ---------- */}
         <Reveal>
-          <div className="grid items-end gap-7 border-b border-paper/15 pb-10 md:grid-cols-[1.4fr_0.6fr] md:gap-12 md:pb-11">
+          <div className="grid items-end gap-7 border-b border-paper/15 pb-8 md:grid-cols-[1.4fr_0.6fr] md:gap-12 md:pb-9">
             <FooterHeadline text={footer.cta.heading} />
 
             <div className="md:pb-2">
@@ -50,7 +50,7 @@ export default function Footer() {
         </Reveal>
 
         {/* ---------- Brand / pages / social ---------- */}
-        <div className="grid gap-10 pt-10 md:grid-cols-[1.3fr_0.7fr_1.2fr] md:gap-10 md:pt-12">
+        <div className="grid gap-10 pt-8 md:grid-cols-[1.3fr_0.7fr_1.2fr] md:gap-10 md:pt-9">
           <Reveal>
             <div className="text-paper">
               <Logo />
@@ -115,12 +115,6 @@ export default function Footer() {
               </ul>
             </div>
           </Reveal>
-        </div>
-
-        {/* ---------- Bottom bar ---------- */}
-        <div className="mt-12 flex flex-col gap-2 border-t border-paper/15 pt-6 text-sm text-paper/50 sm:flex-row sm:items-center sm:justify-between">
-          <p>{footer.copyright}</p>
-          <p>{footer.madeBy}</p>
         </div>
       </Container>
     </footer>
