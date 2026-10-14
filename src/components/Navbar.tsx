@@ -39,8 +39,13 @@ function NavLinks() {
   const activeHref = nav.find((item) => pathname.startsWith(item.href))?.href;
 
   const moveTo = (href: string) => {
-    const el = listRef.current?.querySelector<HTMLElement>(`[data-href="${href}"]`);
-    if (el) setPill({ left: el.offsetLeft, width: el.offsetWidth });
+    const list = listRef.current;
+    const el = list?.querySelector<HTMLElement>(`[data-href="${href}"]`);
+    if (el && list) {
+      const listRect = list.getBoundingClientRect();
+      const elRect = el.getBoundingClientRect();
+      setPill({ left: elRect.left - listRect.left, width: elRect.width });
+    }
     setHighlighted(href);
   };
 
@@ -75,7 +80,7 @@ function NavLinks() {
         const active = pathname.startsWith(item.href);
         const isHighlighted = highlighted === item.href;
         return (
-          <li key={item.href} className="relative">
+          <li key={item.href}>
             <Link
               href={item.href}
               data-href={item.href}
