@@ -377,6 +377,20 @@ export const workSection = {
   cta: { label: "View all projects", href: "/work" },
 };
 
+export const workPage = {
+  eyebrow: "Case studies",
+  heading: "Every project, start to finish",
+  sub: "Filter by service to see the kind of work closest to what you need.",
+  filterAll: "All work",
+  filterLabel: "Filter case studies",
+  empty: "No case studies in this category yet.",
+  backLabel: "All case studies",
+  problemLabel: "The problem",
+  solutionLabel: "What I built",
+  resultsLabel: "The results",
+  nextLabel: "Next case study",
+};
+
 /* ------------------------------ TESTIMONIALS ----------------------------- */
 export const testimonialsSection = {
   eyebrow: "Kind words",
