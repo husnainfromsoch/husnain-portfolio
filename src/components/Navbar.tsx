@@ -34,17 +34,22 @@ function NavLinks() {
   const pathname = usePathname();
   const listRef = useRef<HTMLUListElement>(null);
   const [pill, setPill] = useState<{ left: number; width: number } | null>(null);
+  const [highlighted, setHighlighted] = useState<string | undefined>(undefined);
 
   const activeHref = nav.find((item) => pathname.startsWith(item.href))?.href;
 
   const moveTo = (href: string) => {
     const el = listRef.current?.querySelector<HTMLElement>(`[data-href="${href}"]`);
     if (el) setPill({ left: el.offsetLeft, width: el.offsetWidth });
+    setHighlighted(href);
   };
 
   useLayoutEffect(() => {
     if (activeHref) moveTo(activeHref);
-    else setPill(null);
+    else {
+      setPill(null);
+      setHighlighted(undefined);
+    }
     // re-measure on resize, since widths can shift
     const onResize = () => activeHref && moveTo(activeHref);
     window.addEventListener("resize", onResize);
@@ -61,13 +66,14 @@ function NavLinks() {
       {pill && (
         <motion.span
           aria-hidden="true"
-          className="absolute top-1/2 h-10 -translate-y-1/2 rounded-full bg-ink/[0.06]"
+          className="absolute top-1/2 h-10 -translate-y-1/2 rounded-full bg-accent shadow-[0_6px_16px_rgba(252,54,45,0.3)]"
           animate={{ left: pill.left, width: pill.width }}
           transition={{ type: "spring", stiffness: 380, damping: 34, mass: 0.7 }}
         />
       )}
       {nav.map((item) => {
         const active = pathname.startsWith(item.href);
+        const isHighlighted = highlighted === item.href;
         return (
           <li key={item.href} className="relative">
             <Link
@@ -76,7 +82,7 @@ function NavLinks() {
               onMouseEnter={() => moveTo(item.href)}
               aria-current={active ? "page" : undefined}
               className={`relative z-10 block rounded-full px-4 py-2.5 text-[15px] font-medium transition-colors duration-200 ${
-                active ? "text-ink" : "text-ink/65 hover:text-ink"
+                isHighlighted ? "text-on-accent" : "text-ink/65 hover:text-ink"
               }`}
             >
               {item.label}
