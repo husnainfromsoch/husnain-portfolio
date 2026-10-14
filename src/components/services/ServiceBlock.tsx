@@ -27,14 +27,6 @@ export default function ServiceBlock({
       id={service.slug}
       className="group/block relative scroll-mt-[136px] overflow-hidden border-b border-line py-20 transition-colors duration-500 sm:py-28"
     >
-      {/* Giant faint watermark number, sits behind everything */}
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-10 right-0 select-none font-display text-[12rem] font-bold leading-none tracking-[-0.05em] text-ink/[0.025] transition-colors duration-500 group-hover/block:text-accent/[0.06] sm:text-[18rem]"
-      >
-        {service.number}
-      </span>
-
       <div className="relative mx-auto w-full max-w-[1280px] px-5 sm:px-8">
         <div
           className={`grid items-center gap-12 lg:grid-cols-2 lg:gap-16 ${
