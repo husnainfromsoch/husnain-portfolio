@@ -155,20 +155,20 @@ export const aboutPage = {
     ],
     /* Small scrolling photo gallery next to the story text. Each image
        drifts at its own speed as you scroll past this section. */
-    gallery: [
-      {
-        src: "/images/Hero-3rd.jpg",
-        alt: "A website homepage I designed, shown on a laptop",
+    gallery: {
+      leftTop: {
+        src: "/images/about/My story-section left top side image.jpg",
+        alt: "Husnain at work, top-left photo in the story gallery",
       },
-      {
-        src: "/images/Husnain-Hero.jpg",
-        alt: "Husnain speaking on stage at a founders summit, with website analytics on the screen behind him",
+      leftBottom: {
+        src: "/images/about/My story-section left bottom side image.jpg",
+        alt: "Husnain at work, bottom-left photo in the story gallery",
       },
-      {
-        src: "/images/Husnain-hero-2.jpg",
-        alt: "Husnain working on a laptop in a coffee shop",
+      right: {
+        src: "/images/about/My story-section right side image.jpg",
+        alt: "Husnain at work, right-side photo in the story gallery",
       },
-    ],
+    },
   },
   process: {
     eyebrow: "How I work",

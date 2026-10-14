@@ -50,7 +50,7 @@ export default function Story() {
     offset: ["start end", "end start"],
   });
 
-  const [a, b, c] = story.gallery;
+  const { leftTop, leftBottom, right } = story.gallery;
 
   return (
     <section className="border-b border-line py-20 sm:py-28">
@@ -78,28 +78,28 @@ export default function Story() {
               against the other as you scroll for a sense of depth */}
           <Reveal delay={0.1}>
             <div className="grid grid-cols-2 gap-4 sm:gap-5">
-              <div className="flex flex-col gap-4 pt-10 sm:gap-5 sm:pt-16">
-                <GalleryImage
-                  src={a.src}
-                  alt={a.alt}
-                  range={[-10, 30]}
-                  className="aspect-[3/4]"
-                  progress={scrollYProgress}
-                />
-              </div>
               <div className="flex flex-col gap-4 sm:gap-5">
                 <GalleryImage
-                  src={b.src}
-                  alt={b.alt}
+                  src={leftTop.src}
+                  alt={leftTop.alt}
                   range={[20, -30]}
                   className="aspect-[4/5]"
                   progress={scrollYProgress}
                 />
                 <GalleryImage
-                  src={c.src}
-                  alt={c.alt}
+                  src={leftBottom.src}
+                  alt={leftBottom.alt}
                   range={[-10, 20]}
                   className="aspect-square"
+                  progress={scrollYProgress}
+                />
+              </div>
+              <div className="flex flex-col gap-4 pt-10 sm:gap-5 sm:pt-16">
+                <GalleryImage
+                  src={right.src}
+                  alt={right.alt}
+                  range={[-10, 30]}
+                  className="aspect-[3/4]"
                   progress={scrollYProgress}
                 />
               </div>
