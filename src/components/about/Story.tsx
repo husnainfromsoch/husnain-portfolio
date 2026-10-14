@@ -74,23 +74,23 @@ export default function Story() {
             </div>
           </Reveal>
 
-          {/* Offset two-column photo gallery, each column drifting
-              against the other as you scroll for a sense of depth */}
+          {/* Offset two-column photo gallery. Each box matches its
+              photo's own aspect ratio, so nothing gets cropped away. */}
           <Reveal delay={0.1}>
             <div className="grid grid-cols-2 gap-4 sm:gap-5">
               <div className="flex flex-col gap-4 sm:gap-5">
                 <GalleryImage
                   src={leftTop.src}
                   alt={leftTop.alt}
-                  range={[20, -30]}
-                  className="aspect-[4/5]"
+                  range={[15, -20]}
+                  className="aspect-square"
                   progress={scrollYProgress}
                 />
                 <GalleryImage
                   src={leftBottom.src}
                   alt={leftBottom.alt}
-                  range={[-10, 20]}
-                  className="aspect-square"
+                  range={[-10, 15]}
+                  className="aspect-[16/9]"
                   progress={scrollYProgress}
                 />
               </div>
@@ -98,8 +98,8 @@ export default function Story() {
                 <GalleryImage
                   src={right.src}
                   alt={right.alt}
-                  range={[-10, 30]}
-                  className="aspect-[3/4]"
+                  range={[-15, 20]}
+                  className="aspect-square"
                   progress={scrollYProgress}
                 />
               </div>
