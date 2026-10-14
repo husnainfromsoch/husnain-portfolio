@@ -1,10 +1,9 @@
-import Image from "next/image";
 import { hero } from "@/content/site";
 import { Button, Container, Eyebrow } from "@/components/ui";
 import { Briefcase, Star } from "@/components/icons";
-import TiltCard from "@/components/TiltCard";
 import Reveal from "@/components/Reveal";
 import { LinesReveal } from "@/components/TextReveal";
+import HeroMotion from "@/components/home/HeroMotion";
 
 /* Placeholder avatar colours for the "happy clients" row.
    Swap for real client photos later if you like. */
@@ -81,51 +80,7 @@ export default function Hero() {
 
           {/* --------------------- Right: portrait + previews -------------------- */}
           <Reveal delay={0.15}>
-            <TiltCard strength={5} className="relative mx-auto max-w-[560px] lg:mr-0">
-              <div className="aspect-[4/4.6] overflow-hidden rounded-card bg-accent-soft">
-                <Image
-                  src={hero.portrait.src}
-                  alt={hero.portrait.alt}
-                  width={1024}
-                  height={1024}
-                  priority
-                  quality={95}
-                  sizes="(max-width: 1024px) 90vw, 560px"
-                  /* Full photo with its own background, so it fills the card
-                     and is cropped to fit. Zoomed in from the top so the
-                     lettering on the podium sits below the bottom edge. */
-                  className="h-full w-full origin-top scale-[1.24] object-cover object-top"
-                />
-              </div>
-
-              {/* Availability chip */}
-              <p className="absolute left-5 top-5 inline-flex items-center gap-2.5 rounded-full bg-card px-4 py-2.5 text-xs font-semibold shadow-[0_8px_24px_rgba(14,14,14,0.08)] sm:text-sm">
-                <span className="relative flex size-2.5">
-                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-70" />
-                  <span className="relative inline-flex size-2.5 rounded-full bg-accent" />
-                </span>
-                {hero.availability}
-              </p>
-
-              {/* Floating, tilted previews of my work */}
-              {hero.previews.map((img, i) => (
-                <div
-                  key={img.src}
-                  className={`absolute overflow-hidden rounded-btn border-4 border-card bg-card shadow-[0_18px_40px_rgba(14,14,14,0.16)] ${previewPlacement[i]}`}
-                >
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    width={1024}
-                    height={768}
-                    sizes="(max-width: 1024px) 50vw, 300px"
-                    /* Kept at a fixed 4:3 shape so both preview cards match,
-                       whatever size the photo itself is. */
-                    className="aspect-[4/3] h-auto w-full object-cover"
-                  />
-                </div>
-              ))}
-            </TiltCard>
+            <HeroMotion previewPlacement={previewPlacement} />
           </Reveal>
         </div>
       </Container>
