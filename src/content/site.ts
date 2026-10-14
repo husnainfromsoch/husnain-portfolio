@@ -133,6 +133,85 @@ export const about = {
   ],
 };
 
+/* ------------------------------ ABOUT PAGE ------------------------------- */
+export const aboutPage = {
+  hero: {
+    eyebrow: "About me",
+    heading: "The person who actually does the work.",
+    intro:
+      "I'm Husnain, a freelancer building Shopify stores, websites, automations, social media and AI setups for small businesses that want to sell more and work less. No agency, no account manager between us, just me.",
+    portrait: {
+      src: "/images/Husnain-hero-2.jpg",
+      alt: "Husnain working on a laptop in a coffee shop",
+    },
+  },
+  story: {
+    eyebrow: "My story",
+    heading: "How I got here",
+    paragraphs: [
+      "I started out freelancing on small fixes: a broken checkout here, a slow page there. Fixing those problems one store at a time taught me more about what actually drives sales than any course did.",
+      "Over time, clients kept asking for the same things beyond the store itself: a proper website, something to stop them typing orders into spreadsheets by hand, help keeping their social media alive. So I built the skills to do all of it properly instead of referring it out.",
+      "Today I work with small businesses across Sweden, the UAE, the US and Estonia. Different time zones, same job: understand what's actually slowing a business down, then build the thing that fixes it.",
+    ],
+    image: {
+      src: "/images/Hero-3rd.jpg",
+      alt: "A website homepage I designed, shown on a laptop",
+    },
+  },
+  process: {
+    eyebrow: "How I work",
+    heading: "Five steps, every project",
+    sub: "No surprises. You'll always know what's happening and what's next.",
+    steps: [
+      {
+        number: "01",
+        title: "First call",
+        description:
+          "We talk through what's not working and what you want instead. I ask direct questions so I understand the real problem, not just the symptom.",
+      },
+      {
+        number: "02",
+        title: "Plan & fixed price",
+        description:
+          "You get a clear plan and a fixed price before any work starts. No hourly surprises, no scope that quietly grows.",
+      },
+      {
+        number: "03",
+        title: "Build",
+        description:
+          "I build it myself, start to finish. You'll get regular updates, not silence until the big reveal.",
+      },
+      {
+        number: "04",
+        title: "Review together",
+        description:
+          "We go through the result together. Anything that's off gets fixed before launch, not after.",
+      },
+      {
+        number: "05",
+        title: "Launch & support",
+        description:
+          "I launch it, show you how to use it, and stay reachable after. If something breaks, you message me directly.",
+      },
+    ],
+  },
+  tools: {
+    eyebrow: "Tools I use",
+    heading: "What I build with",
+    sub: "The platforms and tools I reach for most, picked to fit the job rather than the other way round.",
+  },
+  stats: {
+    eyebrow: "In numbers",
+    heading: "A quick snapshot",
+    items: [
+      { value: "70+", label: "Projects delivered" },
+      { value: "4+", label: "Years freelancing" },
+      { value: "10", label: "Countries I work in" },
+      { value: "5", label: "Services, one freelancer" },
+    ],
+  },
+};
+
 /* -------------------------------- SERVICES ------------------------------- */
 export const services = [
   {
