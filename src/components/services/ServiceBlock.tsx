@@ -37,7 +37,7 @@ export default function ServiceBlock({
 
       <div className="relative mx-auto w-full max-w-[1280px] px-5 sm:px-8">
         <div
-          className={`grid items-stretch gap-12 lg:grid-cols-2 lg:gap-16 ${
+          className={`grid items-center gap-12 lg:grid-cols-2 lg:gap-16 ${
             reversed ? "lg:[&>*:first-child]:order-2" : ""
           }`}
         >
@@ -123,9 +123,9 @@ export default function ServiceBlock({
             </div>
           </Reveal>
 
-          {/* Image column — fills the full height of the text column */}
-          <Reveal delay={0.1}>
-            <TiltCard className="relative h-full min-h-[22rem] overflow-hidden rounded-card bg-accent-soft" strength={5}>
+          {/* Image column */}
+          <Reveal delay={0.1} className="flex items-center">
+            <TiltCard className="relative aspect-[4/3] w-full overflow-hidden rounded-card bg-accent-soft" strength={5}>
               <Image
                 src={service.thumbnail.src}
                 alt={service.thumbnail.alt}

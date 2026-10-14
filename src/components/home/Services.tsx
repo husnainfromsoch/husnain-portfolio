@@ -5,6 +5,7 @@ import { Button, Container, Eyebrow, Heading } from "@/components/ui";
 import { Grid, serviceIcons } from "@/components/icons";
 import Reveal from "@/components/Reveal";
 import FeatureCarousel from "@/components/ui/feature-carousel";
+import ServicesOrbit from "@/components/home/ServicesOrbit";
 
 /* Intro row on top, then a carousel: service names roll on the left,
    each service's thumbnail card slides in on the right. */
@@ -23,15 +24,18 @@ export default function Services() {
     <section className="border-b border-line py-24 sm:py-32">
       <Container>
         <Reveal>
-          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-16">
+          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-16">
             <div>
               <Eyebrow icon={Grid}>{servicesSection.eyebrow}</Eyebrow>
               <Heading className="mt-6 max-w-xl">{servicesSection.heading}</Heading>
             </div>
-            <div>
-              <p className="max-w-lg text-base text-ink/75 sm:text-lg">{servicesSection.sub}</p>
-              <div className="mt-7">
-                <Button href={servicesSection.cta.href}>{servicesSection.cta.label}</Button>
+            <div className="flex flex-col items-start gap-7 sm:flex-row sm:items-center lg:flex-col lg:items-start">
+              <ServicesOrbit />
+              <div>
+                <p className="max-w-lg text-base text-ink/75 sm:text-lg">{servicesSection.sub}</p>
+                <div className="mt-7">
+                  <Button href={servicesSection.cta.href}>{servicesSection.cta.label}</Button>
+                </div>
               </div>
             </div>
           </div>
