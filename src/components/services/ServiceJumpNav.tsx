@@ -37,7 +37,7 @@ export default function ServiceJumpNav({ services }: { services: readonly Servic
       ref={barRef}
       role="tablist"
       aria-label="Jump to a service"
-      className="sticky top-[72px] z-30 -mx-5 flex gap-2 overflow-x-auto border-y border-line bg-paper/95 px-5 py-3 backdrop-blur-md sm:-mx-8 sm:px-8 [&::-webkit-scrollbar]:hidden"
+      className="sticky top-[72px] z-30 -mx-5 flex gap-2 overflow-x-auto border-y border-line bg-paper px-5 py-3 sm:-mx-8 sm:px-8 [&::-webkit-scrollbar]:hidden"
     >
       {services.map((s) => {
         const Icon = serviceIcons[s.icon as keyof typeof serviceIcons];

@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { hero } from "@/content/site";
-import { Sparkle } from "@/components/icons";
 import TiltCard from "@/components/TiltCard";
 
 /* Dashed ring that spins slowly behind the portrait. Pure SVG, solid
@@ -34,30 +33,27 @@ export default function HeroMotion({
 
   return (
     <div className="relative mx-auto max-w-[560px] lg:mr-0">
-      {/* Soft pulsing glow behind everything */}
-      {!reduced && (
-        <motion.span
-          aria-hidden="true"
-          className="absolute left-1/2 top-1/2 -z-10 size-[85%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/25 blur-3xl"
-          animate={{ scale: [1, 1.12, 1], opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        />
-      )}
+      {/* Soft glow behind everything — static, no animated blur (cheap) */}
+      <span
+        aria-hidden="true"
+        className="absolute left-1/2 top-1/2 -z-10 size-[85%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/20 opacity-70 blur-3xl"
+      />
 
-      {/* Slow-spinning dashed ring */}
+      {/* Slow-spinning dashed ring — the one continuous animation here */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2"
+        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 will-change-transform"
         animate={reduced ? undefined : { rotate: 360 }}
-        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
       >
         <SpinningRing />
       </motion.div>
 
       {/* Gentle continuous float on the whole portrait group */}
       <motion.div
-        animate={reduced ? undefined : { y: [0, -14, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        className="will-change-transform"
+        animate={reduced ? undefined : { y: [0, -12, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       >
         <TiltCard strength={5} className="relative">
           <div className="aspect-[4/4.6] overflow-hidden rounded-card bg-accent-soft">
@@ -82,33 +78,11 @@ export default function HeroMotion({
             {hero.availability}
           </p>
 
-          {/* Spinning sparkle badge, bottom-right of the portrait */}
-          <motion.span
-            aria-hidden="true"
-            className="absolute -right-3 bottom-[18%] flex size-14 items-center justify-center rounded-full border-4 border-paper bg-accent text-on-accent shadow-[0_10px_28px_rgba(252,54,45,0.35)] sm:size-16"
-            animate={reduced ? undefined : { rotate: 360 }}
-            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-          >
-            <Sparkle className="size-6 sm:size-7" />
-          </motion.span>
-
-          {/* Floating, tilted previews of my work — each drifts on its own
-              rhythm so the whole composition feels alive */}
+          {/* Floating, tilted previews of my work */}
           {hero.previews.map((img, i) => (
-            <motion.div
+            <div
               key={img.src}
-              className={`absolute overflow-hidden rounded-btn border-4 border-card bg-card shadow-[0_18px_40px_rgba(14,14,14,0.16)] ${previewPlacement[i]}`}
-              animate={
-                reduced
-                  ? undefined
-                  : { y: [0, i % 2 === 0 ? -10 : 10, 0], rotate: [0, i % 2 === 0 ? 2 : -2, 0] }
-              }
-              transition={{
-                duration: 4.5 + i,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: i * 0.6,
-              }}
+              className={`absolute overflow-hidden rounded-btn border-4 border-card bg-card shadow-[0_18px_40px_rgba(14,14,14,0.16)] transition-transform duration-500 hover:-translate-y-1.5 ${previewPlacement[i]}`}
             >
               <Image
                 src={img.src}
@@ -118,7 +92,7 @@ export default function HeroMotion({
                 sizes="(max-width: 1024px) 50vw, 300px"
                 className="aspect-[4/3] h-auto w-full object-cover"
               />
-            </motion.div>
+            </div>
           ))}
         </TiltCard>
       </motion.div>
