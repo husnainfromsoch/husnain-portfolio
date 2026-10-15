@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { hero } from "@/content/site";
 import { Button, Container, Eyebrow } from "@/components/ui";
 import { Briefcase, Star } from "@/components/icons";
@@ -5,9 +6,14 @@ import Reveal from "@/components/Reveal";
 import { LinesReveal } from "@/components/TextReveal";
 import HeroMotion from "@/components/home/HeroMotion";
 
-/* Placeholder avatar colours for the "happy clients" row.
-   Swap for real client photos later if you like. */
-const avatarColours = ["bg-ink", "bg-accent", "bg-muted", "bg-accent-soft"];
+/* ⚠️ PLACEHOLDER PHOTOS — stock/sample faces for the "happy clients" row.
+   Swap each src for a real client photo in public/images/clients/ later. */
+const clientAvatars = [
+  "/images/testimonials/placeholder-1.jpg",
+  "/images/testimonials/placeholder-3.jpg",
+  "/images/testimonials/placeholder-5.jpg",
+  "/images/testimonials/placeholder-7.jpg",
+];
 
 /* Where each small preview card floats over the portrait */
 const previewPlacement = [
@@ -55,11 +61,13 @@ export default function Hero() {
             {/* Social proof card, like the reference */}
             <div className="mt-10 inline-flex items-center gap-4 rounded-btn border border-line bg-card/60 py-3 pl-3 pr-6">
               <div className="flex -space-x-3" aria-hidden="true">
-                {avatarColours.map((c) => (
+                {clientAvatars.map((src) => (
                   <span
-                    key={c}
-                    className={`size-11 rounded-full border-[3px] border-paper ${c}`}
-                  />
+                    key={src}
+                    className="relative size-11 overflow-hidden rounded-full border-[3px] border-paper"
+                  >
+                    <Image src={src} alt="" fill sizes="44px" className="object-cover" />
+                  </span>
                 ))}
               </div>
               <div className="text-sm leading-tight">
