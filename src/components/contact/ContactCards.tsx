@@ -26,7 +26,7 @@ export default function ContactCards() {
                   rel="noreferrer noopener"
                   className="group flex h-full flex-col rounded-card border border-line bg-card p-7 transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-ink"
                 >
-                  <span className="flex size-12 items-center justify-center rounded-small bg-accent text-on-accent transition-colors duration-300 group-hover:bg-ink">
+                  <span className="flex size-12 items-center justify-center rounded-small bg-accent text-on-accent">
                     <Icon className="size-5" aria-hidden="true" />
                   </span>
 

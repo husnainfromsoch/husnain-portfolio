@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { contactPage, site } from "@/content/site";
 import ContactHero from "@/components/contact/ContactHero";
 import ContactCards from "@/components/contact/ContactCards";
-import ContactPrimaryCta from "@/components/contact/ContactPrimaryCta";
 import ContactBooking from "@/components/contact/ContactBooking";
 
 export const metadata: Metadata = {
@@ -15,7 +14,6 @@ export default function ContactPage() {
     <>
       <ContactHero />
       <ContactCards />
-      <ContactPrimaryCta />
       <ContactBooking />
     </>
   );
