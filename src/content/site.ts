@@ -10,8 +10,8 @@ export const site = {
   brandFull: "Vision Craft by Husnain",
   name: "Husnain",
   role: "Shopify & Automation Specialist",
-  email: "[TODO: your email address]",
-  phone: "[TODO: your phone number]",
+  email: "husnainshopifyd@gmail.com",
+  phone: "+92 324 4763035",
   location: "Working with clients in Sweden, UAE, US & Estonia",
   calendlyUrl: "[TODO: your Calendly or booking link]",
   availability: "Available for projects",
@@ -34,7 +34,7 @@ export const socials = [
   {
     label: "LinkedIn",
     note: "Work updates",
-    href: "[TODO: your LinkedIn URL]",
+    href: "https://www.linkedin.com/in/husnain-ali3411",
     icon: "linkedin",
   },
   {
@@ -46,13 +46,13 @@ export const socials = [
   {
     label: "WhatsApp",
     note: "Fastest reply",
-    href: "[TODO: your WhatsApp link, e.g. https://wa.me/46701234567]",
+    href: "https://wa.me/923244763035",
     icon: "whatsapp",
   },
   {
     label: "Email",
     note: "For briefs and files",
-    href: "mailto:[TODO: your email address]",
+    href: "mailto:husnainshopifyd@gmail.com",
     icon: "email",
   },
 ] as const;
@@ -538,14 +538,14 @@ export const contactPage = {
       label: "LinkedIn",
       value: "Connect with me",
       note: "Work updates and a quick way to check I'm real.",
-      href: "[TODO: your LinkedIn URL]",
+      href: "https://www.linkedin.com/in/husnain-ali3411",
     },
     {
       icon: "whatsapp",
       label: "WhatsApp",
       value: "Message me",
       note: "Fastest reply if it's urgent.",
-      href: "[TODO: your WhatsApp link, e.g. https://wa.me/46701234567]",
+      href: "https://wa.me/923244763035",
     },
   ] as const,
   cta: {
@@ -553,7 +553,7 @@ export const contactPage = {
     heading: "Got a store or a process that needs fixing?",
     sub: "Tell me what's not working. I'll tell you honestly whether I'm the right person for it, and what it would take.",
     primaryCta: { label: "Email me", href: `mailto:${site.email}` },
-    secondaryCta: { label: "Message on WhatsApp", href: "[TODO: your WhatsApp link, e.g. https://wa.me/46701234567]" },
+    secondaryCta: { label: "Message on WhatsApp", href: "https://wa.me/923244763035" },
   },
   booking: {
     eyebrow: "Book a call",
