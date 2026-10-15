@@ -1,19 +1,13 @@
-import Image from "next/image";
 import { hero } from "@/content/site";
 import { Button, Container, Eyebrow } from "@/components/ui";
-import { Briefcase, Star } from "@/components/icons";
+import { Briefcase } from "@/components/icons";
 import Reveal from "@/components/Reveal";
 import { LinesReveal } from "@/components/TextReveal";
 import HeroMotion from "@/components/home/HeroMotion";
 
-/* ⚠️ PLACEHOLDER PHOTOS — stock/sample faces for the "happy clients" row.
-   Swap each src for a real client photo in public/images/clients/ later. */
-const clientAvatars = [
-  "/images/testimonials/placeholder-1.jpg",
-  "/images/testimonials/placeholder-3.jpg",
-  "/images/testimonials/placeholder-5.jpg",
-  "/images/testimonials/placeholder-7.jpg",
-];
+/* One mark per live project, standing in for a logo until real client
+   logos are cleared for use (see content-master.md.docx, section 10). */
+const projectMarks = ["bg-ink", "bg-accent", "bg-muted", "bg-accent-soft"];
 
 /* Where each small preview card floats over the portrait */
 const previewPlacement = [
@@ -61,27 +55,18 @@ export default function Hero() {
             {/* Social proof card, like the reference */}
             <div className="mt-10 inline-flex items-center gap-4 rounded-btn border border-line bg-card/60 py-3 pl-3 pr-6">
               <div className="flex -space-x-3" aria-hidden="true">
-                {clientAvatars.map((src) => (
+                {projectMarks.map((c) => (
                   <span
-                    key={src}
-                    className="relative size-11 overflow-hidden rounded-full border-[3px] border-paper"
-                  >
-                    <Image src={src} alt="" fill sizes="44px" className="object-cover" />
-                  </span>
+                    key={c}
+                    className={`size-11 rounded-full border-[3px] border-paper ${c}`}
+                  />
                 ))}
               </div>
               <div className="text-sm leading-tight">
                 <p className="font-display text-base font-bold tracking-[-0.02em]">
                   {hero.socialProof.value} {hero.socialProof.label}
                 </p>
-                <p className="mt-1 flex items-center gap-1.5 text-ink/80">
-                  <span className="flex text-accent" aria-hidden="true">
-                    {Array.from({ length: 5 }, (_, i) => (
-                      <Star key={i} className="size-3.5" />
-                    ))}
-                  </span>
-                  <span className="font-medium">{hero.socialProof.rating}</span>
-                </p>
+                <p className="mt-1 text-ink/70">{hero.socialProof.rating}</p>
               </div>
             </div>
           </Reveal>

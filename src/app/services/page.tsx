@@ -51,14 +51,14 @@ export default function ServicesPage() {
               />
               <div className="relative">
                 <h2 className="font-display text-2xl font-bold tracking-[-0.03em] sm:text-3xl">
-                  Wondering what it costs?
+                  Not sure which one you need?
                 </h2>
                 <p className="mt-2 max-w-md text-sm text-paper/75 sm:text-base">
-                  Starting prices for every service, laid out clearly, no surprises.
+                  Book a free call and I'll tell you honestly what would help.
                 </p>
               </div>
-              <Button href="/pricing" variant="accent" className="relative shrink-0">
-                See pricing
+              <Button href="/contact" variant="accent" className="relative shrink-0">
+                Book a free call
               </Button>
             </div>
           </Reveal>

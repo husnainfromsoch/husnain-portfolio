@@ -23,7 +23,8 @@ export default function WorkFilter({ projects }: { projects: Project[] }) {
     [],
   );
 
-  const filtered = active === "all" ? projects : projects.filter((p) => p.service === active);
+  const filtered =
+    active === "all" ? projects : projects.filter((p) => p.services.includes(active as never));
 
   return (
     <div>

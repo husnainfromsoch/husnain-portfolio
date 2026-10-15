@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: `%s — ${site.brandFull}`,
   },
   description:
-    "Freelance Shopify designer and automation specialist. I build and redesign Shopify stores, build custom websites on GoHighLevel, Webflow and WordPress, automate manual business processes with n8n, run social media marketing and set up Claude Code for teams.",
+    "I build Shopify stores, websites and n8n automations for small businesses doing too much by hand. Live work for clients in Sweden, Estonia, Switzerland, the UK and Pakistan.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

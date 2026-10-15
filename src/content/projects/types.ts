@@ -3,15 +3,27 @@ export type Project = {
   slug: string;
   title: string;
   client: string;
+  /** Short country label, shown on the Work grid card */
   country: string;
-  /** Must match one of the service slugs in site.ts */
-  service: "shopify" | "websites" | "automation" | "social" | "claude-code";
+  /** Fuller market description, shown on the case study page */
+  market: string;
+  industry: string;
+  role: string;
+  /** Must match slugs in site.ts `services` */
+  services: ("shopify" | "websites" | "automation" | "ai-visuals" | "social")[];
+  /** Comma-joined display label built from `services` */
   serviceLabel: string;
+  stack: string[];
   year: string;
+  /** External URL to the live client site, opened in a new tab */
+  liveUrl?: string;
   summary: string;
   problem: string;
   solution: string;
-  results: { value: string; label: string }[];
+  keyFeatures: string[];
+  /** Real, qualitative outcomes — no invented numbers */
+  results: string[];
+  closing: string;
   cover: { src: string; alt: string };
   images: { src: string; alt: string }[];
   featured?: boolean;

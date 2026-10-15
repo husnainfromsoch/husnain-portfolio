@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { projects, getProject } from "@/content/projects";
 import { workPage, site } from "@/content/site";
 import { Button, Container, Eyebrow } from "@/components/ui";
-import { ArrowLeft, ArrowRight, Briefcase } from "@/components/icons";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Briefcase } from "@/components/icons";
 import Reveal from "@/components/Reveal";
 
 export function generateStaticParams() {
@@ -54,18 +54,34 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
                 <dd className="mt-1 font-semibold">{project.client}</dd>
               </div>
               <div>
-                <dt className="text-muted">Country</dt>
-                <dd className="mt-1 font-semibold">{project.country}</dd>
+                <dt className="text-muted">Market</dt>
+                <dd className="mt-1 font-semibold">{project.market}</dd>
               </div>
               <div>
                 <dt className="text-muted">Service</dt>
                 <dd className="mt-1 font-semibold">{project.serviceLabel}</dd>
               </div>
               <div>
-                <dt className="text-muted">Year</dt>
-                <dd className="mt-1 font-semibold">{project.year}</dd>
+                <dt className="text-muted">My role</dt>
+                <dd className="mt-1 font-semibold">{project.role}</dd>
+              </div>
+              <div>
+                <dt className="text-muted">Stack</dt>
+                <dd className="mt-1 font-semibold">{project.stack.join(" · ")}</dd>
               </div>
             </dl>
+
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="group mt-8 inline-flex items-center gap-2 rounded-cta border border-ink/15 bg-card px-7 py-3.5 text-sm font-semibold text-ink transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-ink"
+              >
+                Visit the live site
+                <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
+            )}
           </Reveal>
         </Container>
       </section>
@@ -110,6 +126,33 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         </Container>
       </section>
 
+      {/* --------------------------------- KEY FEATURES ------------------------ */}
+      <section className="py-16 sm:py-24">
+        <Container>
+          <Reveal>
+            <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-accent-text">
+              Key features
+            </p>
+            <ul className="mx-auto mt-8 grid max-w-3xl gap-4 sm:grid-cols-2">
+              {project.keyFeatures.map((feature) => (
+                <li
+                  key={feature}
+                  className="flex items-start gap-3 text-[15px] leading-relaxed text-ink/80 sm:text-base"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="mt-1.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-ink/[0.07]"
+                  >
+                    <span className="size-1.5 rounded-full bg-accent" />
+                  </span>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </Container>
+      </section>
+
       {/* ---------------------------------- RESULTS --------------------------- */}
       <section className="border-y border-line py-16 sm:py-20">
         <Container>
@@ -117,19 +160,13 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             <p className="text-center font-display text-xs font-semibold uppercase tracking-[0.22em] text-muted">
               {workPage.resultsLabel}
             </p>
-            <dl className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-10 text-center sm:grid-cols-3">
+            <ul className="mx-auto mt-8 flex max-w-2xl flex-col gap-4 text-center">
               {project.results.map((r) => (
-                <div key={r.label}>
-                  <dt className="sr-only">{r.label}</dt>
-                  <dd>
-                    <span className="block font-display text-[clamp(2rem,4vw,3rem)] font-bold leading-none tracking-[-0.04em] text-accent-text">
-                      {r.value}
-                    </span>
-                    <span className="mt-3 block text-sm text-muted sm:text-base">{r.label}</span>
-                  </dd>
-                </div>
+                <li key={r} className="text-base leading-relaxed text-ink/85 sm:text-lg">
+                  {r}
+                </li>
               ))}
-            </dl>
+            </ul>
           </Reveal>
         </Container>
       </section>
@@ -161,6 +198,12 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
       <section className="border-t border-line py-16 sm:py-20">
         <Container>
           <Reveal>
+            <p className="mx-auto max-w-2xl text-center text-base leading-relaxed text-ink/75 sm:text-lg">
+              {project.closing}
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.05} className="mt-14">
             <Link href={`/work/${next.slug}`} className="group flex items-center justify-between gap-6">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted">

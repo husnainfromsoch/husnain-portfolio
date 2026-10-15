@@ -135,6 +135,7 @@ export const serviceIcons = {
   website: Website,
   social: Social,
   terminal: Terminal,
+  visuals: Sparkle,
 };
 
 export const Pause = (p: IconProps) => (

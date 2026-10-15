@@ -1,0 +1,49 @@
+import type { Project } from "./types";
+
+const project: Project = {
+  slug: "ai-with-riz",
+  title: "AI with Riz",
+  client: "Rizwan Mahmood (AI with Riz)",
+  country: "Estonia",
+  market: "Estonia (Tallinn), clients worldwide",
+  industry: "Consulting: AI and operations advisory",
+  role: "Built the website from scratch; built the n8n guide pipeline",
+  services: ["websites", "automation"],
+  serviceLabel: "Website Development, Business Automation",
+  stack: ["Next.js", "Claude Code", "n8n"],
+  year: "2026",
+  liveUrl: "https://aiwithriz.com",
+  summary:
+    "A custom website for Rizwan Mahmood, an operator and AI consultant in Tallinn, with an n8n pipeline that creates guides and their visuals and publishes them automatically.",
+  problem:
+    "A personal brand built on expertise needs a steady stream of useful content. Writing, illustrating and publishing each guide by hand doesn't scale alongside client work.",
+  solution:
+    "I built the website in Next.js with Claude Code: services, case studies, writing, articles, guides and about, plus an audio intro, a career timeline and a reel carousel. I then built a guide pipeline in n8n that creates each guide, creates its visuals and publishes it to the site.",
+  keyFeatures: [
+    "Guides library, filterable by topic and by AI tool, with search",
+    "Career timeline table showing results at each past company",
+    "Reel carousel of short videos",
+    "Booking link to a paid strategy call",
+  ],
+  results: [
+    "The site is live, and its guides library grows automatically through the pipeline, with each new guide and its visuals created and published without manual work.",
+  ],
+  closing:
+    "AI with Riz pairs a sharp personal site with a content engine that runs in the background.",
+  cover: {
+    src: "/images/work-3.svg",
+    alt: "[TODO: replace with a real screenshot of the AI with Riz homepage]",
+  },
+  images: [
+    {
+      src: "/images/work-3.svg",
+      alt: "[TODO: replace with a screenshot of the AI with Riz homepage]",
+    },
+    {
+      src: "/images/work-4.svg",
+      alt: "[TODO: replace with a screenshot of the guides library]",
+    },
+  ],
+};
+
+export default project;
