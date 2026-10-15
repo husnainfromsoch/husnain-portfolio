@@ -22,7 +22,7 @@ export const nav = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Case Study", href: "/work" },
-  { label: "Pricing", href: "/pricing" },
+  { label: "Contact", href: "/contact" },
 ];
 
 /* The orange button in the top-right corner of every page */
@@ -515,6 +515,56 @@ export const contactCta = {
   sub: "Tell me what's not working. I'll tell you honestly whether I'm the right person for it, and what it would take.",
   primaryCta: { label: "Start a project", href: "/contact" },
   secondaryCta: { label: "Book a call", href: "/contact" },
+};
+
+/* -------------------------------- CONTACT -------------------------------- */
+export const contactPage = {
+  eyebrow: "Get in touch",
+  heading: "Let's talk about your project.",
+  intro:
+    "Pick whichever way suits you. Email, LinkedIn or WhatsApp, I read everything myself and reply personally, usually within a day.",
+  /* The 3 contact boxes. `icon` matches the keys in socialIcons below:
+     "email" | "linkedin" | "whatsapp". Edit the hrefs once you have them. */
+  cards: [
+    {
+      icon: "email",
+      label: "Email",
+      value: site.email,
+      note: "Best for briefs, files and longer details.",
+      href: `mailto:${site.email}`,
+    },
+    {
+      icon: "linkedin",
+      label: "LinkedIn",
+      value: "Connect with me",
+      note: "Work updates and a quick way to check I'm real.",
+      href: "[TODO: your LinkedIn URL]",
+    },
+    {
+      icon: "whatsapp",
+      label: "WhatsApp",
+      value: "Message me",
+      note: "Fastest reply if it's urgent.",
+      href: "[TODO: your WhatsApp link, e.g. https://wa.me/46701234567]",
+    },
+  ] as const,
+  cta: {
+    eyebrow: "Start a project",
+    heading: "Got a store or a process that needs fixing?",
+    sub: "Tell me what's not working. I'll tell you honestly whether I'm the right person for it, and what it would take.",
+    primaryCta: { label: "Email me", href: `mailto:${site.email}` },
+    secondaryCta: { label: "Message on WhatsApp", href: "[TODO: your WhatsApp link, e.g. https://wa.me/46701234567]" },
+  },
+  booking: {
+    eyebrow: "Book a call",
+    heading: "Pick a time that works for you",
+    sub: "Grab 20 minutes on my calendar and we'll talk through what you need.",
+    /* TODO (Husnain): once you have a Cal.com account, paste your event
+       link here, e.g. "https://cal.com/husnain/intro-call". The embed
+       below will start working automatically once this is filled in. */
+    calLink: "",
+    placeholder: "My booking calendar is going live here soon. In the meantime, email or WhatsApp me to find a time.",
+  },
 };
 
 export const footer = {

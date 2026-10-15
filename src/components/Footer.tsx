@@ -17,11 +17,7 @@ const socialIcons: Record<string, IconType> = {
 };
 
 export default function Footer() {
-  const pages = [
-    ...nav,
-    { label: "FAQ", href: "/#faq" },
-    { label: "Contact", href: "/contact" },
-  ];
+  const pages = [...nav, { label: "FAQ", href: "/#faq" }];
 
   return (
     /* One solid black block that closes the page. Flat top edge, sitting
