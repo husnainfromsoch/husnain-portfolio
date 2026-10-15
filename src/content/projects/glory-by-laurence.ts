@@ -32,17 +32,17 @@ const project: Project = {
   closing:
     "GLORY shows how a small beauty brand can earn trust online: show the result, show how easy it is, and answer the questions before they're asked.",
   cover: {
-    src: "/images/work-4.svg",
-    alt: "[TODO: replace with a real screenshot of the GLORY by Laurence homepage]",
+    src: "/images/work/glory-by-laurence-home.jpg",
+    alt: "GLORY by Laurence Swedish beauty device Shopify homepage",
   },
   images: [
     {
-      src: "/images/work-4.svg",
-      alt: "[TODO: replace with a screenshot of the GLORY by Laurence homepage]",
+      src: "/images/work/glory-by-laurence-home.jpg",
+      alt: "GLORY by Laurence Swedish beauty device Shopify homepage",
     },
     {
-      src: "/images/work-1.svg",
-      alt: "[TODO: replace with a screenshot of the three-step video guide section]",
+      src: "/images/work/glory-by-laurence-products.jpg",
+      alt: "GLORY by Laurence product grid of beauty devices",
     },
   ],
   featured: true,

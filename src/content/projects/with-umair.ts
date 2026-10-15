@@ -31,17 +31,17 @@ const project: Project = {
   closing:
     "With Umair shows a GoHighLevel build done properly: one page, one offer, every lead captured.",
   cover: {
-    src: "/images/work-2.svg",
-    alt: "[TODO: replace with a real screenshot of the With Umair homepage]",
+    src: "/images/work/with-umair-home.jpg",
+    alt: "With Umair LinkedIn coaching funnel built in GoHighLevel",
   },
   images: [
     {
-      src: "/images/work-2.svg",
-      alt: "[TODO: replace with a screenshot of the With Umair homepage]",
+      src: "/images/work/with-umair-home.jpg",
+      alt: "With Umair LinkedIn coaching funnel built in GoHighLevel",
     },
     {
-      src: "/images/work-3.svg",
-      alt: "[TODO: replace with a screenshot of the audit request form]",
+      src: "/images/work/with-umair-form.jpg",
+      alt: "With Umair LinkedIn audit results and strategy session section",
     },
   ],
 };

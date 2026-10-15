@@ -31,17 +31,13 @@ const project: Project = {
   closing:
     "AI with Riz pairs a sharp personal site with a content engine that runs in the background.",
   cover: {
-    src: "/images/work-3.svg",
-    alt: "[TODO: replace with a real screenshot of the AI with Riz homepage]",
+    src: "/images/work/ai-with-riz-home.jpg",
+    alt: "AI with Riz personal brand website for an AI consultant",
   },
   images: [
     {
-      src: "/images/work-3.svg",
-      alt: "[TODO: replace with a screenshot of the AI with Riz homepage]",
-    },
-    {
-      src: "/images/work-4.svg",
-      alt: "[TODO: replace with a screenshot of the guides library]",
+      src: "/images/work/ai-with-riz-home.jpg",
+      alt: "AI with Riz personal brand website for an AI consultant",
     },
   ],
 };

@@ -31,17 +31,17 @@ const project: Project = {
   ],
   closing: "Social Catalyst's site doesn't tell owners they have a problem. It shows them.",
   cover: {
-    src: "/images/work-3.svg",
-    alt: "[TODO: replace with a real screenshot of the Social Catalyst homepage]",
+    src: "/images/work/social-catalyst-home.jpg",
+    alt: "Social Catalyst B2B social media agency homepage",
   },
   images: [
     {
-      src: "/images/work-3.svg",
-      alt: "[TODO: replace with a screenshot of the Social Catalyst homepage]",
+      src: "/images/work/social-catalyst-home.jpg",
+      alt: "Social Catalyst B2B social media agency homepage",
     },
     {
-      src: "/images/work-4.svg",
-      alt: "[TODO: replace with a screenshot of the Social Catalyst problem section]",
+      src: "/images/work/social-catalyst-problem.jpg",
+      alt: "Problem section with Google, Instagram and LinkedIn mock-ups on Social Catalyst",
     },
   ],
 };

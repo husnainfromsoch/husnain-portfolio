@@ -33,17 +33,17 @@ const project: Project = {
   closing:
     "Simply Teen Skin turned a product range into a routine anyone can follow, with the social content to match.",
   cover: {
-    src: "/images/work-2.svg",
-    alt: "[TODO: replace with a real screenshot of the Simply Teen Skin homepage]",
+    src: "/images/work/simply-teen-skin-home.jpg",
+    alt: "Simply Teen Skin Swedish skincare Shopify homepage",
   },
   images: [
     {
-      src: "/images/work-2.svg",
-      alt: "[TODO: replace with a screenshot of the Simply Teen Skin homepage]",
+      src: "/images/work/simply-teen-skin-home.jpg",
+      alt: "Simply Teen Skin Swedish skincare Shopify homepage",
     },
     {
-      src: "/images/work-3.svg",
-      alt: "[TODO: replace with a screenshot of the four-step routine section]",
+      src: "/images/work/simply-teen-skin-products.jpg",
+      alt: "Simply Teen Skin bestselling products section on the homepage",
     },
   ],
   featured: true,

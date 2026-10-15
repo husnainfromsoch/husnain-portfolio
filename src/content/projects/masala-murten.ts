@@ -31,17 +31,17 @@ const project: Project = {
   closing:
     "For a restaurant, a website doesn't need to be clever. It needs to get guests to the menu and the booking page fast. This one does.",
   cover: {
-    src: "/images/work-1.svg",
-    alt: "[TODO: replace with a real screenshot of the Masala Indian Cuisine homepage]",
+    src: "/images/work/masala-murten-home.jpg",
+    alt: "Masala Indian Cuisine Murten WordPress homepage",
   },
   images: [
     {
-      src: "/images/work-1.svg",
-      alt: "[TODO: replace with a screenshot of the Masala Indian Cuisine homepage]",
+      src: "/images/work/masala-murten-home.jpg",
+      alt: "Masala Indian Cuisine Murten WordPress homepage",
     },
     {
-      src: "/images/work-2.svg",
-      alt: "[TODO: replace with a screenshot of the menu page]",
+      src: "/images/work/masala-murten-menu.jpg",
+      alt: "Menu page of the Masala Indian Cuisine website",
     },
   ],
 };

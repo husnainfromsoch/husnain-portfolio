@@ -31,17 +31,17 @@ const project: Project = {
   closing:
     "A good redesign keeps what works and makes the next step obvious. For Cycle Together, that step is getting on a bike.",
   cover: {
-    src: "/images/work-2.svg",
-    alt: "[TODO: replace with a real screenshot of the Cycle Together homepage]",
+    src: "/images/work/cycle-together-home.jpg",
+    alt: "Cycle Together inclusive cycling community WordPress homepage",
   },
   images: [
     {
-      src: "/images/work-2.svg",
-      alt: "[TODO: replace with a screenshot of the Cycle Together homepage]",
+      src: "/images/work/cycle-together-home.jpg",
+      alt: "Cycle Together inclusive cycling community WordPress homepage",
     },
     {
-      src: "/images/work-3.svg",
-      alt: "[TODO: replace with a screenshot of the Our Courses page]",
+      src: "/images/work/cycle-together-courses.jpg",
+      alt: "Cycle Together beginner cycling courses page",
     },
   ],
 };

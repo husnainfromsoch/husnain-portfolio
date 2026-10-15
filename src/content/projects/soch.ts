@@ -33,17 +33,17 @@ const project: Project = {
   closing:
     "Soch is the clearest example of my full range: the website, the visuals, and the automation that keeps it running.",
   cover: {
-    src: "/images/work-1.svg",
-    alt: "[TODO: replace with a real screenshot of the Soch homepage]",
+    src: "/images/work/soch-home.jpg",
+    alt: "Soch AI automation agency homepage built in Next.js",
   },
   images: [
     {
-      src: "/images/work-1.svg",
-      alt: "[TODO: replace with a screenshot of the Soch homepage]",
+      src: "/images/work/soch-home.jpg",
+      alt: "Soch AI automation agency homepage built in Next.js",
     },
     {
-      src: "/images/work-2.svg",
-      alt: "[TODO: replace with a screenshot of the Soch blog index]",
+      src: "/images/work/soch-blog.jpg",
+      alt: "Soch blog published through an automated n8n pipeline",
     },
   ],
   featured: true,

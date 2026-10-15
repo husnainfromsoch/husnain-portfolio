@@ -33,17 +33,17 @@ const project: Project = {
   closing:
     "Hermine Hold needed a store with as much attitude as its products. The store and the social feed now tell the same story.",
   cover: {
-    src: "/images/work-3.svg",
-    alt: "[TODO: replace with a real screenshot of the Hermine Hold homepage]",
+    src: "/images/work/hermine-hold-home.jpg",
+    alt: "Hermine Hold hair accessories Shopify homepage",
   },
   images: [
     {
-      src: "/images/work-3.svg",
-      alt: "[TODO: replace with a screenshot of the Hermine Hold homepage]",
+      src: "/images/work/hermine-hold-home.jpg",
+      alt: "Hermine Hold hair accessories Shopify homepage",
     },
     {
-      src: "/images/work-4.svg",
-      alt: "[TODO: replace with a screenshot of the Hermine Hold featured collections]",
+      src: "/images/work/hermine-hold-collections.jpg",
+      alt: "Hermine Hold featured collections of beanies and hair accessories",
     },
   ],
   featured: true,

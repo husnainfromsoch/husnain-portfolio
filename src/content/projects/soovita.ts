@@ -31,17 +31,17 @@ const project: Project = {
   closing:
     "Soovita got its website, its visuals and its social feed from one builder, which kept the brand consistent everywhere.",
   cover: {
-    src: "/images/work-4.svg",
-    alt: "[TODO: replace with a real screenshot of the Soovita homepage]",
+    src: "/images/work/soovita-home.jpg",
+    alt: "Soovita restaurant marketing website homepage",
   },
   images: [
     {
-      src: "/images/work-4.svg",
-      alt: "[TODO: replace with a screenshot of the Soovita homepage]",
+      src: "/images/work/soovita-home.jpg",
+      alt: "Soovita restaurant marketing website homepage",
     },
     {
-      src: "/images/work-1.svg",
-      alt: "[TODO: replace with a screenshot of the Soovita packages page]",
+      src: "/images/work/soovita-packages.jpg",
+      alt: "Soovita marketing packages for restaurants and cafés",
     },
   ],
 };
