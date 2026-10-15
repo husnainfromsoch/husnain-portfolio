@@ -71,7 +71,7 @@ export const hero = {
   secondaryCta: { label: "See my work", href: "/work" },
   socialProof: {
     /* Replace [TODO] with your real numbers, e.g. "30+" and "4.9" */
-    value: "[TODO]+",
+    value: "70+",
     label: "Happy clients",
     rating: "[TODO]/5",
   },
