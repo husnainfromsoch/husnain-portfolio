@@ -31,8 +31,8 @@ const project: Project = {
   ],
   closing: "Social Catalyst's site doesn't tell owners they have a problem. It shows them.",
   cover: {
-    src: "/images/work/social-catalyst-home.jpg",
-    alt: "Social Catalyst B2B social media agency homepage",
+    src: "/images/work/covers/social-catalyst.jpg",
+    alt: "Phone screen showing LinkedIn, Instagram, TikTok and YouTube apps",
   },
   images: [
     {

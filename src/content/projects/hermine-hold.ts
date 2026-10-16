@@ -33,8 +33,8 @@ const project: Project = {
   closing:
     "Hermine Hold needed a store with as much attitude as its products. The store and the social feed now tell the same story.",
   cover: {
-    src: "/images/work/hermine-hold-home.jpg",
-    alt: "Hermine Hold hair accessories Shopify homepage",
+    src: "/images/work/covers/hermine-hold.jpg",
+    alt: "Woman in a black turtleneck wearing a silver claw clip",
   },
   images: [
     {

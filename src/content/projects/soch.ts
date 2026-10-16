@@ -33,8 +33,8 @@ const project: Project = {
   closing:
     "Soch is the clearest example of my full range: the website, the visuals, and the automation that keeps it running.",
   cover: {
-    src: "/images/work/soch-home.jpg",
-    alt: "Soch AI automation agency homepage built in Next.js",
+    src: "/images/work/covers/soch.jpg",
+    alt: "Close-up of an AI chip on a circuit board",
   },
   images: [
     {

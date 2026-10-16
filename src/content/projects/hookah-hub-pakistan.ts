@@ -33,8 +33,8 @@ const project: Project = {
   closing:
     "Hookah Hub shows what I like to build most: a store that sells, and a system behind it that saves the team time on every order.",
   cover: {
-    src: "/images/work/hookah-hub-pakistan-home.jpg",
-    alt: "Hookah Hub Pakistan Shopify homepage with a featured premium hookah",
+    src: "/images/work/covers/hookah-hub-pakistan.jpg",
+    alt: "Hookah with smoke in a warmly lit lounge",
   },
   images: [
     {

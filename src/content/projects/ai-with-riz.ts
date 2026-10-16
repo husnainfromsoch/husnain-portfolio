@@ -31,8 +31,8 @@ const project: Project = {
   closing:
     "AI with Riz pairs a sharp personal site with a content engine that runs in the background.",
   cover: {
-    src: "/images/work/ai-with-riz-home.jpg",
-    alt: "AI with Riz personal brand website for an AI consultant",
+    src: "/images/work/covers/ai-with-riz.jpg",
+    alt: "3D neural network shaped like a brain",
   },
   images: [
     {

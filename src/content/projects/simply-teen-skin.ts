@@ -33,8 +33,8 @@ const project: Project = {
   closing:
     "Simply Teen Skin turned a product range into a routine anyone can follow, with the social content to match.",
   cover: {
-    src: "/images/work/simply-teen-skin-home.jpg",
-    alt: "Simply Teen Skin Swedish skincare Shopify homepage",
+    src: "/images/work/covers/simply-teen-skin.jpg",
+    alt: "Pink skincare products laid out on a soft pink background",
   },
   images: [
     {

@@ -31,8 +31,8 @@ const project: Project = {
   closing:
     "For a restaurant, a website doesn't need to be clever. It needs to get guests to the menu and the booking page fast. This one does.",
   cover: {
-    src: "/images/work/masala-murten-home.jpg",
-    alt: "Masala Indian Cuisine Murten WordPress homepage",
+    src: "/images/work/covers/masala-murten.jpg",
+    alt: "Bowls of Indian curry with rice and fresh coriander",
   },
   images: [
     {

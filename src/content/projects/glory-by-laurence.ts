@@ -32,8 +32,8 @@ const project: Project = {
   closing:
     "GLORY shows how a small beauty brand can earn trust online: show the result, show how easy it is, and answer the questions before they're asked.",
   cover: {
-    src: "/images/work/glory-by-laurence-home.jpg",
-    alt: "GLORY by Laurence Swedish beauty device Shopify homepage",
+    src: "/images/work/covers/glory-by-laurence.jpg",
+    alt: "Woman using an at-home beauty device",
   },
   images: [
     {
