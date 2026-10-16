@@ -226,10 +226,10 @@ export const services = [
     short:
       "New stores built from scratch, and tired stores rebuilt so they're ready to sell.",
     tags: ["New builds", "Multi-language", "Launch-ready"],
-    /* Card image. Swap for a real screenshot in public/images/services/ */
+    /* Card image (home carousel + services page). Files live in public/images/services/ */
     thumbnail: {
-      src: "/images/services/shopify.svg",
-      alt: "Illustration of a shopping bag and product card for Shopify store development",
+      src: "/images/services/shopify.jpg",
+      alt: "Laptop showing the Shopify \"Start selling\" page on a desk",
     },
     description:
       "I build Shopify stores from scratch and rebuild stores that aren't selling. You get a store that looks like your brand, works on every phone, and is ready to take orders on launch day.",
@@ -253,8 +253,8 @@ export const services = [
       "Custom-coded, WordPress, Webflow or GoHighLevel sites, chosen to fit your business, not my habits.",
     tags: ["Custom code", "WordPress", "GoHighLevel"],
     thumbnail: {
-      src: "/images/services/websites.svg",
-      alt: "Illustration of stacked website layouts for website development",
+      src: "/images/services/websites.jpg",
+      alt: "Desktop screen with website code next to a landing page design",
     },
     description:
       "I pick the platform that fits your business: a custom-coded site when you need speed and full control, WordPress or Webflow when you want to edit it yourself, GoHighLevel when the site has to feed your CRM.",
@@ -278,8 +278,8 @@ export const services = [
       "n8n workflows that take over lead follow-up, order confirmation, task routing and content publishing.",
     tags: ["WhatsApp", "Lead follow-up", "Content pipelines"],
     thumbnail: {
-      src: "/images/services/automation.svg",
-      alt: "Illustration of connected workflow steps for business automation",
+      src: "/images/services/automation.jpg",
+      alt: "Dark blocks linked together like the steps of an automated workflow",
     },
     description:
       "If someone on your team copies data, sends the same reply or chases the same follow-up every day, that work can run on its own. I build n8n workflows that take it over and connect the tools you already use.",
@@ -303,8 +303,8 @@ export const services = [
       "On-brand images for your site and socials, made with AI instead of a photo shoot.",
     tags: ["Website visuals", "Social visuals", "On-brand"],
     thumbnail: {
-      src: "/images/services/claude-code.svg",
-      alt: "Illustration of an image being created for AI visuals and content",
+      src: "/images/services/ai-visuals.jpg",
+      alt: "Connected blocks reading Brand identity, Visual assets and 3D assets",
     },
     description:
       "Stock photos make you look like everyone else, and shoots are slow and expensive. I create AI visuals that match your brand for your website, services and social posts.",
@@ -326,8 +326,8 @@ export const services = [
       "Posts planned, designed and published every week, so your feed never looks abandoned.",
     tags: ["Content plan", "Post design", "Scheduling"],
     thumbnail: {
-      src: "/images/services/social.svg",
-      alt: "Illustration of a social media grid for social media management",
+      src: "/images/services/social.jpg",
+      alt: "Hands scrolling a social media feed on a phone in front of a laptop",
     },
     description:
       "A quiet feed makes a business look closed. I plan, design and publish your posts so your social media keeps working while you run the business.",
