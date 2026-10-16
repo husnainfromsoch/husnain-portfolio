@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll } from "framer-motion";
 import type { Project } from "@/content/projects/types";
 import { workPage } from "@/content/site";
 import { Button, Container, Eyebrow } from "@/components/ui";
@@ -7,6 +11,9 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, Briefcase, Check, Grid } from "@/c
 import Reveal from "@/components/Reveal";
 import TiltCard from "@/components/TiltCard";
 import CountUp from "@/components/about/CountUp";
+import { WordsReveal, LinesReveal } from "@/components/TextReveal";
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 const approach = [
   {
@@ -26,9 +33,43 @@ const approach = [
   },
 ];
 
-/** Shared visual structure for every case study page.
-    Each project has its own route file in src/app/work/<slug>/page.tsx
-    that passes its own data in — this component only renders. */
+/* Left-aligned section heading: small eyebrow + a heading that reveals
+   word by word as it scrolls into view. Used for every major section
+   below the hero so the page reads as one consistent system. */
+function SectionHeading({
+  eyebrow,
+  icon,
+  heading,
+  invert = false,
+}: {
+  eyebrow: string;
+  icon?: typeof Briefcase;
+  heading: string;
+  invert?: boolean;
+}) {
+  return (
+    <Reveal>
+      <p
+        className={`inline-flex items-center gap-2.5 rounded-full border py-1.5 pl-1.5 pr-4 text-xs font-semibold uppercase tracking-[0.2em] ${
+          invert ? "border-paper/15 bg-paper/5" : "border-line bg-card"
+        }`}
+      >
+        <span
+          className={`flex size-6 items-center justify-center rounded-full ${
+            invert ? "bg-paper text-ink" : "bg-accent text-on-accent"
+          }`}
+        >
+          {icon ? icon({ className: "size-3.5" }) : null}
+        </span>
+        {eyebrow}
+      </p>
+      <h2 className="mt-5 font-display text-[clamp(1.9rem,3.8vw,2.9rem)] font-bold leading-[1.04] tracking-[-0.035em]">
+        <WordsReveal text={heading} />
+      </h2>
+    </Reveal>
+  );
+}
+
 export default function CaseStudyLayout({
   project,
   next,
@@ -36,10 +77,25 @@ export default function CaseStudyLayout({
   project: Project;
   next: Project;
 }) {
+  const reduced = useReducedMotion();
+  const processRef = useRef<HTMLOListElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: processRef,
+    offset: ["start 0.8", "end 0.6"],
+  });
+
+  const stats = [
+    { value: `${project.services.length}`, label: project.services.length === 1 ? "Service" : "Services combined" },
+    { value: `${project.keyFeatures.length}`, label: "Things built" },
+    { value: `${project.stack.length}`, label: project.stack.length === 1 ? "Tool used" : "Tools used" },
+  ];
+
+  const thumb = project.images[0];
+
   return (
     <>
-      {/* ------------------------------- HEADER ------------------------------ */}
-      <section className="pb-12 pt-28 sm:pb-16 sm:pt-36">
+      {/* ------------------------------- HERO -------------------------------- */}
+      <section className="overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-36">
         <Container>
           <Reveal>
             <Link
@@ -49,124 +105,182 @@ export default function CaseStudyLayout({
               <ArrowLeft className="size-4 transition-transform duration-300 group-hover:-translate-x-1" />
               {workPage.backLabel}
             </Link>
+          </Reveal>
 
-            <Eyebrow icon={Briefcase}>{project.serviceLabel}</Eyebrow>
+          <div className="mt-6 grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+            {/* ------------------------------ Left: words ----------------------- */}
+            <div>
+              <Reveal>
+                <Eyebrow icon={Briefcase}>{project.serviceLabel}</Eyebrow>
 
-            <h1 className="mt-6 max-w-3xl font-display text-[clamp(2.25rem,5.2vw,4rem)] font-bold leading-[1.02] tracking-[-0.04em]">
-              {project.title}
-            </h1>
+                <h1 className="mt-6 font-display text-[clamp(2.5rem,5.6vw,4.4rem)] font-bold leading-[0.98] tracking-[-0.045em]">
+                  <LinesReveal lines={[project.title]} />
+                </h1>
 
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-              {project.summary}
-            </p>
+                <p className="mt-6 max-w-lg text-base leading-relaxed text-ink/75 sm:text-lg">
+                  {project.summary}
+                </p>
 
-            {/* Key descriptor badges */}
-            <div className="mt-8 flex flex-wrap gap-3">
-              {[
-                { k: "Client", v: project.client },
-                { k: "Market", v: project.country },
-                { k: "Year", v: project.year },
-              ].map((b) => (
-                <span
-                  key={b.k}
-                  className="inline-flex items-center gap-2 rounded-full border border-line bg-card px-4 py-2 text-sm"
-                >
-                  <span className="font-semibold text-ink">{b.v}</span>
-                  <span className="text-muted">{b.k}</span>
-                </span>
-              ))}
+                <div className="mt-7 flex flex-wrap gap-3">
+                  {[
+                    { k: "Client", v: project.client },
+                    { k: "Market", v: project.country },
+                    { k: "Year", v: project.year },
+                  ].map((b) => (
+                    <span
+                      key={b.k}
+                      className="inline-flex items-center gap-2 rounded-full border border-line bg-card px-4 py-2 text-sm"
+                    >
+                      <span className="font-semibold text-ink">{b.v}</span>
+                      <span className="text-muted">{b.k}</span>
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-8 flex flex-wrap items-center gap-4">
+                  <Button href="/contact">Book a free call</Button>
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="group inline-flex items-center gap-2 rounded-cta border border-ink/15 bg-card px-7 py-3.5 text-sm font-semibold text-ink transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-ink"
+                    >
+                      Visit the live site
+                      <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    </a>
+                  )}
+                </div>
+              </Reveal>
+
+              {/* Quick stat strip — real counts pulled straight from the project data */}
+              <motion.dl
+                className="mt-11 grid max-w-md grid-cols-3 gap-4 border-t border-line pt-7"
+                initial="hidden"
+                whileInView="shown"
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ staggerChildren: 0.1, delayChildren: 0.1 }}
+              >
+                {stats.map((s) => (
+                  <motion.div
+                    key={s.label}
+                    variants={
+                      reduced
+                        ? undefined
+                        : {
+                            hidden: { opacity: 0, y: 16, scale: 0.94 },
+                            shown: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.55, ease } },
+                          }
+                    }
+                  >
+                    <dt className="sr-only">{s.label}</dt>
+                    <dd>
+                      <span className="block font-display text-3xl font-bold leading-none tracking-[-0.03em] text-accent-text sm:text-4xl">
+                        <CountUp value={s.value} />
+                      </span>
+                      <span className="mt-2 block text-xs font-medium leading-snug text-muted sm:text-sm">
+                        {s.label}
+                      </span>
+                    </dd>
+                  </motion.div>
+                ))}
+              </motion.dl>
             </div>
 
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="group mt-8 inline-flex items-center gap-2 rounded-cta border border-ink/15 bg-card px-7 py-3.5 text-sm font-semibold text-ink transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-ink"
-              >
-                Visit the live site
-                <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </a>
-            )}
-          </Reveal>
+            {/* --------------------- Right: cover art, Hero-style --------------- */}
+            <Reveal delay={0.15}>
+              <div className="relative mx-auto max-w-[560px] lg:mr-0">
+                <span
+                  aria-hidden="true"
+                  className="absolute left-1/2 top-1/2 -z-10 size-[85%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/20 opacity-70 blur-3xl"
+                />
 
-          {/* Quick stat strip — real counts pulled straight from the project data */}
-          <Reveal delay={0.1} className="mt-12 grid grid-cols-3 gap-4 border-y border-line py-7 sm:max-w-2xl">
-            {[
-              { value: `${project.services.length}`, label: project.services.length === 1 ? "Service" : "Services combined" },
-              { value: `${project.keyFeatures.length}`, label: "Things built" },
-              { value: `${project.stack.length}`, label: project.stack.length === 1 ? "Tool used" : "Tools used" },
-            ].map((s) => (
-              <div key={s.label}>
-                <p className="font-display text-3xl font-bold tracking-[-0.03em] text-accent-text sm:text-4xl">
-                  <CountUp value={s.value} />
-                </p>
-                <p className="mt-1 text-xs font-medium leading-snug text-muted sm:text-sm">{s.label}</p>
+                <TiltCard strength={5} className="relative">
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-card bg-accent-soft">
+                    <Image
+                      src={project.cover.src}
+                      alt={project.cover.alt}
+                      fill
+                      sizes="(min-width: 1024px) 560px, 90vw"
+                      priority
+                      className="object-cover"
+                    />
+                  </div>
+
+                  {/* Status chip, pulsing dot — same mark as the homepage availability chip */}
+                  <p className="absolute left-5 top-5 inline-flex items-center gap-2.5 rounded-full bg-card px-4 py-2.5 text-xs font-semibold shadow-[0_8px_24px_rgba(14,14,14,0.08)] sm:text-sm">
+                    <span className="relative flex size-2.5">
+                      <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-70" />
+                      <span className="relative inline-flex size-2.5 rounded-full bg-accent" />
+                    </span>
+                    {project.liveUrl ? "Live" : "Shipped"} · {project.year}
+                  </p>
+
+                  {/* Floating thumbnail of a second screenshot, tilted like the homepage previews */}
+                  {thumb && (
+                    <div className="absolute -bottom-6 -left-6 w-[48%] overflow-hidden rounded-btn border-4 border-card bg-card shadow-[0_18px_40px_rgba(14,14,14,0.16)] -rotate-6 transition-transform duration-500 hover:-translate-y-1.5 hover:rotate-0 sm:-left-10">
+                      <Image
+                        src={thumb.src}
+                        alt={thumb.alt}
+                        width={640}
+                        height={480}
+                        sizes="(max-width: 1024px) 45vw, 260px"
+                        className="aspect-[4/3] h-auto w-full object-cover"
+                      />
+                    </div>
+                  )}
+                </TiltCard>
               </div>
-            ))}
-          </Reveal>
+            </Reveal>
+          </div>
         </Container>
       </section>
 
-      {/* -------------------------------- COVER ------------------------------- */}
-      <Container>
-        <Reveal>
-          <TiltCard strength={4} className="relative aspect-[16/9] overflow-hidden rounded-card bg-accent-soft">
-            <Image
-              src={project.cover.src}
-              alt={project.cover.alt}
-              fill
-              sizes="(min-width: 1280px) 1200px, 90vw"
-              priority
-              className="object-cover"
-            />
-          </TiltCard>
-        </Reveal>
-      </Container>
-
       {/* ------------------------------- OVERVIEW ------------------------------ */}
-      <section className="py-16 sm:py-24">
+      <section className="border-t border-line py-20 sm:py-28">
         <Container>
-          <div className="grid gap-12 sm:grid-cols-[minmax(0,280px)_1fr] sm:gap-16">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,300px)_1fr] lg:gap-16">
             <Reveal>
-              <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-muted">
-                Project details
-              </p>
-              <dl className="mt-6 flex flex-col gap-5 border-t border-line pt-5 text-sm">
-                {[
-                  { dt: "Client", dd: project.client },
-                  { dt: "Market", dd: project.market },
-                  { dt: "Industry", dd: project.industry },
-                  { dt: "My role", dd: project.role },
-                ].map((row) => (
-                  <div key={row.dt} className="border-b border-line pb-5">
-                    <dt className="text-muted">{row.dt}</dt>
-                    <dd className="mt-1.5 font-semibold leading-snug">{row.dd}</dd>
+              <div className="lg:sticky lg:top-28">
+                <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-muted">
+                  Project details
+                </p>
+                <dl className="mt-6 flex flex-col gap-5 border-t border-line pt-5 text-sm">
+                  {[
+                    { dt: "Client", dd: project.client },
+                    { dt: "Market", dd: project.market },
+                    { dt: "Industry", dd: project.industry },
+                    { dt: "My role", dd: project.role },
+                  ].map((row) => (
+                    <div key={row.dt} className="border-b border-line pb-5">
+                      <dt className="text-muted">{row.dt}</dt>
+                      <dd className="mt-1.5 font-semibold leading-snug">{row.dd}</dd>
+                    </div>
+                  ))}
+                  <div className="pb-1">
+                    <dt className="text-muted">Stack</dt>
+                    <dd className="mt-2.5 flex flex-wrap gap-2">
+                      {project.stack.map((tool) => (
+                        <span
+                          key={tool}
+                          className="inline-flex items-center gap-1.5 rounded-full border border-line bg-card px-3 py-1.5 text-xs font-semibold"
+                        >
+                          <span className="size-1.5 shrink-0 rounded-full bg-accent" />
+                          {tool}
+                        </span>
+                      ))}
+                    </dd>
                   </div>
-                ))}
-                <div className="pb-1">
-                  <dt className="text-muted">Stack</dt>
-                  <dd className="mt-2.5 flex flex-wrap gap-2">
-                    {project.stack.map((tool) => (
-                      <span
-                        key={tool}
-                        className="inline-flex items-center gap-1.5 rounded-full border border-line bg-card px-3 py-1.5 text-xs font-semibold"
-                      >
-                        <span className="size-1.5 shrink-0 rounded-full bg-accent" />
-                        {tool}
-                      </span>
-                    ))}
-                  </dd>
-                </div>
-              </dl>
+                </dl>
+              </div>
             </Reveal>
 
-            <div className="flex flex-col gap-10">
+            <div className="flex flex-col gap-12">
               <Reveal>
                 <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-accent-text">
                   {workPage.problemLabel}
                 </p>
-                <p className="mt-4 text-base leading-relaxed text-ink/80 sm:text-lg">
+                <p className="mt-4 text-lg leading-relaxed text-ink/80 sm:text-xl">
                   {project.problem}
                 </p>
               </Reveal>
@@ -174,7 +288,7 @@ export default function CaseStudyLayout({
                 <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-accent-text">
                   {workPage.solutionLabel}
                 </p>
-                <p className="mt-4 text-base leading-relaxed text-ink/80 sm:text-lg">
+                <p className="mt-4 text-lg leading-relaxed text-ink/80 sm:text-xl">
                   {project.solution}
                 </p>
               </Reveal>
@@ -184,52 +298,65 @@ export default function CaseStudyLayout({
       </section>
 
       {/* -------------------------------- APPROACH ------------------------------ */}
-      <section className="border-t border-line bg-card py-16 sm:py-24">
+      <section className="border-t border-line bg-card py-20 sm:py-28">
         <Container>
-          <Reveal>
-            <Eyebrow icon={Grid}>How I worked on this</Eyebrow>
-          </Reveal>
-          <div className="mt-10 grid gap-5 sm:grid-cols-3">
+          <SectionHeading eyebrow="How I worked on this" icon={Grid} heading="Same process, every time" />
+
+          <motion.ol
+            ref={processRef}
+            className="relative mx-auto mt-14 grid gap-5 sm:mt-16 sm:grid-cols-3"
+            initial="hidden"
+            whileInView="shown"
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ staggerChildren: 0.12 }}
+          >
             {approach.map((step, i) => (
-              <Reveal
+              <motion.li
                 key={step.title}
-                delay={i * 0.08}
-                className="group rounded-card border border-line bg-paper p-6 transition-all duration-300 hover:-translate-y-1 hover:border-ink/20 hover:shadow-[0_18px_40px_rgba(12,4,7,0.08)] sm:p-7"
+                variants={
+                  reduced
+                    ? undefined
+                    : { hidden: { opacity: 0, y: 24 }, shown: { opacity: 1, y: 0, transition: { duration: 0.6, ease } } }
+                }
+                className="group relative overflow-hidden rounded-card border border-line bg-paper p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-ink/20 hover:shadow-[0_18px_40px_rgba(12,4,7,0.08)]"
               >
-                <span className="flex size-10 items-center justify-center rounded-full border border-line font-display text-sm font-bold transition-colors duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-on-accent">
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -right-3 -top-6 font-display text-[6rem] font-bold leading-none text-ink/[0.04] transition-colors duration-300 group-hover:text-accent/10"
+                >
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mt-5 font-display text-lg font-bold tracking-[-0.02em] sm:text-xl">
+                <span className="relative z-10 flex size-11 items-center justify-center rounded-full border border-line bg-card font-display text-sm font-bold tracking-[-0.02em] transition-colors duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-on-accent">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="relative z-10 mt-5 font-display text-xl font-bold tracking-[-0.02em]">
                   {step.title}
                 </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-ink/75 sm:text-[15px]">
+                <p className="relative z-10 mt-2.5 text-[15px] leading-relaxed text-ink/75">
                   {step.description}
                 </p>
-              </Reveal>
+              </motion.li>
             ))}
-          </div>
+          </motion.ol>
         </Container>
       </section>
 
       {/* --------------------------------- KEY FEATURES ------------------------ */}
-      <section className="border-t border-line py-16 sm:py-24">
+      <section className="border-t border-line py-20 sm:py-28">
         <Container>
-          <Reveal>
-            <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-accent-text">
-              What I built
-            </p>
-          </Reveal>
-          <ul className="mt-8 grid gap-5 sm:grid-cols-2">
+          <SectionHeading eyebrow="What I built" icon={Briefcase} heading="Everything that shipped" />
+
+          <ul className="mt-12 grid gap-5 sm:grid-cols-2">
             {project.keyFeatures.map((feature, i) => (
               <Reveal
                 key={feature}
                 as="li"
                 delay={(i % 2) * 0.08}
-                className="flex items-start gap-4 rounded-card border border-line bg-card p-6"
+                className="group relative overflow-hidden flex items-start gap-4 rounded-card border border-line bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-ink/20 hover:shadow-[0_18px_40px_rgba(12,4,7,0.08)]"
               >
                 <span
                   aria-hidden="true"
-                  className="flex size-9 shrink-0 items-center justify-center rounded-full bg-ink text-sm font-bold text-paper"
+                  className="flex size-9 shrink-0 items-center justify-center rounded-full bg-ink text-sm font-bold text-paper transition-colors duration-300 group-hover:bg-accent group-hover:text-on-accent"
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -243,15 +370,18 @@ export default function CaseStudyLayout({
       </section>
 
       {/* ---------------------------------- RESULTS --------------------------- */}
-      <section className="border-y border-line bg-ink py-16 text-paper sm:py-20">
+      <section className="relative overflow-hidden border-y border-line bg-ink py-20 text-paper sm:py-28">
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-0 -z-0 size-[60%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/25 opacity-40 blur-[100px]"
+        />
         <Container>
-          <Reveal>
-            <p className="text-center font-display text-xs font-semibold uppercase tracking-[0.22em] text-paper/60">
-              {workPage.resultsLabel}
-            </p>
-          </Reveal>
+          <div className="relative text-center">
+            <SectionHeadingCentered eyebrow={workPage.resultsLabel} heading="Real, measurable outcomes" />
+          </div>
+
           <ul
-            className={`mx-auto mt-10 grid gap-5 ${
+            className={`relative mx-auto mt-14 grid gap-5 ${
               project.results.length > 1 ? "max-w-3xl sm:grid-cols-2" : "max-w-xl"
             }`}
           >
@@ -260,7 +390,7 @@ export default function CaseStudyLayout({
                 key={r}
                 as="li"
                 delay={(i % 2) * 0.08}
-                className="flex h-full items-start gap-4 rounded-card border border-paper/15 bg-paper/[0.04] p-6 text-left"
+                className="flex h-full items-start gap-4 rounded-card border border-paper/15 bg-paper/[0.04] p-7 text-left backdrop-blur-sm"
               >
                 <span
                   aria-hidden="true"
@@ -277,75 +407,75 @@ export default function CaseStudyLayout({
 
       {/* ------------------------------- GALLERY ------------------------------ */}
       {project.images.length > 0 && (
-        <section className="py-16 sm:py-24">
+        <section className="border-b border-line py-20 sm:py-28">
           <Container>
-            <Reveal>
-              <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-muted">
-                Selected views
-              </p>
-              <h2 className="mt-3 font-display text-[clamp(1.75rem,3.6vw,2.75rem)] font-bold leading-[1.05] tracking-[-0.03em]">
-                More of {project.title}
-              </h2>
-            </Reveal>
+            <SectionHeading eyebrow="Selected views" icon={Grid} heading={`More of ${project.title}`} />
 
-            <div className="mt-10 grid gap-5">
-              {/* First image: full-width hero shot */}
-              <Reveal>
-                <div className="group relative aspect-[16/9] overflow-hidden rounded-card bg-accent-soft">
-                  <Image
-                    src={project.images[0].src}
-                    alt={project.images[0].alt}
-                    fill
-                    sizes="(min-width: 1280px) 1200px, 90vw"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                  />
-                </div>
-              </Reveal>
-
-              {/* Remaining images: bento grid, alternating 2-up and full-width rows */}
-              {project.images.length > 1 && (
-                <div className="grid gap-5 sm:grid-cols-2">
-                  {project.images.slice(1).map((img, i) => (
-                    <Reveal key={img.src + i} delay={(i % 2) * 0.1}>
-                      <div className="group relative aspect-[4/3] overflow-hidden rounded-card bg-accent-soft">
-                        <Image
-                          src={img.src}
-                          alt={img.alt}
-                          fill
-                          sizes="(min-width: 1024px) 45vw, 90vw"
-                          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
-                        />
-                      </div>
-                    </Reveal>
-                  ))}
-                </div>
-              )}
+            <div className="mt-12 grid auto-rows-[180px] grid-cols-2 gap-5 sm:auto-rows-[220px] sm:grid-cols-3">
+              {project.images.map((img, i) => {
+                const pattern = i % 4;
+                const span =
+                  pattern === 0
+                    ? "col-span-2 row-span-2"
+                    : pattern === 3
+                      ? "col-span-2 row-span-1"
+                      : "col-span-1 row-span-1";
+                return (
+                  <Reveal
+                    key={img.src + i}
+                    delay={(i % 3) * 0.08}
+                    className={`group relative overflow-hidden rounded-card bg-accent-soft ${span}`}
+                  >
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      fill
+                      sizes="(min-width: 1024px) 45vw, 90vw"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+                    />
+                    <span className="pointer-events-none absolute inset-0 bg-ink/0 transition-colors duration-300 group-hover:bg-ink/10" />
+                    <span className="pointer-events-none absolute bottom-3 right-3 flex size-8 items-center justify-center rounded-full bg-card/90 text-ink opacity-0 shadow-sm transition-opacity duration-300 group-hover:opacity-100">
+                      <ArrowUpRight className="size-4" />
+                    </span>
+                  </Reveal>
+                );
+              })}
             </div>
           </Container>
         </section>
       )}
 
       {/* ----------------------------- MID-PAGE CTA ----------------------------- */}
-      <section className="py-4 sm:py-6">
+      <section className="py-20 sm:py-28">
         <Container>
           <Reveal>
-            <div className="flex flex-col items-center gap-6 rounded-card bg-accent px-6 py-12 text-center text-on-accent sm:px-16 sm:py-16">
-              <p className="font-display text-[clamp(1.6rem,3.6vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.03em]">
-                Want a site, store or system that performs like this?
-              </p>
-              <p className="max-w-lg text-sm leading-relaxed text-on-accent/85 sm:text-base">
-                Tell me what you&apos;re building and I&apos;ll tell you exactly how I&apos;d approach it — no pressure, no sales script.
-              </p>
-              <Button href="/contact" variant="ink">
-                Book a free call
-              </Button>
+            <div className="relative overflow-hidden rounded-card bg-accent px-6 py-14 text-center text-on-accent sm:px-16 sm:py-20">
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-16 -top-20 size-64 rounded-full bg-on-accent/10 blur-3xl"
+              />
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -bottom-20 -left-16 size-64 rounded-full bg-on-accent/10 blur-3xl"
+              />
+              <div className="relative flex flex-col items-center gap-6">
+                <p className="font-display text-[clamp(1.8rem,4vw,2.75rem)] font-bold leading-[1.08] tracking-[-0.03em]">
+                  Want a site, store or system that performs like this?
+                </p>
+                <p className="max-w-lg text-sm leading-relaxed text-on-accent/85 sm:text-base">
+                  Tell me what you&apos;re building and I&apos;ll tell you exactly how I&apos;d approach it — no pressure, no sales script.
+                </p>
+                <Button href="/contact" variant="ink">
+                  Book a free call
+                </Button>
+              </div>
             </div>
           </Reveal>
         </Container>
       </section>
 
       {/* --------------------------------- NEXT -------------------------------- */}
-      <section className="border-t border-line py-16 sm:py-20">
+      <section className="border-t border-line py-20 sm:py-24">
         <Container>
           <Reveal>
             <p className="mx-auto max-w-2xl text-center text-base leading-relaxed text-ink/75 sm:text-lg">
@@ -354,14 +484,28 @@ export default function CaseStudyLayout({
           </Reveal>
 
           <Reveal delay={0.05} className="mt-14">
-            <Link href={`/work/${next.slug}`} className="group flex items-center justify-between gap-6">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted">
-                  {workPage.nextLabel}
-                </p>
-                <p className="mt-2 font-display text-2xl font-bold tracking-[-0.03em] transition-colors group-hover:text-accent-text sm:text-4xl">
-                  {next.title}
-                </p>
+            <Link
+              href={`/work/${next.slug}`}
+              className="group flex items-center justify-between gap-6 rounded-card border border-line bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-ink/20 hover:shadow-[0_18px_40px_rgba(12,4,7,0.08)] sm:p-7"
+            >
+              <div className="flex items-center gap-5 sm:gap-7">
+                <div className="relative hidden size-20 shrink-0 overflow-hidden rounded-btn bg-accent-soft sm:block">
+                  <Image
+                    src={next.cover.src}
+                    alt={next.cover.alt}
+                    fill
+                    sizes="80px"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted">
+                    {workPage.nextLabel}
+                  </p>
+                  <p className="mt-2 font-display text-2xl font-bold tracking-[-0.03em] transition-colors group-hover:text-accent-text sm:text-4xl">
+                    {next.title}
+                  </p>
+                </div>
               </div>
               <span className="flex size-14 shrink-0 items-center justify-center rounded-full bg-ink text-paper transition-transform duration-300 group-hover:translate-x-1 group-hover:bg-accent group-hover:text-on-accent">
                 <ArrowRight className="size-5" />
@@ -375,5 +519,19 @@ export default function CaseStudyLayout({
         </Container>
       </section>
     </>
+  );
+}
+
+/** Centered variant of SectionHeading, for the dark Results band. */
+function SectionHeadingCentered({ eyebrow, heading }: { eyebrow: string; heading: string }) {
+  return (
+    <Reveal>
+      <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-paper/60">
+        {eyebrow}
+      </p>
+      <h2 className="mx-auto mt-4 max-w-lg font-display text-[clamp(1.9rem,3.8vw,2.9rem)] font-bold leading-[1.04] tracking-[-0.035em]">
+        <WordsReveal text={heading} />
+      </h2>
+    </Reveal>
   );
 }
