@@ -55,6 +55,10 @@ const project: Project = {
       src: "/images/work/stock/with-umair-stock-3.jpg",
       alt: "Placeholder visual — real project screenshot coming soon",
     },
+    {
+      src: "/images/work/stock/with-umair-stock-4.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
   ],
 };
 

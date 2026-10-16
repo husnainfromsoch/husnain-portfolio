@@ -57,6 +57,10 @@ const project: Project = {
       src: "/images/work/stock/simply-teen-skin-stock-3.jpg",
       alt: "Placeholder visual — real project screenshot coming soon",
     },
+    {
+      src: "/images/work/stock/simply-teen-skin-stock-4.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
   ],
   featured: true,
 };

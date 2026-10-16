@@ -236,6 +236,37 @@ export default function CaseStudyLayout({
         </Container>
       </section>
 
+      {/* ------------------------------- GALLERY ------------------------------ */}
+      {project.images.length > 0 && (
+        <section className="border-t border-line py-20 sm:py-28">
+          <Container>
+            <SectionHeading eyebrow="Selected views" icon={Grid} heading={`More of ${project.title}`} />
+
+            <div className="mt-12 grid grid-cols-2 gap-5">
+              {project.images.map((img, i) => (
+                <Reveal
+                  key={img.src + i}
+                  delay={(i % 2) * 0.08}
+                  className="group relative aspect-[4/3] overflow-hidden rounded-card bg-accent-soft"
+                >
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    sizes="(min-width: 1024px) 45vw, 45vw"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+                  />
+                  <span className="pointer-events-none absolute inset-0 bg-ink/0 transition-colors duration-300 group-hover:bg-ink/10" />
+                  <span className="pointer-events-none absolute bottom-3 right-3 flex size-8 items-center justify-center rounded-full bg-card/90 text-ink opacity-0 shadow-sm transition-opacity duration-300 group-hover:opacity-100">
+                    <ArrowUpRight className="size-4" />
+                  </span>
+                </Reveal>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
+
       {/* ------------------------------- OVERVIEW ------------------------------ */}
       <section className="border-t border-line py-20 sm:py-28">
         <Container>
@@ -404,46 +435,6 @@ export default function CaseStudyLayout({
           </ul>
         </Container>
       </section>
-
-      {/* ------------------------------- GALLERY ------------------------------ */}
-      {project.images.length > 0 && (
-        <section className="border-b border-line py-20 sm:py-28">
-          <Container>
-            <SectionHeading eyebrow="Selected views" icon={Grid} heading={`More of ${project.title}`} />
-
-            <div className="mt-12 grid auto-rows-[180px] grid-cols-2 gap-5 sm:auto-rows-[220px] sm:grid-cols-3">
-              {project.images.map((img, i) => {
-                const pattern = i % 4;
-                const span =
-                  pattern === 0
-                    ? "col-span-2 row-span-2"
-                    : pattern === 3
-                      ? "col-span-2 row-span-1"
-                      : "col-span-1 row-span-1";
-                return (
-                  <Reveal
-                    key={img.src + i}
-                    delay={(i % 3) * 0.08}
-                    className={`group relative overflow-hidden rounded-card bg-accent-soft ${span}`}
-                  >
-                    <Image
-                      src={img.src}
-                      alt={img.alt}
-                      fill
-                      sizes="(min-width: 1024px) 45vw, 90vw"
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
-                    />
-                    <span className="pointer-events-none absolute inset-0 bg-ink/0 transition-colors duration-300 group-hover:bg-ink/10" />
-                    <span className="pointer-events-none absolute bottom-3 right-3 flex size-8 items-center justify-center rounded-full bg-card/90 text-ink opacity-0 shadow-sm transition-opacity duration-300 group-hover:opacity-100">
-                      <ArrowUpRight className="size-4" />
-                    </span>
-                  </Reveal>
-                );
-              })}
-            </div>
-          </Container>
-        </section>
-      )}
 
       {/* ----------------------------- MID-PAGE CTA ----------------------------- */}
       <section className="py-20 sm:py-28">

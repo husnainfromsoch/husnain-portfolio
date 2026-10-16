@@ -51,6 +51,14 @@ const project: Project = {
       src: "/images/work/stock/ai-with-riz-stock-3.jpg",
       alt: "Placeholder visual — real project screenshot coming soon",
     },
+    {
+      src: "/images/work/stock/ai-with-riz-stock-4.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
+    {
+      src: "/images/work/stock/ai-with-riz-stock-5.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
   ],
 };
 
