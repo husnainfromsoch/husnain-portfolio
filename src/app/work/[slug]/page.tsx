@@ -42,34 +42,32 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
               {workPage.backLabel}
             </Link>
 
-            <Eyebrow icon={Briefcase} >{project.serviceLabel}</Eyebrow>
+            <Eyebrow icon={Briefcase}>{project.serviceLabel}</Eyebrow>
 
             <h1 className="mt-6 max-w-3xl font-display text-[clamp(2.25rem,5.2vw,4rem)] font-bold leading-[1.02] tracking-[-0.04em]">
               {project.title}
             </h1>
 
-            <dl className="mt-7 flex flex-wrap gap-x-10 gap-y-3 text-sm">
-              <div>
-                <dt className="text-muted">Client</dt>
-                <dd className="mt-1 font-semibold">{project.client}</dd>
-              </div>
-              <div>
-                <dt className="text-muted">Market</dt>
-                <dd className="mt-1 font-semibold">{project.market}</dd>
-              </div>
-              <div>
-                <dt className="text-muted">Service</dt>
-                <dd className="mt-1 font-semibold">{project.serviceLabel}</dd>
-              </div>
-              <div>
-                <dt className="text-muted">My role</dt>
-                <dd className="mt-1 font-semibold">{project.role}</dd>
-              </div>
-              <div>
-                <dt className="text-muted">Stack</dt>
-                <dd className="mt-1 font-semibold">{project.stack.join(" · ")}</dd>
-              </div>
-            </dl>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+              {project.summary}
+            </p>
+
+            {/* Key descriptor badges */}
+            <div className="mt-8 flex flex-wrap gap-3">
+              {[
+                { k: "Client", v: project.client },
+                { k: "Market", v: project.country },
+                { k: "Year", v: project.year },
+              ].map((b) => (
+                <span
+                  key={b.k}
+                  className="inline-flex items-center gap-2 rounded-full border border-line bg-card px-4 py-2 text-sm"
+                >
+                  <span className="font-semibold text-ink">{b.v}</span>
+                  <span className="text-muted">{b.k}</span>
+                </span>
+              ))}
+            </div>
 
             {project.liveUrl && (
               <a
@@ -102,67 +100,90 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         </Reveal>
       </Container>
 
-      {/* --------------------------- PROBLEM / SOLUTION ----------------------- */}
+      {/* ------------------------------- OVERVIEW ------------------------------ */}
       <section className="py-16 sm:py-24">
         <Container>
-          <div className="grid gap-12 sm:grid-cols-2 sm:gap-10">
+          <div className="grid gap-12 sm:grid-cols-[minmax(0,280px)_1fr] sm:gap-16">
             <Reveal>
-              <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-accent-text">
-                {workPage.problemLabel}
+              <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-muted">
+                Project details
               </p>
-              <p className="mt-4 max-w-md text-base leading-relaxed text-ink/80 sm:text-lg">
-                {project.problem}
-              </p>
+              <dl className="mt-6 flex flex-col gap-5 border-t border-line pt-5 text-sm">
+                {[
+                  { dt: "Client", dd: project.client },
+                  { dt: "Market", dd: project.market },
+                  { dt: "Industry", dd: project.industry },
+                  { dt: "My role", dd: project.role },
+                  { dt: "Stack", dd: project.stack.join(" · ") },
+                ].map((row) => (
+                  <div key={row.dt} className="border-b border-line pb-5">
+                    <dt className="text-muted">{row.dt}</dt>
+                    <dd className="mt-1.5 font-semibold leading-snug">{row.dd}</dd>
+                  </div>
+                ))}
+              </dl>
             </Reveal>
-            <Reveal delay={0.1}>
-              <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-accent-text">
-                {workPage.solutionLabel}
-              </p>
-              <p className="mt-4 max-w-md text-base leading-relaxed text-ink/80 sm:text-lg">
-                {project.solution}
-              </p>
-            </Reveal>
+
+            <div className="flex flex-col gap-10">
+              <Reveal>
+                <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-accent-text">
+                  {workPage.problemLabel}
+                </p>
+                <p className="mt-4 text-base leading-relaxed text-ink/80 sm:text-lg">
+                  {project.problem}
+                </p>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-accent-text">
+                  {workPage.solutionLabel}
+                </p>
+                <p className="mt-4 text-base leading-relaxed text-ink/80 sm:text-lg">
+                  {project.solution}
+                </p>
+              </Reveal>
+            </div>
           </div>
         </Container>
       </section>
 
       {/* --------------------------------- KEY FEATURES ------------------------ */}
-      <section className="py-16 sm:py-24">
+      <section className="border-t border-line py-16 sm:py-24">
         <Container>
           <Reveal>
             <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-accent-text">
-              Key features
+              What I built
             </p>
-            <ul className="mx-auto mt-8 grid max-w-3xl gap-4 sm:grid-cols-2">
-              {project.keyFeatures.map((feature) => (
-                <li
-                  key={feature}
-                  className="flex items-start gap-3 text-[15px] leading-relaxed text-ink/80 sm:text-base"
-                >
+          </Reveal>
+          <ul className="mt-8 grid gap-5 sm:grid-cols-2">
+            {project.keyFeatures.map((feature, i) => (
+              <Reveal key={feature} delay={(i % 2) * 0.08}>
+                <li className="flex items-start gap-4 rounded-card border border-line bg-card p-6">
                   <span
                     aria-hidden="true"
-                    className="mt-1.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-ink/[0.07]"
+                    className="flex size-9 shrink-0 items-center justify-center rounded-full bg-ink text-sm font-bold text-paper"
                   >
-                    <span className="size-1.5 rounded-full bg-accent" />
+                    {String(i + 1).padStart(2, "0")}
                   </span>
-                  {feature}
+                  <p className="text-[15px] leading-relaxed text-ink/80 sm:text-base">
+                    {feature}
+                  </p>
                 </li>
-              ))}
-            </ul>
-          </Reveal>
+              </Reveal>
+            ))}
+          </ul>
         </Container>
       </section>
 
       {/* ---------------------------------- RESULTS --------------------------- */}
-      <section className="border-y border-line py-16 sm:py-20">
+      <section className="border-y border-line bg-ink py-16 text-paper sm:py-20">
         <Container>
           <Reveal>
-            <p className="text-center font-display text-xs font-semibold uppercase tracking-[0.22em] text-muted">
+            <p className="text-center font-display text-xs font-semibold uppercase tracking-[0.22em] text-paper/60">
               {workPage.resultsLabel}
             </p>
-            <ul className="mx-auto mt-8 flex max-w-2xl flex-col gap-4 text-center">
+            <ul className="mx-auto mt-8 flex max-w-2xl flex-col gap-5 text-center">
               {project.results.map((r) => (
-                <li key={r} className="text-base leading-relaxed text-ink/85 sm:text-lg">
+                <li key={r} className="text-lg leading-relaxed text-paper/90 sm:text-xl">
                   {r}
                 </li>
               ))}
@@ -175,7 +196,12 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
       {project.images.length > 0 && (
         <section className="py-16 sm:py-24">
           <Container>
-            <div className="grid gap-6 sm:grid-cols-2">
+            <Reveal>
+              <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-muted">
+                Selected views
+              </p>
+            </Reveal>
+            <div className="mt-8 grid gap-6 sm:grid-cols-2">
               {project.images.map((img, i) => (
                 <Reveal key={img.src + i} delay={(i % 2) * 0.1}>
                   <div className="relative aspect-[4/3] overflow-hidden rounded-card bg-accent-soft">
