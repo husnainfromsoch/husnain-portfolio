@@ -43,6 +43,18 @@ const project: Project = {
       src: "/images/work/with-umair-form.jpg",
       alt: "With Umair LinkedIn audit results and strategy session section",
     },
+    {
+      src: "/images/work/stock/with-umair-stock-1.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
+    {
+      src: "/images/work/stock/with-umair-stock-2.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
+    {
+      src: "/images/work/stock/with-umair-stock-3.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
   ],
 };
 

@@ -45,6 +45,18 @@ const project: Project = {
       src: "/images/work/hookah-hub-pakistan-product.jpg",
       alt: "Hookah Hub Pakistan product page for a premium hookah",
     },
+    {
+      src: "/images/work/stock/hookah-hub-pakistan-stock-1.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
+    {
+      src: "/images/work/stock/hookah-hub-pakistan-stock-2.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
+    {
+      src: "/images/work/stock/hookah-hub-pakistan-stock-3.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
   ],
   featured: true,
 };

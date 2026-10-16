@@ -43,6 +43,18 @@ const project: Project = {
       src: "/images/work/soovita-packages.jpg",
       alt: "Soovita marketing packages for restaurants and cafés",
     },
+    {
+      src: "/images/work/stock/soovita-stock-1.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
+    {
+      src: "/images/work/stock/soovita-stock-2.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
+    {
+      src: "/images/work/stock/soovita-stock-3.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
   ],
 };
 

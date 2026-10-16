@@ -44,6 +44,18 @@ const project: Project = {
       src: "/images/work/glory-by-laurence-products.jpg",
       alt: "GLORY by Laurence product grid of beauty devices",
     },
+    {
+      src: "/images/work/stock/glory-by-laurence-stock-1.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
+    {
+      src: "/images/work/stock/glory-by-laurence-stock-2.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
+    {
+      src: "/images/work/stock/glory-by-laurence-stock-3.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
   ],
   featured: true,
 };

@@ -43,6 +43,18 @@ const project: Project = {
       src: "/images/work/cycle-together-courses.jpg",
       alt: "Cycle Together beginner cycling courses page",
     },
+    {
+      src: "/images/work/stock/cycle-together-stock-1.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
+    {
+      src: "/images/work/stock/cycle-together-stock-2.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
+    {
+      src: "/images/work/stock/cycle-together-stock-3.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
   ],
 };
 

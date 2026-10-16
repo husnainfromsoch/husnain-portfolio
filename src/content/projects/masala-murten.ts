@@ -43,6 +43,18 @@ const project: Project = {
       src: "/images/work/masala-murten-menu.jpg",
       alt: "Menu page of the Masala Indian Cuisine website",
     },
+    {
+      src: "/images/work/stock/masala-murten-stock-1.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
+    {
+      src: "/images/work/stock/masala-murten-stock-2.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
+    {
+      src: "/images/work/stock/masala-murten-stock-3.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
   ],
 };
 

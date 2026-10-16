@@ -45,6 +45,18 @@ const project: Project = {
       src: "/images/work/hermine-hold-collections.jpg",
       alt: "Hermine Hold featured collections of beanies and hair accessories",
     },
+    {
+      src: "/images/work/stock/hermine-hold-stock-1.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
+    {
+      src: "/images/work/stock/hermine-hold-stock-2.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
+    {
+      src: "/images/work/stock/hermine-hold-stock-3.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
   ],
   featured: true,
 };

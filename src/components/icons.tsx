@@ -138,6 +138,12 @@ export const serviceIcons = {
   visuals: Sparkle,
 };
 
+export const Check = (p: IconProps) => (
+  <Base {...p}>
+    <path d="m5 12.5 4.5 4.5L19 7" />
+  </Base>
+);
+
 export const Pause = (p: IconProps) => (
   <Base {...p}>
     <path d="M9 5v14M15 5v14" />

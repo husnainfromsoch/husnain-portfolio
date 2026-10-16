@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Project } from "@/content/projects/types";
 import { workPage } from "@/content/site";
 import { Button, Container, Eyebrow } from "@/components/ui";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Briefcase } from "@/components/icons";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Briefcase, Check } from "@/components/icons";
 import Reveal from "@/components/Reveal";
 
 /** Shared visual structure for every case study page.
@@ -144,18 +144,21 @@ export default function CaseStudyLayout({
           </Reveal>
           <ul className="mt-8 grid gap-5 sm:grid-cols-2">
             {project.keyFeatures.map((feature, i) => (
-              <Reveal key={feature} delay={(i % 2) * 0.08}>
-                <li className="flex items-start gap-4 rounded-card border border-line bg-card p-6">
-                  <span
-                    aria-hidden="true"
-                    className="flex size-9 shrink-0 items-center justify-center rounded-full bg-ink text-sm font-bold text-paper"
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <p className="text-[15px] leading-relaxed text-ink/80 sm:text-base">
-                    {feature}
-                  </p>
-                </li>
+              <Reveal
+                key={feature}
+                as="li"
+                delay={(i % 2) * 0.08}
+                className="flex items-start gap-4 rounded-card border border-line bg-card p-6"
+              >
+                <span
+                  aria-hidden="true"
+                  className="flex size-9 shrink-0 items-center justify-center rounded-full bg-ink text-sm font-bold text-paper"
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p className="text-[15px] leading-relaxed text-ink/80 sm:text-base">
+                  {feature}
+                </p>
               </Reveal>
             ))}
           </ul>
@@ -169,14 +172,25 @@ export default function CaseStudyLayout({
             <p className="text-center font-display text-xs font-semibold uppercase tracking-[0.22em] text-paper/60">
               {workPage.resultsLabel}
             </p>
-            <ul className="mx-auto mt-8 flex max-w-2xl flex-col gap-5 text-center">
-              {project.results.map((r) => (
-                <li key={r} className="text-lg leading-relaxed text-paper/90 sm:text-xl">
-                  {r}
-                </li>
-              ))}
-            </ul>
           </Reveal>
+          <ul className="mx-auto mt-10 grid max-w-3xl gap-5 sm:grid-cols-2">
+            {project.results.map((r, i) => (
+              <Reveal
+                key={r}
+                as="li"
+                delay={(i % 2) * 0.08}
+                className="flex h-full items-start gap-4 rounded-card border border-paper/15 bg-paper/[0.04] p-6 text-left"
+              >
+                <span
+                  aria-hidden="true"
+                  className="flex size-8 shrink-0 items-center justify-center rounded-full bg-accent text-on-accent"
+                >
+                  <Check className="size-4" />
+                </span>
+                <p className="text-base leading-relaxed text-paper/90 sm:text-lg">{r}</p>
+              </Reveal>
+            ))}
+          </ul>
         </Container>
       </section>
 
@@ -188,25 +202,66 @@ export default function CaseStudyLayout({
               <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-muted">
                 Selected views
               </p>
+              <h2 className="mt-3 font-display text-[clamp(1.75rem,3.6vw,2.75rem)] font-bold leading-[1.05] tracking-[-0.03em]">
+                More of {project.title}
+              </h2>
             </Reveal>
-            <div className="mt-8 grid gap-6 sm:grid-cols-2">
-              {project.images.map((img, i) => (
-                <Reveal key={img.src + i} delay={(i % 2) * 0.1}>
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-card bg-accent-soft">
-                    <Image
-                      src={img.src}
-                      alt={img.alt}
-                      fill
-                      sizes="(min-width: 1024px) 45vw, 90vw"
-                      className="object-cover"
-                    />
-                  </div>
-                </Reveal>
-              ))}
+
+            <div className="mt-10 grid gap-5">
+              {/* First image: full-width hero shot */}
+              <Reveal>
+                <div className="relative aspect-[16/9] overflow-hidden rounded-card bg-accent-soft">
+                  <Image
+                    src={project.images[0].src}
+                    alt={project.images[0].alt}
+                    fill
+                    sizes="(min-width: 1280px) 1200px, 90vw"
+                    className="object-cover"
+                  />
+                </div>
+              </Reveal>
+
+              {/* Remaining images: bento grid, alternating 2-up and full-width rows */}
+              {project.images.length > 1 && (
+                <div className="grid gap-5 sm:grid-cols-2">
+                  {project.images.slice(1).map((img, i) => (
+                    <Reveal key={img.src + i} delay={(i % 2) * 0.1}>
+                      <div className="relative aspect-[4/3] overflow-hidden rounded-card bg-accent-soft">
+                        <Image
+                          src={img.src}
+                          alt={img.alt}
+                          fill
+                          sizes="(min-width: 1024px) 45vw, 90vw"
+                          className="object-cover"
+                        />
+                      </div>
+                    </Reveal>
+                  ))}
+                </div>
+              )}
             </div>
           </Container>
         </section>
       )}
+
+      {/* ----------------------------- MID-PAGE CTA ----------------------------- */}
+      <section className="py-4 sm:py-6">
+        <Container>
+          <Reveal>
+            <div className="flex flex-col items-center gap-6 rounded-card bg-accent px-6 py-12 text-center text-on-accent sm:px-16 sm:py-16">
+              <p className="font-display text-[clamp(1.6rem,3.6vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.03em]">
+                Want a site, store or system that performs like this?
+              </p>
+              <p className="max-w-lg text-sm leading-relaxed text-on-accent/85 sm:text-base">
+                Tell me what you&apos;re building and I&apos;ll tell you exactly how I&apos;d approach it — no pressure, no sales script.
+              </p>
+              <Button href="/contact" variant="ink">
+                Book a free call
+              </Button>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
 
       {/* --------------------------------- NEXT -------------------------------- */}
       <section className="border-t border-line py-16 sm:py-20">

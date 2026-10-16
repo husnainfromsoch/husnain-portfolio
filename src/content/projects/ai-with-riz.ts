@@ -39,6 +39,18 @@ const project: Project = {
       src: "/images/work/ai-with-riz-home.jpg",
       alt: "AI with Riz personal brand website for an AI consultant",
     },
+    {
+      src: "/images/work/stock/ai-with-riz-stock-1.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
+    {
+      src: "/images/work/stock/ai-with-riz-stock-2.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
+    {
+      src: "/images/work/stock/ai-with-riz-stock-3.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
   ],
 };
 

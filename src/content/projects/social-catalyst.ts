@@ -43,6 +43,18 @@ const project: Project = {
       src: "/images/work/social-catalyst-problem.jpg",
       alt: "Problem section with Google, Instagram and LinkedIn mock-ups on Social Catalyst",
     },
+    {
+      src: "/images/work/stock/social-catalyst-stock-1.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
+    {
+      src: "/images/work/stock/social-catalyst-stock-2.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
+    {
+      src: "/images/work/stock/social-catalyst-stock-3.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
   ],
 };
 

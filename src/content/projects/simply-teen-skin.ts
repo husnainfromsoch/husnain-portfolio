@@ -45,6 +45,18 @@ const project: Project = {
       src: "/images/work/simply-teen-skin-products.jpg",
       alt: "Simply Teen Skin bestselling products section on the homepage",
     },
+    {
+      src: "/images/work/stock/simply-teen-skin-stock-1.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
+    {
+      src: "/images/work/stock/simply-teen-skin-stock-2.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
+    {
+      src: "/images/work/stock/simply-teen-skin-stock-3.jpg",
+      alt: "Placeholder visual — real project screenshot coming soon",
+    },
   ],
   featured: true,
 };
