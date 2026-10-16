@@ -270,61 +270,59 @@ export default function CaseStudyLayout({
       {/* ------------------------------- OVERVIEW ------------------------------ */}
       <section className="border-t border-line py-20 sm:py-28">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,300px)_1fr] lg:gap-16">
+          {/* Problem and solution side by side, so neither column leaves a gap */}
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
             <Reveal>
-              <div className="lg:sticky lg:top-28">
-                <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-muted">
-                  Project details
-                </p>
-                <dl className="mt-6 flex flex-col gap-5 border-t border-line pt-5 text-sm">
-                  {[
-                    { dt: "Client", dd: project.client },
-                    { dt: "Market", dd: project.market },
-                    { dt: "Industry", dd: project.industry },
-                    { dt: "My role", dd: project.role },
-                  ].map((row) => (
-                    <div key={row.dt} className="border-b border-line pb-5">
-                      <dt className="text-muted">{row.dt}</dt>
-                      <dd className="mt-1.5 font-semibold leading-snug">{row.dd}</dd>
-                    </div>
-                  ))}
-                  <div className="pb-1">
-                    <dt className="text-muted">Stack</dt>
-                    <dd className="mt-2.5 flex flex-wrap gap-2">
-                      {project.stack.map((tool) => (
-                        <span
-                          key={tool}
-                          className="inline-flex items-center gap-1.5 rounded-full border border-line bg-card px-3 py-1.5 text-xs font-semibold"
-                        >
-                          <span className="size-1.5 shrink-0 rounded-full bg-accent" />
-                          {tool}
-                        </span>
-                      ))}
-                    </dd>
-                  </div>
-                </dl>
-              </div>
+              <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-accent-text">
+                {workPage.problemLabel}
+              </p>
+              <p className="mt-4 text-lg leading-relaxed text-ink/80 sm:text-xl">
+                {project.problem}
+              </p>
             </Reveal>
-
-            <div className="flex flex-col gap-12">
-              <Reveal>
-                <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-accent-text">
-                  {workPage.problemLabel}
-                </p>
-                <p className="mt-4 text-lg leading-relaxed text-ink/80 sm:text-xl">
-                  {project.problem}
-                </p>
-              </Reveal>
-              <Reveal delay={0.1}>
-                <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-accent-text">
-                  {workPage.solutionLabel}
-                </p>
-                <p className="mt-4 text-lg leading-relaxed text-ink/80 sm:text-xl">
-                  {project.solution}
-                </p>
-              </Reveal>
-            </div>
+            <Reveal delay={0.1}>
+              <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-accent-text">
+                {workPage.solutionLabel}
+              </p>
+              <p className="mt-4 text-lg leading-relaxed text-ink/80 sm:text-xl">
+                {project.solution}
+              </p>
+            </Reveal>
           </div>
+
+          {/* Project details as one horizontal strip underneath */}
+          <Reveal className="mt-16 sm:mt-20">
+            <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-muted">
+              Project details
+            </p>
+            <dl className="mt-6 grid gap-x-10 gap-y-6 border-t border-line pt-6 text-sm sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1.5fr]">
+              {[
+                { dt: "Client", dd: project.client },
+                { dt: "Market", dd: project.market },
+                { dt: "Industry", dd: project.industry },
+                { dt: "My role", dd: project.role },
+              ].map((row) => (
+                <div key={row.dt}>
+                  <dt className="text-muted">{row.dt}</dt>
+                  <dd className="mt-1.5 font-semibold leading-snug">{row.dd}</dd>
+                </div>
+              ))}
+            </dl>
+            <div className="mt-6 flex flex-col gap-3 border-t border-line pt-6 text-sm sm:flex-row sm:items-center sm:gap-6">
+              <p className="shrink-0 text-muted">Stack</p>
+              <div className="flex flex-wrap gap-2">
+                {project.stack.map((tool) => (
+                  <span
+                    key={tool}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-line bg-card px-3 py-1.5 text-xs font-semibold"
+                  >
+                    <span className="size-1.5 shrink-0 rounded-full bg-accent" />
+                    {tool}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </Reveal>
         </Container>
       </section>
 
@@ -433,35 +431,6 @@ export default function CaseStudyLayout({
               </Reveal>
             ))}
           </ul>
-        </Container>
-      </section>
-
-      {/* ----------------------------- MID-PAGE CTA ----------------------------- */}
-      <section className="py-20 sm:py-28">
-        <Container>
-          <Reveal>
-            <div className="relative overflow-hidden rounded-card bg-accent px-6 py-14 text-center text-on-accent sm:px-16 sm:py-20">
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute -right-16 -top-20 size-64 rounded-full bg-on-accent/10 blur-3xl"
-              />
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute -bottom-20 -left-16 size-64 rounded-full bg-on-accent/10 blur-3xl"
-              />
-              <div className="relative flex flex-col items-center gap-6">
-                <p className="font-display text-[clamp(1.8rem,4vw,2.75rem)] font-bold leading-[1.08] tracking-[-0.03em]">
-                  Want a site, store or system that performs like this?
-                </p>
-                <p className="max-w-lg text-sm leading-relaxed text-on-accent/85 sm:text-base">
-                  Tell me what you&apos;re building and I&apos;ll tell you exactly how I&apos;d approach it — no pressure, no sales script.
-                </p>
-                <Button href="/contact" variant="ink">
-                  Book a free call
-                </Button>
-              </div>
-            </div>
-          </Reveal>
         </Container>
       </section>
 
