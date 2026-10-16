@@ -1,33 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import type { Metadata } from "next";
-import { projects, getProject } from "@/content/projects";
-import { workPage, site } from "@/content/site";
+import type { Project } from "@/content/projects/types";
+import { workPage } from "@/content/site";
 import { Button, Container, Eyebrow } from "@/components/ui";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Briefcase } from "@/components/icons";
 import Reveal from "@/components/Reveal";
 
-export function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
-}
-
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const project = getProject(params.slug);
-  if (!project) return {};
-  return {
-    title: `${project.title} — ${site.brandFull}`,
-    description: project.summary,
-  };
-}
-
-export default function CaseStudyPage({ params }: { params: { slug: string } }) {
-  const project = getProject(params.slug);
-  if (!project) notFound();
-
-  const index = projects.findIndex((p) => p.slug === project.slug);
-  const next = projects[(index + 1) % projects.length];
-
+/** Shared visual structure for every case study page.
+    Each project has its own route file in src/app/work/<slug>/page.tsx
+    that passes its own data in — this component only renders. */
+export default function CaseStudyLayout({
+  project,
+  next,
+}: {
+  project: Project;
+  next: Project;
+}) {
   return (
     <>
       {/* ------------------------------- HEADER ------------------------------ */}
