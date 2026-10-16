@@ -278,8 +278,8 @@ export const services = [
       "n8n workflows that take over lead follow-up, order confirmation, task routing and content publishing.",
     tags: ["WhatsApp", "Lead follow-up", "Content pipelines"],
     thumbnail: {
-      src: "/images/services/automation-ai-robots.jpg",
-      alt: "Row of AI robots each working on a laptop",
+      src: "/images/services/automation-dashboard.jpg",
+      alt: "Laptop and phone on a desk showing the same live business dashboard",
     },
     description:
       "If someone on your team copies data, sends the same reply or chases the same follow-up every day, that work can run on its own. I build n8n workflows that take it over and connect the tools you already use.",
@@ -303,8 +303,8 @@ export const services = [
       "On-brand images for your site and socials, made with AI instead of a photo shoot.",
     tags: ["Website visuals", "Social visuals", "On-brand"],
     thumbnail: {
-      src: "/images/services/ai-visuals-glass-head.jpg",
-      alt: "Glossy green glass sculpture of a head, a piece of AI-style digital art",
+      src: "/images/services/ai-visuals-editing.jpg",
+      alt: "Laptop with image editing software open on a bold red photo",
     },
     description:
       "Stock photos make you look like everyone else, and shoots are slow and expensive. I create AI visuals that match your brand for your website, services and social posts.",
