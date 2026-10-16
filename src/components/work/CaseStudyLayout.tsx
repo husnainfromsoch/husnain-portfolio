@@ -3,8 +3,28 @@ import Link from "next/link";
 import type { Project } from "@/content/projects/types";
 import { workPage } from "@/content/site";
 import { Button, Container, Eyebrow } from "@/components/ui";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Briefcase, Check } from "@/components/icons";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Briefcase, Check, Grid } from "@/components/icons";
 import Reveal from "@/components/Reveal";
+import TiltCard from "@/components/TiltCard";
+import CountUp from "@/components/about/CountUp";
+
+const approach = [
+  {
+    title: "Map how it actually runs",
+    description:
+      "Before any code, I look at the real workflow — the tools, the manual steps, the bottlenecks that cost time or sales.",
+  },
+  {
+    title: "Build the thing that fixes it",
+    description:
+      "Store, site or automation — built to match the brand and solve the specific problem, not a generic template.",
+  },
+  {
+    title: "Launch and hand it over clean",
+    description:
+      "Tested on real devices, connected to the tools already in use, and explained in plain language — no black boxes.",
+  },
+];
 
 /** Shared visual structure for every case study page.
     Each project has its own route file in src/app/work/<slug>/page.tsx
@@ -69,13 +89,29 @@ export default function CaseStudyLayout({
               </a>
             )}
           </Reveal>
+
+          {/* Quick stat strip — real counts pulled straight from the project data */}
+          <Reveal delay={0.1} className="mt-12 grid grid-cols-3 gap-4 border-y border-line py-7 sm:max-w-2xl">
+            {[
+              { value: `${project.services.length}`, label: project.services.length === 1 ? "Service" : "Services combined" },
+              { value: `${project.keyFeatures.length}`, label: "Things built" },
+              { value: `${project.stack.length}`, label: project.stack.length === 1 ? "Tool used" : "Tools used" },
+            ].map((s) => (
+              <div key={s.label}>
+                <p className="font-display text-3xl font-bold tracking-[-0.03em] text-accent-text sm:text-4xl">
+                  <CountUp value={s.value} />
+                </p>
+                <p className="mt-1 text-xs font-medium leading-snug text-muted sm:text-sm">{s.label}</p>
+              </div>
+            ))}
+          </Reveal>
         </Container>
       </section>
 
       {/* -------------------------------- COVER ------------------------------- */}
       <Container>
         <Reveal>
-          <div className="relative aspect-[16/9] overflow-hidden rounded-card bg-accent-soft">
+          <TiltCard strength={4} className="relative aspect-[16/9] overflow-hidden rounded-card bg-accent-soft">
             <Image
               src={project.cover.src}
               alt={project.cover.alt}
@@ -84,7 +120,7 @@ export default function CaseStudyLayout({
               priority
               className="object-cover"
             />
-          </div>
+          </TiltCard>
         </Reveal>
       </Container>
 
@@ -102,13 +138,26 @@ export default function CaseStudyLayout({
                   { dt: "Market", dd: project.market },
                   { dt: "Industry", dd: project.industry },
                   { dt: "My role", dd: project.role },
-                  { dt: "Stack", dd: project.stack.join(" · ") },
                 ].map((row) => (
                   <div key={row.dt} className="border-b border-line pb-5">
                     <dt className="text-muted">{row.dt}</dt>
                     <dd className="mt-1.5 font-semibold leading-snug">{row.dd}</dd>
                   </div>
                 ))}
+                <div className="pb-1">
+                  <dt className="text-muted">Stack</dt>
+                  <dd className="mt-2.5 flex flex-wrap gap-2">
+                    {project.stack.map((tool) => (
+                      <span
+                        key={tool}
+                        className="inline-flex items-center gap-1.5 rounded-full border border-line bg-card px-3 py-1.5 text-xs font-semibold"
+                      >
+                        <span className="size-1.5 shrink-0 rounded-full bg-accent" />
+                        {tool}
+                      </span>
+                    ))}
+                  </dd>
+                </div>
               </dl>
             </Reveal>
 
@@ -130,6 +179,34 @@ export default function CaseStudyLayout({
                 </p>
               </Reveal>
             </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* -------------------------------- APPROACH ------------------------------ */}
+      <section className="border-t border-line bg-card py-16 sm:py-24">
+        <Container>
+          <Reveal>
+            <Eyebrow icon={Grid}>How I worked on this</Eyebrow>
+          </Reveal>
+          <div className="mt-10 grid gap-5 sm:grid-cols-3">
+            {approach.map((step, i) => (
+              <Reveal
+                key={step.title}
+                delay={i * 0.08}
+                className="group rounded-card border border-line bg-paper p-6 transition-all duration-300 hover:-translate-y-1 hover:border-ink/20 hover:shadow-[0_18px_40px_rgba(12,4,7,0.08)] sm:p-7"
+              >
+                <span className="flex size-10 items-center justify-center rounded-full border border-line font-display text-sm font-bold transition-colors duration-300 group-hover:border-accent group-hover:bg-accent group-hover:text-on-accent">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-5 font-display text-lg font-bold tracking-[-0.02em] sm:text-xl">
+                  {step.title}
+                </h3>
+                <p className="mt-2.5 text-sm leading-relaxed text-ink/75 sm:text-[15px]">
+                  {step.description}
+                </p>
+              </Reveal>
+            ))}
           </div>
         </Container>
       </section>
@@ -173,7 +250,11 @@ export default function CaseStudyLayout({
               {workPage.resultsLabel}
             </p>
           </Reveal>
-          <ul className="mx-auto mt-10 grid max-w-3xl gap-5 sm:grid-cols-2">
+          <ul
+            className={`mx-auto mt-10 grid gap-5 ${
+              project.results.length > 1 ? "max-w-3xl sm:grid-cols-2" : "max-w-xl"
+            }`}
+          >
             {project.results.map((r, i) => (
               <Reveal
                 key={r}
@@ -210,13 +291,13 @@ export default function CaseStudyLayout({
             <div className="mt-10 grid gap-5">
               {/* First image: full-width hero shot */}
               <Reveal>
-                <div className="relative aspect-[16/9] overflow-hidden rounded-card bg-accent-soft">
+                <div className="group relative aspect-[16/9] overflow-hidden rounded-card bg-accent-soft">
                   <Image
                     src={project.images[0].src}
                     alt={project.images[0].alt}
                     fill
                     sizes="(min-width: 1280px) 1200px, 90vw"
-                    className="object-cover"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                   />
                 </div>
               </Reveal>
@@ -226,13 +307,13 @@ export default function CaseStudyLayout({
                 <div className="grid gap-5 sm:grid-cols-2">
                   {project.images.slice(1).map((img, i) => (
                     <Reveal key={img.src + i} delay={(i % 2) * 0.1}>
-                      <div className="relative aspect-[4/3] overflow-hidden rounded-card bg-accent-soft">
+                      <div className="group relative aspect-[4/3] overflow-hidden rounded-card bg-accent-soft">
                         <Image
                           src={img.src}
                           alt={img.alt}
                           fill
                           sizes="(min-width: 1024px) 45vw, 90vw"
-                          className="object-cover"
+                          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
                         />
                       </div>
                     </Reveal>
