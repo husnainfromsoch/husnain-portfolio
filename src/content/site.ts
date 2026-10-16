@@ -279,7 +279,7 @@ export const services = [
     tags: ["WhatsApp", "Lead follow-up", "Content pipelines"],
     thumbnail: {
       src: "/images/services/automation.jpg",
-      alt: "Dark blocks linked together like the steps of an automated workflow",
+      alt: "Row of AI robots each working on a laptop",
     },
     description:
       "If someone on your team copies data, sends the same reply or chases the same follow-up every day, that work can run on its own. I build n8n workflows that take it over and connect the tools you already use.",
@@ -304,7 +304,7 @@ export const services = [
     tags: ["Website visuals", "Social visuals", "On-brand"],
     thumbnail: {
       src: "/images/services/ai-visuals.jpg",
-      alt: "Connected blocks reading Brand identity, Visual assets and 3D assets",
+      alt: "Glossy green glass sculpture of a head, a piece of AI-style digital art",
     },
     description:
       "Stock photos make you look like everyone else, and shoots are slow and expensive. I create AI visuals that match your brand for your website, services and social posts.",
