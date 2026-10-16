@@ -278,7 +278,7 @@ export const services = [
       "n8n workflows that take over lead follow-up, order confirmation, task routing and content publishing.",
     tags: ["WhatsApp", "Lead follow-up", "Content pipelines"],
     thumbnail: {
-      src: "/images/services/automation.jpg",
+      src: "/images/services/automation-ai-robots.jpg",
       alt: "Row of AI robots each working on a laptop",
     },
     description:
@@ -303,7 +303,7 @@ export const services = [
       "On-brand images for your site and socials, made with AI instead of a photo shoot.",
     tags: ["Website visuals", "Social visuals", "On-brand"],
     thumbnail: {
-      src: "/images/services/ai-visuals.jpg",
+      src: "/images/services/ai-visuals-glass-head.jpg",
       alt: "Glossy green glass sculpture of a head, a piece of AI-style digital art",
     },
     description:
